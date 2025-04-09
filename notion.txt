@@ -1,0 +1,46 @@
+- Database:
+Category: (id), name, is_delete
+Author: (id), name, is_delete
+Publisher: (id), name, is_delete
+Book: (id), isbn, title, category_id(FK), author_id(FK), year_of_publication, publisher_id, quantity, cover, price, description, image, is_delete
+Customer: (id), family_name, given_name, date_of_birth, address, phone, gender, is_delete
+Staff: (id), family_name, given_name, phone, email, date_of_birth, citizen_identification, gender, address, hash_password, role, is_delete
+Promotion: (id), name, start_date, end_date, condition, discount_percent, quantity, is_delete
+Order: (id), staff_id(FK), promotion_id(FK), customer_id(FK), created_time, total_amount, sub_total_amount, promotion_amount, status, note, is_delete
+OrderItem: (order_id(FK), book_id(FK)), quantity, price
+
+- Design Pattern:
+Pattern				Mục tiêu & Gợi ý triển khai
+Repository			Tạo abstraction cho các thao tác với Book, Customer, Order,... để không phụ thuộc EF Core. Ví dụ: IBookRepository, ICustomerRepository.
+Unit of Work		Quản lý nhiều thao tác save vào DB trong 1 transaction. Ví dụ khi tạo Order → bạn cần tạo Order + nhiều OrderItem → rollback nếu lỗi.
+Specification		Viết các điều kiện filter động dạng object (VD: tìm sách theo category, keyword, tác giả...) rồi pass vào repository.
+Singleton			Dùng cho các config, cache dữ liệu ít thay đổi (VD: config service khuyến mãi hoặc lookup dữ liệu tĩnh).
+
+- Kiến trúc đề xuất API:
+Bookstore.API
+├── Controllers/         ← Gọi service, xử lý request
+│   ├── BookController.cs
+│   ├── OrderController.cs
+│   ├── AuthController.cs
+│   └── ...
+├── DTOs/                ← Chỉ dùng các class đơn giản
+├── Entities/            ← Entity gắn trực tiếp với EF Core
+├── Repositories/        ← Interface + Implementation
+├── Services/            ← Xử lý nghiệp vụ
+├── UnitOfWork/          ← Interface + Implementation
+├── Data/                ← DbContext + DataSeeder
+├── Program.cs
+└── appsettings.json
+
+- Flow:
+Client (UI / Postman)
+   ↓
+Controller (OrderController)
+   ↓
+Service (OrderService)
+   ↓
+Repository (OrderRepository)
+   ↓
+EF Core / DbContext (Order Entity)
+   ↓
+SQL Server
