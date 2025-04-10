@@ -1,7 +1,7 @@
 Category: (id), name, is_delete
 Author: (id), name, is_delete
 Publisher: (id), name, is_delete
-Book: (id), isbn, title, category_id(FK), author_id(FK), year_of_publication, publisher_id, quantity, cover, price, description, image, is_delete
+Book: (id), isbn, title, category_id(FK), author_id(FK), year_of_publication, publisher_id(FK), quantity, cover, price, description, image, is_delete
 Customer: (id), family_name, given_name, date_of_birth, address, phone, gender, is_delete
 Staff: (id), family_name, given_name, phone, email, date_of_birth, citizen_identification, gender, address, hash_password, role, is_delete
 Promotion: (id), name, start_date, end_date, condition, discount_percent, quantity, is_delete
