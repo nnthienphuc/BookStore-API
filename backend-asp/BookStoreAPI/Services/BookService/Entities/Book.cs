@@ -2,9 +2,13 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using BookStoreAPI.Services.AuthorService.Entities;
+using BookStoreAPI.Services.CategoryService.Entities;
+using BookStoreAPI.Services.OrderService.Entities;
+using BookStoreAPI.Services.PublisherService.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace BookStoreAPI.Entities;
+namespace BookStoreAPI.Services.BookService.Entities;
 
 [Table("Book")]
 [Index("Isbn", Name = "IX_Book", IsUnique = true)]

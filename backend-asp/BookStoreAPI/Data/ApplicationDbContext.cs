@@ -1,6 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using BookStoreAPI.Entities;
+using BookStoreAPI.Services.AuthorService.Entities;
+using BookStoreAPI.Services.BookService.Entities;
+using BookStoreAPI.Services.CategoryService.Entities;
+using BookStoreAPI.Services.CustomerSevice.Entities;
+using BookStoreAPI.Services.OrderService.Entities;
+using BookStoreAPI.Services.PromotionService.Entities;
+using BookStoreAPI.Services.PublisherService.Entities;
+using BookStoreAPI.Services.StaffService.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace BookStoreAPI.Data;

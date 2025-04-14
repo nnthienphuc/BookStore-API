@@ -1,12 +1,16 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 
-namespace BookStoreAPI.Common.Controllers
+namespace BookStoreAPI.Common.Controllers;
+
+[ApiController]
+[Route("api/[controller]")]
+[Authorize]
+public abstract class BaseController : ControllerBase
 {
-    public class BaseController : Controller
+    protected Guid GetUserId()
     {
-        public IActionResult Index()
-        {
-            return View();
-        }
+        var userIdClaim = User.FindFirst("id");
+        return userIdClaim != null ? Guid.Parse(userIdClaim.Value) : Guid.Empty;
     }
 }

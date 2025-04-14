@@ -2,9 +2,12 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using BookStoreAPI.Services.CustomerSevice.Entities;
+using BookStoreAPI.Services.PromotionService.Entities;
+using BookStoreAPI.Services.StaffService.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace BookStoreAPI.Entities;
+namespace BookStoreAPI.Services.OrderService.Entities;
 
 [Table("Order")]
 public partial class Order
