@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using BookStoreAPI.Common.Entities;
 using BookStoreAPI.Services.AuthorService.Entities;
 using BookStoreAPI.Services.CategoryService.Entities;
 using BookStoreAPI.Services.OrderService.Entities;
@@ -12,12 +13,8 @@ namespace BookStoreAPI.Services.BookService.Entities;
 
 [Table("Book")]
 [Index("Isbn", Name = "IX_Book", IsUnique = true)]
-public partial class Book
+public partial class Book : BaseEntity
 {
-    [Key]
-    [Column("id")]
-    public Guid Id { get; set; }
-
     [Column("isbn")]
     [StringLength(13)]
     [Unicode(false)]
@@ -49,9 +46,6 @@ public partial class Book
 
     [Column("quantity")]
     public int Quantity { get; set; }
-
-    [Column("isDeleted")]
-    public bool IsDeleted { get; set; }
 
     [ForeignKey("AuthorId")]
     [InverseProperty("Books")]

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using BookStoreAPI.Common.Entities;
 using BookStoreAPI.Services.OrderService.Entities;
 using Microsoft.EntityFrameworkCore;
 
@@ -10,12 +11,8 @@ namespace BookStoreAPI.Services.StaffService.Entities;
 [Index("CitizenIdentification", Name = "IX_Staff_CI", IsUnique = true)]
 [Index("Email", Name = "IX_Staff_Email", IsUnique = true)]
 [Index("Phone", Name = "IX_Staff_Phone", IsUnique = true)]
-public partial class Staff
+public partial class Staff : BaseEntity
 {
-    [Key]
-    [Column("id")]
-    public Guid Id { get; set; }
-
     [Column("familyName")]
     [StringLength(70)]
     public string FamilyName { get; set; } = null!;
@@ -59,9 +56,6 @@ public partial class Staff
 
     [Column("isActived")]
     public bool IsActived { get; set; }
-
-    [Column("isDeleted")]
-    public bool IsDeleted { get; set; }
 
     [InverseProperty("Staff")]
     public virtual ICollection<Order> Orders { get; set; } = new List<Order>();

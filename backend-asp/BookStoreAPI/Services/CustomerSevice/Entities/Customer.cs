@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using BookStoreAPI.Common.Entities;
 using BookStoreAPI.Services.OrderService.Entities;
 using Microsoft.EntityFrameworkCore;
 
@@ -9,12 +10,8 @@ namespace BookStoreAPI.Services.CustomerSevice.Entities;
 
 [Table("Customer")]
 [Index("Phone", Name = "IX_Customer", IsUnique = true)]
-public partial class Customer
+public partial class Customer : BaseEntity
 {
-    [Key]
-    [Column("id")]
-    public Guid Id { get; set; }
-
     [Column("familyName")]
     [StringLength(70)]
     public string FamilyName { get; set; } = null!;
@@ -37,9 +34,6 @@ public partial class Customer
 
     [Column("gender")]
     public bool Gender { get; set; }
-
-    [Column("isDeleted")]
-    public bool IsDeleted { get; set; }
 
     [InverseProperty("Customer")]
     public virtual ICollection<Order> Orders { get; set; } = new List<Order>();

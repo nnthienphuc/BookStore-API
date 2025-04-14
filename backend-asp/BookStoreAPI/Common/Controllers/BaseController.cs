@@ -8,9 +8,4 @@ namespace BookStoreAPI.Common.Controllers;
 [Authorize]
 public abstract class BaseController : ControllerBase
 {
-    protected Guid GetUserId()
-    {
-        var userIdClaim = User.FindFirst("id");
-        return userIdClaim != null ? Guid.Parse(userIdClaim.Value) : Guid.Empty;
-    }
 }

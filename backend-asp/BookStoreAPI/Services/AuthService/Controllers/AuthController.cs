@@ -1,12 +1,10 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using BookStoreAPI.Common.Controllers;
+using Microsoft.AspNetCore.Mvc;
 
 namespace BookStoreAPI.Services.AuthService.Controllers
 {
-    public class AuthController : Controller
+    public class AuthController : BaseController
     {
-        public IActionResult Index()
-        {
-            return View();
-        }
+        
     }
 }

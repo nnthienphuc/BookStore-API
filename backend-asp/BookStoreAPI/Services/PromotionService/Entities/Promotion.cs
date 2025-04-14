@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using BookStoreAPI.Common.Entities;
 using BookStoreAPI.Services.OrderService.Entities;
 using Microsoft.EntityFrameworkCore;
 
@@ -9,12 +10,8 @@ namespace BookStoreAPI.Services.PromotionService.Entities;
 
 [Table("Promotion")]
 [Index("Name", Name = "IX_Promotion", IsUnique = true)]
-public partial class Promotion
+public partial class Promotion : BaseEntity
 {
-    [Key]
-    [Column("id")]
-    public Guid Id { get; set; }
-
     [Column("name")]
     [StringLength(100)]
     public string Name { get; set; } = null!;
@@ -33,9 +30,6 @@ public partial class Promotion
 
     [Column("quantity")]
     public short Quantity { get; set; }
-
-    [Column("isDeleted")]
-    public bool IsDeleted { get; set; }
 
     [InverseProperty("Promotion")]
     public virtual ICollection<Order> Orders { get; set; } = new List<Order>();

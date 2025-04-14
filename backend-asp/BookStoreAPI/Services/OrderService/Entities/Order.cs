@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using BookStoreAPI.Common.Entities;
 using BookStoreAPI.Services.CustomerSevice.Entities;
 using BookStoreAPI.Services.PromotionService.Entities;
 using BookStoreAPI.Services.StaffService.Entities;
@@ -10,12 +11,8 @@ using Microsoft.EntityFrameworkCore;
 namespace BookStoreAPI.Services.OrderService.Entities;
 
 [Table("Order")]
-public partial class Order
+public partial class Order : BaseEntity
 {
-    [Key]
-    [Column("id")]
-    public Guid Id { get; set; }
-
     [Column("staffId")]
     public Guid StaffId { get; set; }
 
@@ -42,9 +39,6 @@ public partial class Order
 
     [Column("note")]
     public string? Note { get; set; }
-
-    [Column("isDeleted")]
-    public bool IsDeleted { get; set; }
 
     [ForeignKey("CustomerId")]
     [InverseProperty("Orders")]
