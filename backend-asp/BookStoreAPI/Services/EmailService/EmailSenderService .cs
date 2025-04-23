@@ -1,15 +1,13 @@
 ﻿using MailKit.Net.Smtp;
 using MimeKit;
-using Microsoft.Extensions.Configuration;
-using System.Threading.Tasks;
 
 namespace BookStoreAPI.Services.EmailService
 {
-    public class EmailService
+    public class EmailSenderService
     {
         private readonly IConfiguration _config;
 
-        public EmailService(IConfiguration config)
+        public EmailSenderService(IConfiguration config)
         {
             _config = config;
         }

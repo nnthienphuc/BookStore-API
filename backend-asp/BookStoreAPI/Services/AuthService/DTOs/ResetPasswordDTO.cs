@@ -1,9 +1,7 @@
 ﻿namespace BookStoreAPI.Services.AuthService.DTOs
 {
-    public class LoginDTO
+    public class ResetPasswordDTO
     {
         public String Email { get; set; }
-        public String Password { get; set; }
-
     }
 }
