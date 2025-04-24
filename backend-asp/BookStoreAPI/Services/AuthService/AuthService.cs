@@ -25,14 +25,14 @@ namespace BookStoreAPI.Services.AuthService
             _emailService = emailService;
         }
 
-        public async Task<bool> RegisterAsync (RegisterDTO registerDTO)
+        public async Task<bool> RegisterAsync(RegisterDTO registerDTO)
         {
             var existingByEmail = await _authRepository.GetByEmailAsync(registerDTO.Email);
             var existingByPhone = await _authRepository.GetByPhoneAsync(registerDTO.Phone);
             var existingByCitizenIdentification = await _authRepository.GetByCitizenIdentificationAsync(registerDTO.CitizenIdentification);
 
             if (existingByEmail != null || existingByPhone != null || existingByCitizenIdentification != null)
-                return false;                
+                return false;
 
             if (registerDTO.Password != registerDTO.ConfirmPassword)
                 return false;
@@ -181,8 +181,14 @@ namespace BookStoreAPI.Services.AuthService
         {
             var staff = await _authRepository.GetByEmailAsync(resetPasswordDTO.Email);
 
-            if (staff == null || staff.IsDeleted == true || staff.IsActived == false)
-                return false;
+            if (staff == null)
+                throw new UnauthorizedAccessException("Invalid account, please check your email or create new account.");
+
+            if (staff.IsDeleted == true)
+                throw new UnauthorizedAccessException("Your account has been deleted. Please contact the administrator.");
+
+            if (staff.IsActived == false)
+                throw new UnauthorizedAccessException("Your account has not been activated. Please check your email to active.");
 
             var token = GenerateResetPasswordToken(staff.Id);
             var resetLink = $"http://localhost:5208/api/auth/reset-password?token={token}";
@@ -247,6 +253,30 @@ namespace BookStoreAPI.Services.AuthService
             );
 
             return new JwtSecurityTokenHandler().WriteToken(token);
+        }
+
+        public async Task<bool> ChangePasswordAsync(Guid staffID, ChangePasswordDTO changePasswordDTO)
+        {
+            var staff = await _authRepository.GetByIdAsync(staffID);
+
+            if (staff == null)
+                throw new UnauthorizedAccessException("Invalid account, please check your email or create new account.");
+
+            if (staff.IsDeleted == true)
+                throw new UnauthorizedAccessException("Your account has been deleted. Please contact the administrator.");
+
+            if (staff.IsActived == false)
+                throw new UnauthorizedAccessException("Your account has not been activated. Please check your email to active.");
+
+            if (!BCrypt.Net.BCrypt.Verify(changePasswordDTO.OldPassword, staff.HashPassword))
+                throw new UnauthorizedAccessException("Invalid old password. Please try again.");
+
+            if (changePasswordDTO.NewPassword != changePasswordDTO.ConfirmNewPassword)
+                throw new UnauthorizedAccessException("New password and confirm password do not match.");
+
+            staff.HashPassword = BCrypt.Net.BCrypt.HashPassword(changePasswordDTO.NewPassword);
+
+            return await _authRepository.SaveChangesAsync();
         }
 
     }

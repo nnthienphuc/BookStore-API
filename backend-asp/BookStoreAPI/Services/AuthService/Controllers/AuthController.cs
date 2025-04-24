@@ -62,12 +62,19 @@ namespace BookStoreAPI.Services.AuthService.Controllers
         [HttpPost("reset-password")]
         public async Task<IActionResult> ResetPassword([FromBody] ResetPasswordDTO resetPasswordDTO)
         {
-            var success = await _authService.ResetPasswordAsync(resetPasswordDTO);
-
-            if (!success)
-                return BadRequest( new { message = "Reset password failed. Please check your email." });
-
-            return Ok(new { message = "Reset password email sent successfully." });
+            try
+            {
+                await _authService.ResetPasswordAsync(resetPasswordDTO);
+                return Ok(new { message = "Reset password email sent successfully." });
+            }
+            catch (UnauthorizedAccessException ex)
+            {
+                return Unauthorized(new { message = ex.Message });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { message = ex.Message });
+            }
         }
 
         [HttpGet("reset-password")]
@@ -79,6 +86,36 @@ namespace BookStoreAPI.Services.AuthService.Controllers
                 return BadRequest( new { message = "Token is invalid or expried." });
 
             return Ok(new { message = "Password reset successfully. Your new password is: '123456'" });
+        }
+
+        [HttpPut("change-password")]
+        [Authorize]
+        public async Task<IActionResult> ChangePassword([FromBody] ChangePasswordDTO changePasswordDTO)
+        {
+            try
+            {
+                var staffIdClaim = User.FindFirst("staffId");
+
+                if (staffIdClaim == null)
+                    return Unauthorized(new { message = "Invalid token." });
+
+                var staffId = Guid.Parse(staffIdClaim.Value);
+
+                var success = await _authService.ChangePasswordAsync(staffId, changePasswordDTO);
+
+                if (!success)
+                    return BadRequest(new { message = "Change password failed. Please check your information." });
+
+                return Ok(new { message = "Password changed successfully." });
+            }
+            catch (UnauthorizedAccessException ex)
+            {
+                return Unauthorized(new { message = ex.Message });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
     }
 }

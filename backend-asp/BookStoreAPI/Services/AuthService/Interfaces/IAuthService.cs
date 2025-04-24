@@ -11,7 +11,7 @@ namespace BookStoreAPI.Services.AuthService.Interfaces
         Task<String?> LoginAsync(LoginDTO loginDTO);
 
         // Doi mat khau sau khi da Login thanh cong
-        //Task<bool> ChangePasswordAsync(Guid staffID, ChangePasswordDTO changePasswordDTO);
+        Task<bool> ChangePasswordAsync(Guid staffID, ChangePasswordDTO changePasswordDTO);
 
         // Reset mat khau (Gui mail link va reset mk ve "123456"
         Task<bool> ResetPasswordAsync(ResetPasswordDTO resetPasswordDTO);
