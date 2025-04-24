@@ -3,12 +3,16 @@
   "WorkspaceRootPath": "D:\\Github\\BookStore-API\\backend-asp\\BookStoreAPI\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{3EBC0049-77A4-4D18-A3CE-755C6DEEB41B}|BookStoreAPI.csproj|d:\\github\\bookstore-api\\backend-asp\\bookstoreapi\\services\\authservice\\authservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3EBC0049-77A4-4D18-A3CE-755C6DEEB41B}|BookStoreAPI.csproj|solutionrelative:services\\authservice\\authservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{3EBC0049-77A4-4D18-A3CE-755C6DEEB41B}|BookStoreAPI.csproj|d:\\github\\bookstore-api\\backend-asp\\bookstoreapi\\services\\authservice\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{3EBC0049-77A4-4D18-A3CE-755C6DEEB41B}|BookStoreAPI.csproj|solutionrelative:services\\authservice\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{3EBC0049-77A4-4D18-A3CE-755C6DEEB41B}|BookStoreAPI.csproj|d:\\github\\bookstore-api\\backend-asp\\bookstoreapi\\services\\authservice\\authservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3EBC0049-77A4-4D18-A3CE-755C6DEEB41B}|BookStoreAPI.csproj|solutionrelative:services\\authservice\\authservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{3EBC0049-77A4-4D18-A3CE-755C6DEEB41B}|BookStoreAPI.csproj|d:\\github\\bookstore-api\\backend-asp\\bookstoreapi\\services\\authservice\\repositories\\authrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3EBC0049-77A4-4D18-A3CE-755C6DEEB41B}|BookStoreAPI.csproj|solutionrelative:services\\authservice\\repositories\\authrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{3EBC0049-77A4-4D18-A3CE-755C6DEEB41B}|BookStoreAPI.csproj|d:\\github\\bookstore-api\\backend-asp\\bookstoreapi\\services\\authservice\\interfaces\\iauthservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -22,34 +26,8 @@
       "DocumentGroups": [
         {
           "DockedWidth": 52,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 5,
           "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "AuthController.cs",
-              "DocumentMoniker": "D:\\Github\\BookStore-API\\backend-asp\\BookStoreAPI\\Services\\AuthService\\Controllers\\AuthController.cs",
-              "RelativeDocumentMoniker": "Services\\AuthService\\Controllers\\AuthController.cs",
-              "ToolTip": "D:\\Github\\BookStore-API\\backend-asp\\BookStoreAPI\\Services\\AuthService\\Controllers\\AuthController.cs",
-              "RelativeToolTip": "Services\\AuthService\\Controllers\\AuthController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAACQAAAAZAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-24T04:10:29.653Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "AuthService.cs",
-              "DocumentMoniker": "D:\\Github\\BookStore-API\\backend-asp\\BookStoreAPI\\Services\\AuthService\\AuthService.cs",
-              "RelativeDocumentMoniker": "Services\\AuthService\\AuthService.cs",
-              "ToolTip": "D:\\Github\\BookStore-API\\backend-asp\\BookStoreAPI\\Services\\AuthService\\AuthService.cs",
-              "RelativeToolTip": "Services\\AuthService\\AuthService.cs",
-              "ViewState": "AgIAAC0AAAAAAAAAAAAowH4AAABDAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-24T03:32:17.081Z",
-              "EditorCaption": ""
-            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{b1e99781-ab81-11d0-b683-00aa00a3ee26}"
@@ -65,12 +43,51 @@
             {
               "$type": "Document",
               "DocumentIndex": 2,
+              "Title": "AuthRepository.cs",
+              "DocumentMoniker": "D:\\Github\\BookStore-API\\backend-asp\\BookStoreAPI\\Services\\AuthService\\Repositories\\AuthRepository.cs",
+              "RelativeDocumentMoniker": "Services\\AuthService\\Repositories\\AuthRepository.cs",
+              "ToolTip": "D:\\Github\\BookStore-API\\backend-asp\\BookStoreAPI\\Services\\AuthService\\Repositories\\AuthRepository.cs",
+              "RelativeToolTip": "Services\\AuthService\\Repositories\\AuthRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-24T08:19:01.168Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "AuthController.cs",
+              "DocumentMoniker": "D:\\Github\\BookStore-API\\backend-asp\\BookStoreAPI\\Services\\AuthService\\Controllers\\AuthController.cs",
+              "RelativeDocumentMoniker": "Services\\AuthService\\Controllers\\AuthController.cs",
+              "ToolTip": "D:\\Github\\BookStore-API\\backend-asp\\BookStoreAPI\\Services\\AuthService\\Controllers\\AuthController.cs",
+              "RelativeToolTip": "Services\\AuthService\\Controllers\\AuthController.cs",
+              "ViewState": "AgIAAAQAAAAAAAAAAAAuwDoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-24T04:10:29.653Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "AuthService.cs",
+              "DocumentMoniker": "D:\\Github\\BookStore-API\\backend-asp\\BookStoreAPI\\Services\\AuthService\\AuthService.cs",
+              "RelativeDocumentMoniker": "Services\\AuthService\\AuthService.cs",
+              "ToolTip": "D:\\Github\\BookStore-API\\backend-asp\\BookStoreAPI\\Services\\AuthService\\AuthService.cs",
+              "RelativeToolTip": "Services\\AuthService\\AuthService.cs",
+              "ViewState": "AgIAAJgAAAAAAAAAAAA6wLQAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-24T03:32:17.081Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
               "Title": "IAuthService.cs",
               "DocumentMoniker": "D:\\Github\\BookStore-API\\backend-asp\\BookStoreAPI\\Services\\AuthService\\Interfaces\\IAuthService.cs",
               "RelativeDocumentMoniker": "Services\\AuthService\\Interfaces\\IAuthService.cs",
               "ToolTip": "D:\\Github\\BookStore-API\\backend-asp\\BookStoreAPI\\Services\\AuthService\\Interfaces\\IAuthService.cs",
               "RelativeToolTip": "Services\\AuthService\\Interfaces\\IAuthService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAvAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAgAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-04-24T03:32:17.644Z",
               "EditorCaption": ""

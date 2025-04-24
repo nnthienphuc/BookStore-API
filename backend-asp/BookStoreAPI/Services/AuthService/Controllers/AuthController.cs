@@ -53,6 +53,32 @@ namespace BookStoreAPI.Services.AuthService.Controllers
             {
                 return Unauthorized(new { message = ex.Message });
             }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpPost("reset-password")]
+        public async Task<IActionResult> ResetPassword([FromBody] ResetPasswordDTO resetPasswordDTO)
+        {
+            var success = await _authService.ResetPasswordAsync(resetPasswordDTO);
+
+            if (!success)
+                return BadRequest( new { message = "Reset password failed. Please check your email." });
+
+            return Ok(new { message = "Reset password email sent successfully." });
+        }
+
+        [HttpGet("reset-password")]
+        public async Task<IActionResult> ResetPassword([FromQuery] string token)
+        {
+            var success = await _authService.ResetPasswordFromTokenAsync(token);
+
+            if (!success)
+                return BadRequest( new { message = "Token is invalid or expried." });
+
+            return Ok(new { message = "Password reset successfully. Your new password is: '123456'" });
         }
     }
 }

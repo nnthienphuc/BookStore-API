@@ -8,6 +8,7 @@ using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
+using Microsoft.AspNetCore.Mvc.Routing;
 
 namespace BookStoreAPI.Services.AuthService
 {
@@ -63,8 +64,8 @@ namespace BookStoreAPI.Services.AuthService
             var token = GenerateActivationToken(staff.Id);
             var activationLink = $"http://localhost:5208/api/auth/activate?token={token}";
 
-            await _emailService.SendEmailAsync(staff.Email, "Kích hoạt tài khoản",
-                $"Nhấn vào đường dẫn sau để kích hoạt tài khoản: <a href='{activationLink}'>Xác minh tài khoản</a>");
+            await _emailService.SendEmailAsync(staff.Email, "Activate your account",
+                $"Click on the following link to activate your account.: <a href='{activationLink}'>Verify account</a>");
 
             Console.WriteLine($"Send email confirm to: {staff.Email} successfully.");
 
@@ -170,6 +171,78 @@ namespace BookStoreAPI.Services.AuthService
                 audience: _config["Jwt:Audience"],
                 claims: claims,
                 expires: DateTime.UtcNow.AddMinutes(int.Parse(_config["Jwt:ExpireMinutes"] ?? "60")),
+                signingCredentials: credentials
+            );
+
+            return new JwtSecurityTokenHandler().WriteToken(token);
+        }
+
+        public async Task<bool> ResetPasswordAsync(ResetPasswordDTO resetPasswordDTO)
+        {
+            var staff = await _authRepository.GetByEmailAsync(resetPasswordDTO.Email);
+
+            if (staff == null || staff.IsDeleted == true || staff.IsActived == false)
+                return false;
+
+            var token = GenerateResetPasswordToken(staff.Id);
+            var resetLink = $"http://localhost:5208/api/auth/reset-password?token={token}";
+
+            await _emailService.SendEmailAsync(staff.Email, "Reset Password",
+                $"Click the following link to reset your password to default.: <a href='{resetLink}'>Reset Password</a>");
+
+            return true;
+        }
+
+        public async Task<bool> ResetPasswordFromTokenAsync(string token)
+        {
+            var jwtKey = Environment.GetEnvironmentVariable("JWT_SECRET_KEY") ?? _config["Jwt:Key"];
+            var handler = new JwtSecurityTokenHandler();
+
+            var tokenValidationParameters = new TokenValidationParameters
+            {
+                ValidateIssuerSigningKey = true,
+                IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtKey)),
+                ValidateIssuer = false,
+                ValidateAudience = false,
+                ValidateLifetime = true
+            };
+
+            try
+            {
+                var principal = handler.ValidateToken(token, tokenValidationParameters, out var validatedToken);
+                var staffIdClaim = principal.FindFirst("staffId");
+                if (staffIdClaim == null) return false;
+
+                var staffId = Guid.Parse(staffIdClaim.Value);
+                var staff = await _authRepository.GetByIdAsync(staffId);
+                if (staff == null || staff.IsDeleted) return false;
+
+                staff.HashPassword = BCrypt.Net.BCrypt.HashPassword("123456");
+                return await _authRepository.SaveChangesAsync();
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        private string GenerateResetPasswordToken(Guid staffId)
+        {
+            var jwtKey = Environment.GetEnvironmentVariable("JWT_SECRET_KEY") ?? _config["Jwt:Key"];
+            var expireMinutes = 15;
+
+            var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtKey));
+            var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
+
+            var claims = new[]
+            {
+                new Claim("staffId", staffId.ToString()),
+                new Claim("purpose", "reset_password")
+            };
+
+            var token = new JwtSecurityToken(
+                claims: claims,
+                expires: DateTime.UtcNow.AddMinutes(expireMinutes),
                 signingCredentials: credentials
             );
 
