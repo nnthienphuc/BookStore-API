@@ -127,6 +127,54 @@ namespace BookStoreAPI.Services.AuthService
             return new JwtSecurityTokenHandler().WriteToken(token);
         }
 
+        public async Task<String?> LoginAsync(LoginDTO loginDTO)
+        {
+            var staff = await _authRepository.GetByEmailAsync(loginDTO.Email);
+
+            if (staff == null)
+                throw new UnauthorizedAccessException("Invalid account, please check your email or create new account.");
+
+            if (staff.IsDeleted)
+                throw new UnauthorizedAccessException("Your account has been deleted. Please contact the administrator.");
+
+            if (!staff.IsActived)
+                throw new UnauthorizedAccessException("Your account has not been activated. Please check your email to active.");
+
+            bool isValidPassword = BCrypt.Net.BCrypt.Verify(loginDTO.Password, staff.HashPassword);
+
+            if (!isValidPassword)
+                throw new UnauthorizedAccessException("Invalid password. Please try again.");
+
+            var token = GenerateJwtToken(staff);
+
+            return token;
+        }
+
+        private string GenerateJwtToken(Staff user)
+        {
+            var jwtKey = Environment.GetEnvironmentVariable("JWT_SECRET_KEY") ?? _config["Jwt:Key"];
+            var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtKey));
+            var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
+
+            var claims = new[]
+            {
+                new Claim(JwtRegisteredClaimNames.Sub, user.Email),
+                new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
+                new Claim("staffId", user.Id.ToString()),
+                new Claim("email", user.Email),
+                new Claim("role", user.Role.ToString())
+            };
+
+            var token = new JwtSecurityToken(
+                issuer: _config["Jwt:Issuer"],
+                audience: _config["Jwt:Audience"],
+                claims: claims,
+                expires: DateTime.UtcNow.AddMinutes(int.Parse(_config["Jwt:ExpireMinutes"] ?? "60")),
+                signingCredentials: credentials
+            );
+
+            return new JwtSecurityTokenHandler().WriteToken(token);
+        }
 
     }
 }

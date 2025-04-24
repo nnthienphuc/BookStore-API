@@ -8,7 +8,7 @@ namespace BookStoreAPI.Services.AuthService.Interfaces
         Task<bool>RegisterAsync(RegisterDTO registerDTO);
 
         // Login -> Tra ve token neu thanh cong
-        //Task<String?> LoginAsync(LoginDTO loginDTO);
+        Task<String?> LoginAsync(LoginDTO loginDTO);
 
         // Doi mat khau sau khi da Login thanh cong
         //Task<bool> ChangePasswordAsync(Guid staffID, ChangePasswordDTO changePasswordDTO);

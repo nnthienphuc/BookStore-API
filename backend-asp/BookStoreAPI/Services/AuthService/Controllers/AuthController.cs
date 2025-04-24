@@ -39,5 +39,20 @@ namespace BookStoreAPI.Services.AuthService.Controllers
 
             return Ok("Account activated successfully.");
         }
+
+        [HttpPost("login")]
+        public async Task<IActionResult> Login([FromBody] LoginDTO loginDTO)
+        {
+            try
+            {
+                var token = await _authService.LoginAsync(loginDTO);
+
+                return Ok(new { token });
+            }
+            catch (UnauthorizedAccessException ex)
+            {
+                return Unauthorized(new { message = ex.Message });
+            }
+        }
     }
 }
