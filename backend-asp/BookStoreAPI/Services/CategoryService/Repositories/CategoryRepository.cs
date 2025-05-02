@@ -8,26 +8,29 @@ namespace BookStoreAPI.Services.CategoryService.Repositories
     {
         private readonly ApplicationDbContext _context;
 
-        public CategoryRepository(ApplicationDbContext context)
+        public CategoryRepository (ApplicationDbContext context)
         {
             _context = context;
         }
 
         public async Task<IEnumerable<Category>> GetAllAsync()
         {
-            return await _context.Categories
-                .Where(x => !x.IsDeleted)
-                .ToListAsync();
+            return await _context.Categories.ToListAsync();
         }
 
         public async Task<Category?> GetByIdAsync (Guid id)
         {
-            return await _context.Categories.FirstOrDefaultAsync(x => x.Id == id);
+            return await _context.Categories.FirstOrDefaultAsync(c => c.Id == id);
         }
 
         public async Task<Category?> GetByNameAsync (string name)
         {
-            return await _context.Categories.FirstOrDefaultAsync(x => x.Name == name);
+            return await _context.Categories.FirstOrDefaultAsync(c => c.Name == name);
+        }
+
+        public async Task<IEnumerable<Category>> SearchByKeywordAsync(string keyword)
+        {
+            return await _context.Categories.Where(c => c.Name.Contains(keyword)).ToListAsync();
         }
 
         public async Task AddAsync (Category category)
@@ -46,7 +49,7 @@ namespace BookStoreAPI.Services.CategoryService.Repositories
             _context.Categories.Update(category);
         }
 
-        public async Task<bool> SaveChangesAsync()
+        public async Task<bool> SaveChangesAsync ()
         {
             return await _context.SaveChangesAsync() > 0;
         }
