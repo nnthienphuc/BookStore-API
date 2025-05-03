@@ -11,6 +11,8 @@ using BookStoreAPI.Middlewares;
 using BookStoreAPI.Services.CategoryService.Interfaces;
 using BookStoreAPI.Services.CategoryService;
 using BookStoreAPI.Services.CategoryService.Repositories;
+using BookStoreAPI.Services.AuthorService;
+using BookStoreAPI.Services.AuthorService.Repositories;
 
 var builder = WebApplication.CreateBuilder(new WebApplicationOptions
 {
@@ -56,6 +58,8 @@ builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<EmailSenderService>();
 builder.Services.AddScoped<ICategoryService, CategoryService>();
 builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
+builder.Services.AddScoped<IAuthorService, AuthorService>();
+builder.Services.AddScoped<IAuthorRepository, AuthorRepository>();
 
 var app = builder.Build();
 

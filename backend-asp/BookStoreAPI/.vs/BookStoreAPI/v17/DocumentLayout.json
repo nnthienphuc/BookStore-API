@@ -3,44 +3,8 @@
   "WorkspaceRootPath": "D:\\Github\\BookStore-API\\backend-asp\\BookStoreAPI\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{3EBC0049-77A4-4D18-A3CE-755C6DEEB41B}|BookStoreAPI.csproj|d:\\github\\bookstore-api\\backend-asp\\bookstoreapi\\services\\categoryservice\\dtos\\categorycreatedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3EBC0049-77A4-4D18-A3CE-755C6DEEB41B}|BookStoreAPI.csproj|solutionrelative:services\\categoryservice\\dtos\\categorycreatedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3EBC0049-77A4-4D18-A3CE-755C6DEEB41B}|BookStoreAPI.csproj|d:\\github\\bookstore-api\\backend-asp\\bookstoreapi\\services\\categoryservice\\dtos\\categoryupdatedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3EBC0049-77A4-4D18-A3CE-755C6DEEB41B}|BookStoreAPI.csproj|solutionrelative:services\\categoryservice\\dtos\\categoryupdatedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3EBC0049-77A4-4D18-A3CE-755C6DEEB41B}|BookStoreAPI.csproj|d:\\github\\bookstore-api\\backend-asp\\bookstoreapi\\services\\categoryservice\\dtos\\categorydto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3EBC0049-77A4-4D18-A3CE-755C6DEEB41B}|BookStoreAPI.csproj|solutionrelative:services\\categoryservice\\dtos\\categorydto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3EBC0049-77A4-4D18-A3CE-755C6DEEB41B}|BookStoreAPI.csproj|d:\\github\\bookstore-api\\backend-asp\\bookstoreapi\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3EBC0049-77A4-4D18-A3CE-755C6DEEB41B}|BookStoreAPI.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3EBC0049-77A4-4D18-A3CE-755C6DEEB41B}|BookStoreAPI.csproj|d:\\github\\bookstore-api\\backend-asp\\bookstoreapi\\services\\categoryservice\\controllers\\categorycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3EBC0049-77A4-4D18-A3CE-755C6DEEB41B}|BookStoreAPI.csproj|solutionrelative:services\\categoryservice\\controllers\\categorycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3EBC0049-77A4-4D18-A3CE-755C6DEEB41B}|BookStoreAPI.csproj|d:\\github\\bookstore-api\\backend-asp\\bookstoreapi\\services\\categoryservice\\categoryservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3EBC0049-77A4-4D18-A3CE-755C6DEEB41B}|BookStoreAPI.csproj|solutionrelative:services\\categoryservice\\categoryservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3EBC0049-77A4-4D18-A3CE-755C6DEEB41B}|BookStoreAPI.csproj|d:\\github\\bookstore-api\\backend-asp\\bookstoreapi\\middlewares\\exceptionmiddleware.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3EBC0049-77A4-4D18-A3CE-755C6DEEB41B}|BookStoreAPI.csproj|solutionrelative:middlewares\\exceptionmiddleware.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3EBC0049-77A4-4D18-A3CE-755C6DEEB41B}|BookStoreAPI.csproj|d:\\github\\bookstore-api\\backend-asp\\bookstoreapi\\services\\categoryservice\\repositories\\categoryrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3EBC0049-77A4-4D18-A3CE-755C6DEEB41B}|BookStoreAPI.csproj|solutionrelative:services\\categoryservice\\repositories\\categoryrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3EBC0049-77A4-4D18-A3CE-755C6DEEB41B}|BookStoreAPI.csproj|d:\\github\\bookstore-api\\backend-asp\\bookstoreapi\\services\\categoryservice\\entities\\category.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3EBC0049-77A4-4D18-A3CE-755C6DEEB41B}|BookStoreAPI.csproj|solutionrelative:services\\categoryservice\\entities\\category.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3EBC0049-77A4-4D18-A3CE-755C6DEEB41B}|BookStoreAPI.csproj|d:\\github\\bookstore-api\\backend-asp\\bookstoreapi\\common\\entities\\baseentity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3EBC0049-77A4-4D18-A3CE-755C6DEEB41B}|BookStoreAPI.csproj|solutionrelative:common\\entities\\baseentity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{3EBC0049-77A4-4D18-A3CE-755C6DEEB41B}|BookStoreAPI.csproj|d:\\github\\bookstore-api\\backend-asp\\bookstoreapi\\services\\authorservice\\interfaces\\iauthorservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3EBC0049-77A4-4D18-A3CE-755C6DEEB41B}|BookStoreAPI.csproj|solutionrelative:services\\authorservice\\interfaces\\iauthorservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{3EBC0049-77A4-4D18-A3CE-755C6DEEB41B}|BookStoreAPI.csproj|d:\\github\\bookstore-api\\backend-asp\\bookstoreapi\\services\\categoryservice\\interfaces\\icategoryservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -54,34 +18,8 @@
       "DocumentGroups": [
         {
           "DockedWidth": 52,
-          "SelectedChildIndex": 8,
+          "SelectedChildIndex": 4,
           "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "Program.cs",
-              "DocumentMoniker": "D:\\Github\\BookStore-API\\backend-asp\\BookStoreAPI\\Program.cs",
-              "RelativeDocumentMoniker": "Program.cs",
-              "ToolTip": "D:\\Github\\BookStore-API\\backend-asp\\BookStoreAPI\\Program.cs",
-              "RelativeToolTip": "Program.cs",
-              "ViewState": "AgIAACkAAAAAAAAAAAAjwDkAAABGAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-03T09:17:34.605Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "ExceptionMiddleware.cs",
-              "DocumentMoniker": "D:\\Github\\BookStore-API\\backend-asp\\BookStoreAPI\\Middlewares\\ExceptionMiddleware.cs",
-              "RelativeDocumentMoniker": "Middlewares\\ExceptionMiddleware.cs",
-              "ToolTip": "D:\\Github\\BookStore-API\\backend-asp\\BookStoreAPI\\Middlewares\\ExceptionMiddleware.cs",
-              "RelativeToolTip": "Middlewares\\ExceptionMiddleware.cs",
-              "ViewState": "AgIAAB0AAAAAAAAAAAAwwBMAAABYAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-03T09:17:05.694Z",
-              "EditorCaption": ""
-            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{b1e99781-ab81-11d0-b683-00aa00a3ee26}"
@@ -96,119 +34,28 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "CategoryRepository.cs",
-              "DocumentMoniker": "D:\\Github\\BookStore-API\\backend-asp\\BookStoreAPI\\Services\\CategoryService\\Repositories\\CategoryRepository.cs",
-              "RelativeDocumentMoniker": "Services\\CategoryService\\Repositories\\CategoryRepository.cs",
-              "ToolTip": "D:\\Github\\BookStore-API\\backend-asp\\BookStoreAPI\\Services\\CategoryService\\Repositories\\CategoryRepository.cs",
-              "RelativeToolTip": "Services\\CategoryService\\Repositories\\CategoryRepository.cs",
-              "ViewState": "AgIAABoAAAAAAAAAAAAqwDkAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-03T09:06:48.833Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "CategoryUpdateDTO.cs",
-              "DocumentMoniker": "D:\\Github\\BookStore-API\\backend-asp\\BookStoreAPI\\Services\\CategoryService\\DTOs\\CategoryUpdateDTO.cs",
-              "RelativeDocumentMoniker": "Services\\CategoryService\\DTOs\\CategoryUpdateDTO.cs",
-              "ToolTip": "D:\\Github\\BookStore-API\\backend-asp\\BookStoreAPI\\Services\\CategoryService\\DTOs\\CategoryUpdateDTO.cs",
-              "RelativeToolTip": "Services\\CategoryService\\DTOs\\CategoryUpdateDTO.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAArAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-03T09:06:42.747Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "CategoryDTO.cs",
-              "DocumentMoniker": "D:\\Github\\BookStore-API\\backend-asp\\BookStoreAPI\\Services\\CategoryService\\DTOs\\CategoryDTO.cs",
-              "RelativeDocumentMoniker": "Services\\CategoryService\\DTOs\\CategoryDTO.cs",
-              "ToolTip": "D:\\Github\\BookStore-API\\backend-asp\\BookStoreAPI\\Services\\CategoryService\\DTOs\\CategoryDTO.cs",
-              "RelativeToolTip": "Services\\CategoryService\\DTOs\\CategoryDTO.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-03T09:06:39.056Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "CategoryCreateDTO.cs",
-              "DocumentMoniker": "D:\\Github\\BookStore-API\\backend-asp\\BookStoreAPI\\Services\\CategoryService\\DTOs\\CategoryCreateDTO.cs",
-              "RelativeDocumentMoniker": "Services\\CategoryService\\DTOs\\CategoryCreateDTO.cs",
-              "ToolTip": "D:\\Github\\BookStore-API\\backend-asp\\BookStoreAPI\\Services\\CategoryService\\DTOs\\CategoryCreateDTO.cs",
-              "RelativeToolTip": "Services\\CategoryService\\DTOs\\CategoryCreateDTO.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-03T09:06:34.781Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "Category.cs",
-              "DocumentMoniker": "D:\\Github\\BookStore-API\\backend-asp\\BookStoreAPI\\Services\\CategoryService\\Entities\\Category.cs",
-              "RelativeDocumentMoniker": "Services\\CategoryService\\Entities\\Category.cs",
-              "ToolTip": "D:\\Github\\BookStore-API\\backend-asp\\BookStoreAPI\\Services\\CategoryService\\Entities\\Category.cs",
-              "RelativeToolTip": "Services\\CategoryService\\Entities\\Category.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-03T09:06:28.76Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "BaseEntity.cs",
-              "DocumentMoniker": "D:\\Github\\BookStore-API\\backend-asp\\BookStoreAPI\\Common\\Entities\\BaseEntity.cs",
-              "RelativeDocumentMoniker": "Common\\Entities\\BaseEntity.cs",
-              "ToolTip": "D:\\Github\\BookStore-API\\backend-asp\\BookStoreAPI\\Common\\Entities\\BaseEntity.cs",
-              "RelativeToolTip": "Common\\Entities\\BaseEntity.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-03T09:06:19.606Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
               "Title": "ICategoryService.cs",
               "DocumentMoniker": "D:\\Github\\BookStore-API\\backend-asp\\BookStoreAPI\\Services\\CategoryService\\Interfaces\\ICategoryService.cs",
               "RelativeDocumentMoniker": "Services\\CategoryService\\Interfaces\\ICategoryService.cs",
               "ToolTip": "D:\\Github\\BookStore-API\\backend-asp\\BookStoreAPI\\Services\\CategoryService\\Interfaces\\ICategoryService.cs",
               "RelativeToolTip": "Services\\CategoryService\\Interfaces\\ICategoryService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAA3AAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-03T08:49:07.25Z",
+              "WhenOpened": "2025-05-03T10:15:15.688Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "CategoryService.cs",
-              "DocumentMoniker": "D:\\Github\\BookStore-API\\backend-asp\\BookStoreAPI\\Services\\CategoryService\\CategoryService.cs",
-              "RelativeDocumentMoniker": "Services\\CategoryService\\CategoryService.cs",
-              "ToolTip": "D:\\Github\\BookStore-API\\backend-asp\\BookStoreAPI\\Services\\CategoryService\\CategoryService.cs",
-              "RelativeToolTip": "Services\\CategoryService\\CategoryService.cs",
-              "ViewState": "AgIAAGcAAAAAAAAAAAAuwIcAAAAAAAAAAAAAAA==",
+              "DocumentIndex": 0,
+              "Title": "IAuthorService.cs",
+              "DocumentMoniker": "D:\\Github\\BookStore-API\\backend-asp\\BookStoreAPI\\Services\\AuthorService\\Interfaces\\IAuthorService.cs",
+              "RelativeDocumentMoniker": "Services\\AuthorService\\Interfaces\\IAuthorService.cs",
+              "ToolTip": "D:\\Github\\BookStore-API\\backend-asp\\BookStoreAPI\\Services\\AuthorService\\Interfaces\\IAuthorService.cs",
+              "RelativeToolTip": "Services\\AuthorService\\Interfaces\\IAuthorService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAoAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-03T08:16:48.835Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "CategoryController.cs",
-              "DocumentMoniker": "D:\\Github\\BookStore-API\\backend-asp\\BookStoreAPI\\Services\\CategoryService\\Controllers\\CategoryController.cs",
-              "RelativeDocumentMoniker": "Services\\CategoryService\\Controllers\\CategoryController.cs",
-              "ToolTip": "D:\\Github\\BookStore-API\\backend-asp\\BookStoreAPI\\Services\\CategoryService\\Controllers\\CategoryController.cs",
-              "RelativeToolTip": "Services\\CategoryService\\Controllers\\CategoryController.cs",
-              "ViewState": "AgIAABMAAAAAAAAAAAA8wC8AAABoAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-03T08:11:19.631Z",
+              "WhenOpened": "2025-05-03T10:09:36.207Z",
               "EditorCaption": ""
             }
           ]
