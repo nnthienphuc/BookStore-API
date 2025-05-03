@@ -7,6 +7,10 @@ using BookStoreAPI.Services.AuthService.Interfaces;
 using BookStoreAPI.Services.AuthService;
 using BookStoreAPI.Services.EmailService;
 using BookStoreAPI.Services.AuthService.Repositories;
+using BookStoreAPI.Middlewares;
+using BookStoreAPI.Services.CategoryService.Interfaces;
+using BookStoreAPI.Services.CategoryService;
+using BookStoreAPI.Services.CategoryService.Repositories;
 
 var builder = WebApplication.CreateBuilder(new WebApplicationOptions
 {
@@ -50,6 +54,8 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddScoped<IAuthRepository, AuthRepository>();
 builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<EmailSenderService>();
+builder.Services.AddScoped<ICategoryService, CategoryService>();
+builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
 
 var app = builder.Build();
 
@@ -62,6 +68,7 @@ if (!app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
+app.UseMiddleware<ExceptionMiddleware>();
 app.UseRouting();
 
 // Sử dụng Authentication & Authorization

@@ -31,7 +31,7 @@ namespace BookStoreAPI.Services.CategoryService
             var category = await _categoryRepository.GetByIdAsync(id);
 
             if (category == null)
-                return null;
+                throw new KeyNotFoundException($"Category with id '{id}' not found.");
 
             return new CategoryDTO
             {
@@ -105,7 +105,8 @@ namespace BookStoreAPI.Services.CategoryService
             if (string.IsNullOrWhiteSpace(categoryUpdateDTO.Name))
                 throw new ArgumentException("Category name cannot be null or empty.");
 
-            if ((await _categoryRepository.GetByNameAsync(categoryUpdateDTO.Name) != null) && (existingCategory.Id != id))  // tranh tinh trang Name trung id (truong hop chi thay doi IsDeleted)
+            var checkCategory = await _categoryRepository.GetByNameAsync(categoryUpdateDTO.Name);
+            if ((checkCategory != null) && (existingCategory.Id != checkCategory.Id))  // tranh tinh trang Name trung id (truong hop chi thay doi IsDeleted)
                 throw new InvalidOperationException("A category with the same name already exists.");
 
             existingCategory.Name = categoryUpdateDTO.Name;
