@@ -125,7 +125,7 @@ namespace BookStoreAPI.Services.CategoryService
                 throw new KeyNotFoundException($"Category with id '{id}' not found.");
 
             if (existingCategory.IsDeleted)
-                throw new InvalidOperationException("Category is already deleted.");
+                throw new InvalidOperationException($"Category with id {id} is already deleted.");
 
             _categoryRepository.Delete(existingCategory);
 

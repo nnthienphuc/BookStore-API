@@ -30,7 +30,7 @@ namespace BookStoreAPI.Services.CategoryService.Controllers
             return Ok(result);
         }
 
-        [HttpGet("keyword")]
+        [HttpGet("search")]
         public async Task<IActionResult> SearchByKeyword(string keyword)
         {
             var result = await _categoryService.SearchByKeywordAsync(keyword);
