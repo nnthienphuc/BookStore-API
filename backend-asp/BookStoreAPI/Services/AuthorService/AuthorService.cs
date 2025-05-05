@@ -44,6 +44,9 @@ namespace BookStoreAPI.Services.AuthorService
 
         public async Task<IEnumerable<AuthorDTO>> SearchByKeywordAsync(string keyword)
         {
+            if (string.IsNullOrWhiteSpace(keyword))
+                throw new ArgumentException("Keyword cannot be null or empty.");
+
             var authors = await _authorRepository.SearchByKeywordAsync(keyword);
 
             return authors.Select(a => new AuthorDTO

@@ -32,8 +32,8 @@ namespace BookStoreAPI.Services.AuthorService.Controllers
             return Ok(author);
         }
 
-        [HttpGet("search")]
-        public async Task<IActionResult> SearchByKeyword(string keyword)
+        [HttpGet("keyword")]
+        public async Task<IActionResult> SearchByKeyword([FromQuery] string keyword)
         {
             var authors = await _authorService.SearchByKeywordAsync(keyword);
 
@@ -45,7 +45,7 @@ namespace BookStoreAPI.Services.AuthorService.Controllers
         {
             await _authorService.AddAsync(authorCreateDTO);
 
-            return Ok(new { message = "Author added successfully" });
+            return Ok(new { message = "Author added successfully." });
         }
 
         [HttpPut("{id}")]
@@ -53,7 +53,7 @@ namespace BookStoreAPI.Services.AuthorService.Controllers
         {
             await _authorService.UpdateAsync(id, authorUpdateDTO);
 
-            return Ok(new { message = "Author updated successfully" });
+            return Ok(new { message = "Author updated successfully." });
         }
 
         [HttpDelete("{id}")]
@@ -61,7 +61,7 @@ namespace BookStoreAPI.Services.AuthorService.Controllers
         {
             await _authorService.DeleteAsync(id);
 
-            return Ok(new { message = "Author soft deleted successfully" });
+            return Ok(new { message = "Author soft deleted successfully." });
         }
     }
 }

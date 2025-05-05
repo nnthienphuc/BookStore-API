@@ -2,8 +2,8 @@
 {
     public class AuthorUpdateDTO
     {
-        public string Name { get; set; } = null;
+        public required string Name { get; set; }
 
-        public bool IsDeleted { get; set; } = false;
+        public required bool IsDeleted { get; set; }
     }
 }

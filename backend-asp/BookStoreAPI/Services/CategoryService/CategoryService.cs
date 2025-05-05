@@ -46,7 +46,7 @@ namespace BookStoreAPI.Services.CategoryService
             var category = await _categoryRepository.GetByNameAsync(name);
 
             if (category == null)
-                return null;
+                throw new KeyNotFoundException($"Category with name '{name}' not found.");
 
             return new CategoryDTO
             {

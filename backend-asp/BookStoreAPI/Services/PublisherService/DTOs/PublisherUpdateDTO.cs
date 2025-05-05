@@ -1,9 +1,8 @@
-﻿namespace BookStoreAPI.Services.CategoryService.DTOs
+﻿namespace BookStoreAPI.Services.PublisherService.DTOs
 {
-    public class CategoryUpdateDTO
+    public class PublisherUpdateDTO
     {
         public required string Name { get; set; }
-
         public required bool IsDeleted { get; set; }
     }
 }

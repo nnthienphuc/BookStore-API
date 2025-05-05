@@ -2,6 +2,6 @@
 {
     public class AuthorCreateDTO
     {
-        public string Name { get; set; } = null;
+        public required string Name { get; set; }
     }
 }
