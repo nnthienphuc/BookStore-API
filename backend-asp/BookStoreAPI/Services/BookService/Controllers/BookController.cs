@@ -1,12 +1,67 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using BookStoreAPI.Common.Controllers;
+using BookStoreAPI.Services.BookService.DTOs;
+using BookStoreAPI.Services.BookService.Interfaces;
+using Microsoft.AspNetCore.Mvc;
 
 namespace BookStoreAPI.Services.BookService.Controllers
 {
-    public class BookController : Controller
+    [Route("api/[controller]")]
+    [ApiController]
+    public class BookController : BaseController
     {
-        public IActionResult Index()
+        private readonly IBookService _bookService;
+
+        public BookController(IBookService bookService)
         {
-            return View();
+            _bookService = bookService;
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetAll()
+        {
+            var result = await _bookService.GetAllAsync();
+
+            return Ok(result);
+        }
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetById(Guid id)
+        {
+            var result = await _bookService.GetByIdAsync(id);
+
+            return Ok(result);
+        }
+
+        [HttpGet("keyword")]
+        public async Task<IActionResult> SearchByKeyword([FromQuery] string keyword)
+        {
+            var result = await _bookService.SearchByKeywordAsync(keyword);
+
+            return Ok(result);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Add([FromBody] BookCreateDTO bookCreateDTO)
+        {
+            var result = await _bookService.AddAsync(bookCreateDTO);
+
+            return Ok(new { message = "Book added successfully." });
+        }
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> Update(Guid id, [FromBody] BookUpdateDTO bookUpdateDTO)
+        {
+            var result = await _bookService.UpdateAsync(id, bookUpdateDTO);
+
+            return Ok(new { message = "Book updated successfully." });
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(Guid id)
+        {
+            var result = await _bookService.DeleteAsync(id);
+
+            return Ok(new { message = "Book soft deleted successfully." });
         }
     }
 }

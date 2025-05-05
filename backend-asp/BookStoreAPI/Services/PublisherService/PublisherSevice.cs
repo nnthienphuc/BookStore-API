@@ -59,7 +59,7 @@ namespace BookStoreAPI.Services.PublisherService
         public async Task<IEnumerable<PublisherDTO>> SearchByKeywordAsync(string keyword)
         {
             if (string.IsNullOrWhiteSpace(keyword))
-                throw new ArgumentException("Publisher name cannot be null or empty.");
+                throw new ArgumentException("Keyword cannot be null or empty.");
 
             var publishers = await _publisherRepository.SearchByKeywordAsync(keyword);
 
