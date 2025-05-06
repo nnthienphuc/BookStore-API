@@ -2,6 +2,7 @@
 using BookStoreAPI.Services.CustomerSevice.Entities;
 using BookStoreAPI.Services.CustomerSevice.Interfaces;
 using BookStoreAPI.Services.CustomerSevice.Repositories;
+using Microsoft.AspNetCore.Localization;
 
 namespace BookStoreAPI.Services.CustomerSevice
 {
@@ -110,8 +111,66 @@ namespace BookStoreAPI.Services.CustomerSevice
 
             var customer = new Customer
             {
+                FamilyName = customerCreateDTO.FamilyName,
+                GivenName = customerCreateDTO.GivenName,
+                DateOfBirth = customerCreateDTO.DateOfBirth,
+                Address = customerCreateDTO.Address,
+                Phone = customerCreateDTO.Phone,
+                Gender = customerCreateDTO.Gender
+            };
 
-            }
+            await _customerRepository.AddAsync(customer);
+
+            return await _customerRepository.SaveChangesAsync();
+        }
+
+        public async Task<bool> UpdateAsync(Guid id, CustomerUpdateDTO customerUpdateDTO)
+        {
+            var existingCustomer = await _customerRepository.GetByIdAsync(id);
+            if (existingCustomer == null)
+                throw new KeyNotFoundException($"Customer with id '{id}' not found.");
+
+            if (string.IsNullOrWhiteSpace(customerUpdateDTO.FamilyName))
+                throw new ArgumentException("FamilyName cannot be null or empty.");
+            if (string.IsNullOrWhiteSpace(customerUpdateDTO.GivenName))
+                throw new ArgumentException("GivenName cannot be null or empty.");
+            if (!IsOver18(customerUpdateDTO.DateOfBirth))
+                throw new ArgumentException("Customer have to equal or over 18.");
+            if (string.IsNullOrWhiteSpace(customerUpdateDTO.Address))
+                throw new ArgumentException("Address cannot be null or empty.");
+            if (string.IsNullOrWhiteSpace(customerUpdateDTO.Phone))
+                throw new ArgumentException("Phone cannot be null or empty.");
+
+            var duplicateCustomer = await _customerRepository.GetByPhoneAsync(customerUpdateDTO.Phone);
+            if (duplicateCustomer != null && duplicateCustomer.Id != id)
+                throw new InvalidOperationException("A customer with the same phone already exists.");
+
+            existingCustomer.FamilyName = customerUpdateDTO.FamilyName;
+            existingCustomer.GivenName = customerUpdateDTO.GivenName;
+            existingCustomer.DateOfBirth = customerUpdateDTO.DateOfBirth;
+            existingCustomer.Address = customerUpdateDTO.Address;
+            existingCustomer.Phone = customerUpdateDTO.Phone;
+            existingCustomer.Gender = customerUpdateDTO.Gender;
+            existingCustomer.IsDeleted = customerUpdateDTO.IsDeleted;
+
+            _customerRepository.Update(existingCustomer);
+
+            return await _customerRepository.SaveChangesAsync();
+        }
+
+        public async Task<bool> DeleteAsync(Guid id)
+        {
+            var existingCustomer = await _customerRepository.GetByIdAsync(id);
+
+            if (existingCustomer == null)
+                throw new KeyNotFoundException($"Customer with id '{id}' not found.");
+
+            if (existingCustomer.IsDeleted == true)
+                throw new InvalidOperationException($"Customer with id {id} is already deleted.");
+
+            _customerRepository.Delete(existingCustomer);
+
+            return await _customerRepository.SaveChangesAsync();
         }
 
         public bool IsOver18(DateOnly dateOfBirth)
