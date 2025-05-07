@@ -13,11 +13,22 @@ using BookStoreAPI.Services.CategoryService;
 using BookStoreAPI.Services.CategoryService.Repositories;
 using BookStoreAPI.Services.AuthorService;
 using BookStoreAPI.Services.AuthorService.Repositories;
+using BookStoreAPI.Services.AuthorService.Interfaces;
 
 var builder = WebApplication.CreateBuilder(new WebApplicationOptions
 {
     Args = args,
     EnvironmentName = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") ?? "Production"
+});
+
+// Connect front-end
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowFrontend",
+        policy => policy
+            .WithOrigins("http://localhost:5173")
+            .AllowAnyHeader()
+            .AllowAnyMethod());
 });
 
 // Bảo đảm ASP.NET Core đọc được biến môi trường
@@ -74,6 +85,8 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseMiddleware<ExceptionMiddleware>();
 app.UseRouting();
+
+app.UseCors("AllowFrontend");
 
 // Sử dụng Authentication & Authorization
 app.UseAuthentication();
