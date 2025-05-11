@@ -1,6 +1,6 @@
 ﻿namespace BookStoreAPI.Services.PromotionService.DTOs
 {
-    public class PromotionUpdateDTODTO
+    public class PromotionUpdateDTO
     {
         public required string Name { get; set; }
         public required DateTime StartDate { get; set; }
