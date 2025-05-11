@@ -138,8 +138,8 @@ namespace BookStoreAPI.Services.PromotionService
                 throw new KeyNotFoundException($"Promotion with id '{id}' not found.");
 
             var duplicatePromotion = await _promotionRepository.GetByNameAsync(promotionUpdateDTO.Name);
-            if (duplicatePromotion != null && id == duplicatePromotion.Id)
-                throw new InvalidOperationException("A Promotion with the same name already exists.");
+            if (duplicatePromotion != null && duplicatePromotion.Id != id)
+                throw new InvalidOperationException("A promotion with the same name already exists.");
 
             var now = DateTime.Now;
 

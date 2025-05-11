@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace BookStoreAPI.Services.PromotionService.Repositories
 {
-    public class PromotionRepository
+    public class PromotionRepository : IPromotionRepository
     {
         private readonly ApplicationDbContext _context;
 
