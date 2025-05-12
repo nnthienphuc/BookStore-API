@@ -1,5 +1,5 @@
-﻿using BookStoreAPI.Services.AuthorService.DTOs;
-using BookStoreAPI.Services.AuthorService.Entities;
+﻿using BookStoreAPI.Entities;
+using BookStoreAPI.Services.AuthorService.DTOs;
 
 namespace BookStoreAPI.Services.AuthorService.Repositories
 {

@@ -3,10 +3,9 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using BookStoreAPI.Common.Entities;
-using BookStoreAPI.Services.OrderService.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace BookStoreAPI.Services.PromotionService.Entities;
+namespace BookStoreAPI.Entities;
 
 [Table("Promotion")]
 [Index("Name", Name = "IX_Promotion", IsUnique = true)]

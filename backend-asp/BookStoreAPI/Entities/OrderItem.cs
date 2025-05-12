@@ -2,10 +2,9 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using BookStoreAPI.Services.BookService.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace BookStoreAPI.Services.OrderService.Entities;
+namespace BookStoreAPI.Entities;
 
 [PrimaryKey("OrderId", "BookId")]
 [Table("OrderItem")]

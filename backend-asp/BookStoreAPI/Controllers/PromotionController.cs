@@ -3,7 +3,7 @@ using BookStoreAPI.Services.PromotionService.DTOs;
 using BookStoreAPI.Services.PromotionService.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
-namespace BookStoreAPI.Services.PromotionService.Controllers
+namespace BookStoreAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]

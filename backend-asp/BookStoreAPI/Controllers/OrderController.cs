@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace BookStoreAPI.Services.StaffService.Controllers
+namespace BookStoreAPI.Controllers
 {
-    public class StaffController : Controller
+    public class OrderController : Controller
     {
         public IActionResult Index()
         {

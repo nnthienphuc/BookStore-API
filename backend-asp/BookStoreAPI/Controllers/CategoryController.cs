@@ -3,7 +3,7 @@ using BookStoreAPI.Services.CategoryService.DTOs;
 using BookStoreAPI.Services.CategoryService.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
-namespace BookStoreAPI.Services.CategoryService.Controllers
+namespace BookStoreAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]

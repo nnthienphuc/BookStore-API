@@ -1,5 +1,5 @@
 ﻿using BookStoreAPI.Data;
-using BookStoreAPI.Services.BookService.Entities;
+using BookStoreAPI.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Identity.Client;
 

@@ -3,19 +3,18 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using BookStoreAPI.Common.Entities;
-using BookStoreAPI.Services.BookService.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace BookStoreAPI.Services.CategoryService.Entities;
+namespace BookStoreAPI.Entities;
 
-[Table("Category")]
-[Index("Name", Name = "IX_Category", IsUnique = true)]
-public partial class Category : BaseEntity
+[Table("Publisher")]
+[Index("Name", Name = "IX_Publisher", IsUnique = true)]
+public partial class Publisher : BaseEntity
 {
     [Column("name")]
     [StringLength(100)]
     public string Name { get; set; } = null!;
 
-    [InverseProperty("Category")]
+    [InverseProperty("Publisher")]
     public virtual ICollection<Book> Books { get; set; } = new List<Book>();
 }

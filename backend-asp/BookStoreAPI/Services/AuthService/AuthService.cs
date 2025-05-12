@@ -1,7 +1,6 @@
 ﻿using BookStoreAPI.Services.AuthService.DTOs;
 using BookStoreAPI.Services.AuthService.Repositories;
 using BCrypt.Net;
-using BookStoreAPI.Services.StaffService.Entities;
 using BookStoreAPI.Services.AuthService.Interfaces;
 using BookStoreAPI.Services.EmailService;
 using Microsoft.IdentityModel.Tokens;
@@ -9,6 +8,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 using Microsoft.AspNetCore.Mvc.Routing;
+using BookStoreAPI.Entities;
 
 namespace BookStoreAPI.Services.AuthService
 {

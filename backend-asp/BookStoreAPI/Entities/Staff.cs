@@ -3,10 +3,9 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using BookStoreAPI.Common.Entities;
-using BookStoreAPI.Services.OrderService.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace BookStoreAPI.Services.StaffService.Entities;
+namespace BookStoreAPI.Entities;
 
 [Index("CitizenIdentification", Name = "IX_Staff_CI", IsUnique = true)]
 [Index("Email", Name = "IX_Staff_Email", IsUnique = true)]

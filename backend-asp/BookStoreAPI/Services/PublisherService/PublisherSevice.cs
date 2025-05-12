@@ -1,5 +1,5 @@
 ﻿using BookStoreAPI.Services.PublisherService.DTOs;
-using BookStoreAPI.Services.PublisherService.Entities;
+using BookStoreAPI.Entities;
 using BookStoreAPI.Services.PublisherService.Repositories;
 using BookStoreAPI.Services.PublisherService.Interfaces;
 

@@ -1,5 +1,5 @@
 ﻿using BookStoreAPI.Services.CategoryService.DTOs;
-using BookStoreAPI.Services.CategoryService.Entities;
+using BookStoreAPI.Entities;
 using BookStoreAPI.Services.CategoryService.Interfaces;
 using BookStoreAPI.Services.CategoryService.Repositories;
 

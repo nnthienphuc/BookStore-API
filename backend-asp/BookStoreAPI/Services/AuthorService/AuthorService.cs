@@ -1,5 +1,5 @@
 ﻿using BookStoreAPI.Services.AuthorService.DTOs;
-using BookStoreAPI.Services.AuthorService.Entities;
+using BookStoreAPI.Entities;
 using BookStoreAPI.Services.AuthorService.Interfaces;
 using BookStoreAPI.Services.AuthorService.Repositories;
 using Microsoft.AspNetCore.Mvc.Routing;

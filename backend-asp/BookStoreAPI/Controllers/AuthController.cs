@@ -4,7 +4,7 @@ using BookStoreAPI.Services.AuthService.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace BookStoreAPI.Services.AuthService.Controllers
+namespace BookStoreAPI.Controllers
 {
     [AllowAnonymous]
     [Route("api/[controller]")]

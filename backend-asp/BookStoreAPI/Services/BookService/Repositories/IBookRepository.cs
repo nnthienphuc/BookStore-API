@@ -1,4 +1,4 @@
-﻿using BookStoreAPI.Services.BookService.Entities;
+﻿using BookStoreAPI.Entities;
 
 namespace BookStoreAPI.Services.BookService.Repositories
 {

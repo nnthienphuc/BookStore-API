@@ -1,6 +1,6 @@
 ﻿using BookStoreAPI.Data;
+using BookStoreAPI.Entities;
 using BookStoreAPI.Services.AuthorService.DTOs;
-using BookStoreAPI.Services.AuthorService.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace BookStoreAPI.Services.AuthorService.Repositories

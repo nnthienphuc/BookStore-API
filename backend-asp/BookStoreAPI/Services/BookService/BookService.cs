@@ -1,12 +1,7 @@
-﻿using BookStoreAPI.Services.AuthorService.Entities;
+﻿using BookStoreAPI.Entities;
 using BookStoreAPI.Services.BookService.DTOs;
-using BookStoreAPI.Services.BookService.Entities;
 using BookStoreAPI.Services.BookService.Interfaces;
 using BookStoreAPI.Services.BookService.Repositories;
-using BookStoreAPI.Services.CategoryService.Entities;
-using BookStoreAPI.Services.PublisherService.Entities;
-using MimeKit.Cryptography;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace BookStoreAPI.Services.BookService
 {

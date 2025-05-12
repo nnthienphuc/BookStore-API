@@ -1,4 +1,4 @@
-﻿using BookStoreAPI.Services.PromotionService.Entities;
+﻿using BookStoreAPI.Entities;
 
 namespace BookStoreAPI.Services.PromotionService.Repositories
 {

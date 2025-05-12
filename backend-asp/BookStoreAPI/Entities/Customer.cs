@@ -3,10 +3,9 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using BookStoreAPI.Common.Entities;
-using BookStoreAPI.Services.OrderService.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace BookStoreAPI.Services.CustomerSevice.Entities;
+namespace BookStoreAPI.Entities;
 
 [Table("Customer")]
 [Index("Phone", Name = "IX_Customer", IsUnique = true)]
