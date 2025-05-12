@@ -9,7 +9,7 @@ namespace BookStoreAPI.Services.StaffService.Interfaces
         Task<StaffDTO?> GetByPhoneAsync(string phone);
         Task<StaffDTO?> GetByEmailAsync(string email);
         Task<StaffDTO?> GetByCitizenIdentificationAsync(string citizenIdentification);
-        Task<IEnumerable<StaffDTO>> SearchByKeyword(string keyword);
+        Task<IEnumerable<StaffDTO>> SearchByKeywordAsync(string keyword);
         Task<bool> UpdateAsync(Guid id, StaffUpdateDTO staffUpdateDTO);
         Task<bool> DeleteAsync(Guid id);
     }
