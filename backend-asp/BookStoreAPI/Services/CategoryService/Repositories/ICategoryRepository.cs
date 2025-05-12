@@ -1,4 +1,4 @@
-﻿using BookStoreAPI.Entities;
+﻿using BookStoreAPI.Data.Entities;
 using System.Threading.Tasks;
 
 namespace BookStoreAPI.Services.CategoryService.Repositories

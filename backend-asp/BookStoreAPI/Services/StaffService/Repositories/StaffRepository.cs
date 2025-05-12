@@ -1,5 +1,5 @@
 ﻿using BookStoreAPI.Data;
-using BookStoreAPI.Entities;
+using BookStoreAPI.Data.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace BookStoreAPI.Services.StaffService.Repositories

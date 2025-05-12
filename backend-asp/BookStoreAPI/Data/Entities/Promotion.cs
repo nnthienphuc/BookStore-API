@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using BookStoreAPI.Common.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace BookStoreAPI.Entities;
+namespace BookStoreAPI.Data.Entities;
 
 [Table("Promotion")]
 [Index("Name", Name = "IX_Promotion", IsUnique = true)]

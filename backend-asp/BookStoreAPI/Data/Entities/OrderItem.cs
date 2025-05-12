@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.EntityFrameworkCore;
 
-namespace BookStoreAPI.Entities;
+namespace BookStoreAPI.Data.Entities;
 
 [PrimaryKey("OrderId", "BookId")]
 [Table("OrderItem")]

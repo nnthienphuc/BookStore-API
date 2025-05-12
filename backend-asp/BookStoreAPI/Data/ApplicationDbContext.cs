@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using BookStoreAPI.Entities;
+using BookStoreAPI.Data.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace BookStoreAPI.Data;

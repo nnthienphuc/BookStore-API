@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using BookStoreAPI.Common.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace BookStoreAPI.Entities;
+namespace BookStoreAPI.Data.Entities;
 
 [Table("Customer")]
 [Index("Phone", Name = "IX_Customer", IsUnique = true)]

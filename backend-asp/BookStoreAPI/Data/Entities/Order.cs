@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using BookStoreAPI.Common.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace BookStoreAPI.Entities;
+namespace BookStoreAPI.Data.Entities;
 
 [Table("Order")]
 public partial class Order : BaseEntity

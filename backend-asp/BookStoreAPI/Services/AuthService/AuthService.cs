@@ -8,7 +8,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 using Microsoft.AspNetCore.Mvc.Routing;
-using BookStoreAPI.Entities;
+using BookStoreAPI.Data.Entities;
 
 namespace BookStoreAPI.Services.AuthService
 {
