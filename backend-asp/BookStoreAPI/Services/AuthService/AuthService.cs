@@ -163,7 +163,7 @@ namespace BookStoreAPI.Services.AuthService
                 new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
                 new Claim("staffId", user.Id.ToString()),
                 new Claim("email", user.Email),
-                new Claim("role", user.Role.ToString())
+                new Claim(ClaimTypes.Role, user.Role ? "Admin" : "Staff")
             };
 
             var token = new JwtSecurityToken(

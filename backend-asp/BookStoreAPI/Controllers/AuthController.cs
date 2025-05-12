@@ -7,8 +7,6 @@ using Microsoft.AspNetCore.Mvc;
 namespace BookStoreAPI.Controllers
 {
     [AllowAnonymous]
-    [Route("api/[controller]")]
-    [ApiController]
     public class AuthController : BaseController
     {
         private readonly IAuthService _authService;

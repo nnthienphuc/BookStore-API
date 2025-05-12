@@ -1,12 +1,12 @@
 ﻿using BookStoreAPI.Common.Controllers;
 using BookStoreAPI.Services.StaffService.DTOs;
 using BookStoreAPI.Services.StaffService.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BookStoreAPI.Controllers
 {
-    [Route("api/[controller]")]
-    [ApiController]
+    [Authorize(Roles = "Admin")]
     public class StaffController : BaseController
     {
         private readonly IStaffService _staffService;

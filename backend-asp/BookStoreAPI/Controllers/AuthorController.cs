@@ -5,8 +5,6 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace BookStoreAPI.Controllers
 {
-    [Route("api/[controller]")]
-    [ApiController]
     public class AuthorController : BaseController
     {
         private readonly IAuthorService _authorService;
