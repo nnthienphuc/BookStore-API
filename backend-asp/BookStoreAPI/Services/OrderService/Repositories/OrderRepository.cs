@@ -42,6 +42,36 @@ namespace BookStoreAPI.Services.OrderService.Repositories
                 .ToListAsync();
         }
 
+        public async Task<OrderItem?> GetOrderItemByOrderIdAndBookIdAsync(Guid orderId, Guid bookId)
+        {
+            return await _context.OrderItems
+                .FirstOrDefaultAsync(oi => oi.OrderId == orderId && oi.BookId == bookId);
+        }
+
+        public async Task<Book?> GetBookByIdAsync(Guid id)
+        {
+            return await _context.Books.FirstOrDefaultAsync(b => b.Id == id && b.IsDeleted == false);
+        }
+
+        public async Task<Promotion?> GetPromotionByIdAsync(Guid id)
+        {
+            return await _context.Promotions.FirstOrDefaultAsync(p => p.Id == id && p.IsDeleted == false);
+        }
+
+        public async Task<IEnumerable<Order>> SearchByKeywordAsync(string keyword)
+        {
+            return await _context.Orders
+                .Include(o => o.Staff)
+                .Include(o => o.Customer)
+                .Include(o => o.Promotion)
+                .Include(o => o.OrderItems).ThenInclude(oi => oi.Book)
+                .Where(o => ((o.Staff.FamilyName + ' ' + o.Staff.GivenName).Contains(keyword))
+                || ((o.Customer.FamilyName + ' ' + o.Customer.GivenName).Contains(keyword))
+                || (o.Promotion != null && o.Promotion.Name.Contains(keyword))
+                || (o.Note != null && o.Note.Contains(keyword)))
+                .ToListAsync();
+        }
+
         public async Task AddAsync(Order order)
         {
             await _context.Orders.AddAsync(order);
