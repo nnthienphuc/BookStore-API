@@ -1,5 +1,5 @@
 ﻿using BookStoreAPI.Services.PromotionService.DTOs;
-using BookStoreAPI.Entities;
+using BookStoreAPI.Data.Entities;
 using BookStoreAPI.Services.PromotionService.Interfaces;
 using BookStoreAPI.Services.PromotionService.Repositories;
 

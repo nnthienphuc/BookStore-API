@@ -14,6 +14,24 @@ using BookStoreAPI.Services.CategoryService.Repositories;
 using BookStoreAPI.Services.AuthorService;
 using BookStoreAPI.Services.AuthorService.Repositories;
 using BookStoreAPI.Services.AuthorService.Interfaces;
+using BookStoreAPI.Services.BookService.Interfaces;
+using BookStoreAPI.Services.BookService.Repositories;
+using BookStoreAPI.Services.BookService;
+using BookStoreAPI.Services.CustomerSevice.Interfaces;
+using BookStoreAPI.Services.CustomerSevice.Repositories;
+using BookStoreAPI.Services.CustomerSevice;
+using BookStoreAPI.Services.OrderService.Interfaces;
+using BookStoreAPI.Services.OrderService.Repositories;
+using BookStoreAPI.Services.OrderService;
+using BookStoreAPI.Services.PromotionService.Interfaces;
+using BookStoreAPI.Services.PromotionService.Repositories;
+using BookStoreAPI.Services.PromotionService;
+using BookStoreAPI.Services.PublisherService.Interfaces;
+using BookStoreAPI.Services.PublisherService.Repositories;
+using BookStoreAPI.Services.StaffService.Interfaces;
+using BookStoreAPI.Services.StaffService.Repositories;
+using BookStoreAPI.Services.StaffService;
+using BookStoreAPI.Services.PublisherService;
 
 var builder = WebApplication.CreateBuilder(new WebApplicationOptions
 {
@@ -64,13 +82,39 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 
 // Thêm các dịch vụ vào container
 builder.Services.AddControllersWithViews();
+
 builder.Services.AddScoped<IAuthRepository, AuthRepository>();
 builder.Services.AddScoped<IAuthService, AuthService>();
+
 builder.Services.AddScoped<EmailSenderService>();
+
 builder.Services.AddScoped<ICategoryService, CategoryService>();
 builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
+
 builder.Services.AddScoped<IAuthorService, AuthorService>();
 builder.Services.AddScoped<IAuthorRepository, AuthorRepository>();
+
+// Thêm vào cuối cùng phần "AddScoped" hiện có
+builder.Services.AddScoped<IBookService, BookService>();
+builder.Services.AddScoped<IBookRepository, BookRepository>();
+
+builder.Services.AddScoped<ICustomerService, CustomerService>();
+builder.Services.AddScoped<ICustomerRepository, CustomerRepository>();
+
+builder.Services.AddScoped<IStaffService, StaffService>();
+builder.Services.AddScoped<IStaffRepository, StaffRepository>();
+
+builder.Services.AddScoped<IPublisherService, PublisherService>();
+builder.Services.AddScoped<IPublisherRepository, PublisherRepository>();
+
+builder.Services.AddScoped<IPromotionService, PromotionService>();
+builder.Services.AddScoped<IPromotionRepository, PromotionRepository>();
+
+builder.Services.AddScoped<IOrderService, OrderService>();
+builder.Services.AddScoped<IOrderRepository, OrderRepository>();
+
+// Nếu có helper lấy thông tin người dùng đang login (CurrentUserHelper), cần:
+builder.Services.AddHttpContextAccessor(); // Đăng ký IHttpContextAccessor
 
 var app = builder.Build();
 

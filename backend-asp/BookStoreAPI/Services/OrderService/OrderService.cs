@@ -3,8 +3,6 @@ using BookStoreAPI.Data.Entities;
 using BookStoreAPI.Services.OrderService.DTOs;
 using BookStoreAPI.Services.OrderService.Interfaces;
 using BookStoreAPI.Services.OrderService.Repositories;
-using Microsoft.Extensions.Configuration.UserSecrets;
-using MimeKit.Encodings;
 using System.Security.Claims;
 
 namespace BookStoreAPI.Services.OrderService

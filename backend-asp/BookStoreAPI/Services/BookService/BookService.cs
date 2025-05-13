@@ -1,4 +1,4 @@
-﻿using BookStoreAPI.Entities;
+﻿using BookStoreAPI.Data.Entities;
 using BookStoreAPI.Services.BookService.DTOs;
 using BookStoreAPI.Services.BookService.Interfaces;
 using BookStoreAPI.Services.BookService.Repositories;

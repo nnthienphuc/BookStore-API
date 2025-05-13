@@ -1,5 +1,4 @@
 ﻿using BookStoreAPI.Services.CategoryService.DTOs;
-using BookStoreAPI.Services.CategoryService.Entities;
 
 namespace BookStoreAPI.Services.CategoryService.Interfaces
 {

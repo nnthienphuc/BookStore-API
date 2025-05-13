@@ -1,5 +1,5 @@
 ﻿using BookStoreAPI.Services.CustomerSevice.DTOs;
-using BookStoreAPI.Entities;
+using BookStoreAPI.Data.Entities;
 using BookStoreAPI.Services.CustomerSevice.Interfaces;
 using BookStoreAPI.Services.CustomerSevice.Repositories;
 using Microsoft.AspNetCore.Localization;
