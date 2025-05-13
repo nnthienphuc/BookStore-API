@@ -26,7 +26,7 @@ namespace BookStoreAPI.Services.PublisherService
             });
         }
 
-        public async Task<PublisherDTO> GetByIdAsync(Guid id)
+        public async Task<PublisherDTO?> GetByIdAsync(Guid id)
         {
             var publisher = await _publisherRepository.GetByIdAsync(id);
 
@@ -41,7 +41,7 @@ namespace BookStoreAPI.Services.PublisherService
             };
         }
 
-        public async Task<PublisherDTO> GetByNameAsync(string name)
+        public async Task<PublisherDTO?> GetByNameAsync(string name)
         {
             var publisher = await _publisherRepository.GetByNameAsync(name);
 
@@ -58,10 +58,10 @@ namespace BookStoreAPI.Services.PublisherService
 
         public async Task<IEnumerable<PublisherDTO>> SearchByKeywordAsync(string keyword)
         {
-            if (string.IsNullOrWhiteSpace(keyword))
-                throw new ArgumentException("Keyword cannot be null or empty.");
-
             var publishers = await _publisherRepository.SearchByKeywordAsync(keyword);
+
+            if (string.IsNullOrWhiteSpace(keyword))
+                publishers = await _publisherRepository.GetAllAsync();
 
             return publishers.Select(p => new PublisherDTO
             {

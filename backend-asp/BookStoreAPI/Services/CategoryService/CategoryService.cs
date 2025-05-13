@@ -58,10 +58,10 @@ namespace BookStoreAPI.Services.CategoryService
 
         public async Task<IEnumerable<CategoryDTO>> SearchByKeywordAsync (string keyword)
         {
-            if (string.IsNullOrWhiteSpace(keyword))
-                throw new ArgumentException("Keyword cannot be null or empty.");
-
             var categories = await _categoryRepository.SearchByKeywordAsync(keyword);
+
+            if (string.IsNullOrWhiteSpace(keyword))
+                categories = await _categoryRepository.GetAllAsync();
 
             return categories.Select(c => new CategoryDTO
             {
