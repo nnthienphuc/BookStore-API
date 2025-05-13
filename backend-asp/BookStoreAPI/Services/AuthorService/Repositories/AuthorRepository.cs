@@ -23,6 +23,7 @@ namespace BookStoreAPI.Services.AuthorService.Repositories
         {
             return await _context.Authors.FirstOrDefaultAsync(a => a.Id == id);
         }
+
         public async Task<IEnumerable<Author>> SearchByKeywordAsync(string keyword)
         {
             return await _context.Authors.Where(a => a.Name.Contains(keyword)).ToListAsync();

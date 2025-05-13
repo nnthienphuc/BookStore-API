@@ -30,8 +30,8 @@ namespace BookStoreAPI.Controllers
             return Ok(author);
         }
 
-        [HttpGet("keyword")]
-        public async Task<IActionResult> SearchByKeyword([FromQuery] string keyword)
+        [HttpGet("search")]
+        public async Task<IActionResult> SearchByKeyword([FromQuery] string? keyword)
         {
             var authors = await _authorService.SearchByKeywordAsync(keyword);
 
