@@ -1,0 +1,29 @@
+{
+  "Files": [
+    {
+      "Id": "D:\\Github\\BookStore-API\\backend-asp\\BookStoreAPI\\wwwroot\\images\\books\\toiLaBeto.png",
+      "PackagePath": "staticwebassets\\images\\books\\toiLaBeto.png"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.BookStoreAPI.Microsoft.AspNetCore.StaticWebAssetEndpoints.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssetEndpoints.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.BookStoreAPI.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.build.BookStoreAPI.props",
+      "PackagePath": "build\\BookStoreAPI.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildMultiTargeting.BookStoreAPI.props",
+      "PackagePath": "buildMultiTargeting\\BookStoreAPI.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildTransitive.BookStoreAPI.props",
+      "PackagePath": "buildTransitive\\BookStoreAPI.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

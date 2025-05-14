@@ -78,6 +78,9 @@ namespace BookStoreAPI.Services.PromotionService
         {
             var promotions = await _promotionRepository.SearchByKeywordAsync(keyword);
 
+            if (string.IsNullOrEmpty(keyword))
+                promotions = await _promotionRepository.GetAllAsync();
+
             return promotions.Select(p => new PromotionDTO
             {
                 Id = p.Id,
@@ -98,7 +101,7 @@ namespace BookStoreAPI.Services.PromotionService
 
             var now = DateTime.Now;
 
-            if (promotionCreateDTO.StartDate <= now)
+            if (promotionCreateDTO.StartDate < now)
                 throw new ArgumentException("StartDate must be in the future.");
 
             if (promotionCreateDTO.EndDate <= now)
@@ -146,7 +149,7 @@ namespace BookStoreAPI.Services.PromotionService
             if (string.IsNullOrWhiteSpace(promotionUpdateDTO.Name))
                 throw new ArgumentException("Promotion name cannot be null or empty.");
 
-            if (promotionUpdateDTO.StartDate <= now)
+            if (promotionUpdateDTO.StartDate < now)
                 throw new ArgumentException("StartDate must be in the future.");
 
             if (promotionUpdateDTO.EndDate <= now)
@@ -182,6 +185,9 @@ namespace BookStoreAPI.Services.PromotionService
             var existingPromotion = await _promotionRepository.GetByIdAsync(id);
             if (existingPromotion == null)
                 throw new KeyNotFoundException($"Promotion with id '{id}' not found.");
+
+            if (existingPromotion.IsDeleted == true)
+                throw new InvalidOperationException($"Promotion with id {id} is already deleted.");
 
             _promotionRepository.Delete(existingPromotion);
 

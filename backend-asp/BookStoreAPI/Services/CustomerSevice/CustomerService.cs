@@ -74,10 +74,10 @@ namespace BookStoreAPI.Services.CustomerSevice
 
         public async Task<IEnumerable<CustomerDTO>> SearchByKeywordAsync(string keyword)
         {
-            if (string.IsNullOrWhiteSpace(keyword))
-                throw new ArgumentException("Keyword cannot be null or empty");
-
             var customers = await _customerRepository.SearchByKeywordAsync(keyword);
+
+            if (string.IsNullOrWhiteSpace(keyword))
+                customers = await _customerRepository.GetAllAsync();
 
             return customers.Select(c => new CustomerDTO
             {
