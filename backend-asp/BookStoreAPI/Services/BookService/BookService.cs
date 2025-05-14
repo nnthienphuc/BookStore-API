@@ -2,6 +2,7 @@
 using BookStoreAPI.Services.BookService.DTOs;
 using BookStoreAPI.Services.BookService.Interfaces;
 using BookStoreAPI.Services.BookService.Repositories;
+using Microsoft.EntityFrameworkCore.Storage.ValueConversion.Internal;
 
 namespace BookStoreAPI.Services.BookService
 {
@@ -82,10 +83,10 @@ namespace BookStoreAPI.Services.BookService
 
         public async Task<IEnumerable<BookDetailDTO>> SearchByKeywordAsync(string keyword)
         {
-            if (string.IsNullOrWhiteSpace(keyword))
-                throw new ArgumentException("Keyword cannot be null or empty.");
-
             var books = await _bookRepository.SearchByKeywordAsync(keyword);
+
+            if (string.IsNullOrWhiteSpace(keyword))
+                books = await _bookRepository.GetAllAsync();
 
             return books.Select(b => new BookDetailDTO
             {
