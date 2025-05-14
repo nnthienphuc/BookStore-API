@@ -3,6 +3,7 @@ using BookStoreAPI.Data.Entities;
 using BookStoreAPI.Services.OrderService.DTOs;
 using BookStoreAPI.Services.OrderService.Interfaces;
 using BookStoreAPI.Services.OrderService.Repositories;
+using System.Runtime.CompilerServices;
 using System.Security.Claims;
 
 namespace BookStoreAPI.Services.OrderService
@@ -61,6 +62,7 @@ namespace BookStoreAPI.Services.OrderService
                 Id = order.Id,
                 StaffName = order.Staff.FamilyName + ' ' + order.Staff.GivenName,
                 CustomerName = order.Customer.FamilyName + ' ' + order.Customer.GivenName,
+                CustomerPhone = order.Customer.Phone,
                 PromotionName = order.Promotion?.Name,
                 CreatedTime = order.CreatedTime,
                 TotalAmount = order.TotalAmount,
@@ -88,6 +90,7 @@ namespace BookStoreAPI.Services.OrderService
             {
                 OrderId = orderId,
                 BookName = oi.Book.Title,
+                Price = oi.Price,
                 Quantity = oi.Quantity,
                 IsDeleted = oi.IsDeleted
             });
@@ -95,13 +98,13 @@ namespace BookStoreAPI.Services.OrderService
 
         public async Task<IEnumerable<OrderDTO>> SearchByKeywordAsync(string keyword, ClaimsPrincipal user)
         {
-            if (string.IsNullOrEmpty(keyword))
-                throw new ArgumentException("Keyword cannot be null or empty");
-
             var staffId = CurrentUserHelper.GetStaffId(user);
             var isAdmin = CurrentUserHelper.IsAdmin(user);
 
             var orders = await _orderRepository.SearchByKeywordAsync(keyword);
+
+            if (string.IsNullOrWhiteSpace(keyword))
+                orders = await _orderRepository.GetAllAsync();
 
             if (!isAdmin)
                 orders = orders.Where(o => o.StaffId == staffId).ToList();

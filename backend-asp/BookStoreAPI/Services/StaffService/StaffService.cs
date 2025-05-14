@@ -143,6 +143,9 @@ namespace BookStoreAPI.Services.StaffService
         {
             var staffs = await _staffRepository.SearchByKeyword(keyword);
 
+            if (string.IsNullOrWhiteSpace(keyword))
+                staffs = await _staffRepository.GetAllAsync();
+
             return staffs.Select(s => new StaffDTO
             {
                 Id = s.Id,

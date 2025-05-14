@@ -50,7 +50,7 @@ namespace BookStoreAPI.Services.AuthService
                 CitizenIdentification = registerDTO.CitizenIdentification,
                 HashPassword = hashedPassword,
                 Gender = registerDTO.Gender,
-                Role = registerDTO.Role,
+                Role = false,
                 IsActived = false
             };
 
