@@ -6,7 +6,7 @@ namespace BookStoreAPI.Services.PublisherService.DTOs
     {
         [Required(ErrorMessage = "Name is required.")]
         [StringLength(100)]
-        [RegularExpression(@"\S+", ErrorMessage = "Name cannot be whitespace")]
+        [RegularExpression(@".*\S.*", ErrorMessage = "Name cannot be whitespace")]
         public required string Name { get; set; }
         public required bool IsDeleted { get; set; }
     }

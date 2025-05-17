@@ -6,18 +6,18 @@ namespace BookStoreAPI.Services.StaffService.DTOs
     {
         [Required(ErrorMessage = "Family name is required.")]
         [StringLength(70)]
-        [RegularExpression(@"\S+", ErrorMessage = "Family name cannot be whitespace")]
+        [RegularExpression(@".*\S.*", ErrorMessage = "Family name cannot be whitespace")]
         public required string FamilyName { get; set; }
 
         [Required(ErrorMessage = "Given name is required.")]
         [StringLength(30)]
-        [RegularExpression(@"\S+", ErrorMessage = "Given name cannot be whitespace")]
+        [RegularExpression(@".*\S.*", ErrorMessage = "Given name cannot be whitespace")]
         public required string GivenName { get; set; }
         public required DateOnly DateOfBirth { get; set; }
 
         [Required(ErrorMessage = "Address is required.")]
         [StringLength(50)]
-        [RegularExpression(@"\S+", ErrorMessage = "Address cannot be whitespace")]
+        [RegularExpression(@".*\S.*", ErrorMessage = "Address cannot be whitespace")]
         public required string Address { get; set; }
 
         [Required(ErrorMessage = "Phone is required.")]
