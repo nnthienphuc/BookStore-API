@@ -60,9 +60,6 @@ namespace BookStoreAPI.Services.PublisherService
         {
             var publishers = await _publisherRepository.SearchByKeywordAsync(keyword);
 
-            if (string.IsNullOrWhiteSpace(keyword))
-                publishers = await _publisherRepository.GetAllAsync();
-
             return publishers.Select(p => new PublisherDTO
             {
                 Id = p.Id,
@@ -73,9 +70,6 @@ namespace BookStoreAPI.Services.PublisherService
 
         public async Task<bool> AddAsync(PublisherCreateDTO publisherCreateDTO)
         {
-            if (string.IsNullOrWhiteSpace(publisherCreateDTO.Name))
-                throw new ArgumentException("Publisher name cannot be null or empty.");
-
             var existingPublisher = await _publisherRepository.GetByNameAsync(publisherCreateDTO.Name);
 
             if (existingPublisher != null)
@@ -97,9 +91,6 @@ namespace BookStoreAPI.Services.PublisherService
 
             if (existingPublisher == null)
                 throw new KeyNotFoundException($"Publisher with id {id} not found.");
-
-            if (string.IsNullOrWhiteSpace(publisherUpdateDTO.Name))
-                throw new ArgumentException("Publisher name cannot be null or empty.");
 
             var duplicatePublisher = await _publisherRepository.GetByNameAsync(publisherUpdateDTO.Name);
 

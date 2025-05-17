@@ -60,9 +60,6 @@ namespace BookStoreAPI.Services.CategoryService
         {
             var categories = await _categoryRepository.SearchByKeywordAsync(keyword);
 
-            if (string.IsNullOrWhiteSpace(keyword))
-                categories = await _categoryRepository.GetAllAsync();
-
             return categories.Select(c => new CategoryDTO
             {
                 Id = c.Id,
@@ -73,11 +70,6 @@ namespace BookStoreAPI.Services.CategoryService
 
         public async Task<bool> AddAsync (CategoryCreateDTO categoryCreateDTO)
         {
-            if (string.IsNullOrWhiteSpace(categoryCreateDTO.Name))
-            {
-                throw new ArgumentException("Category name cannot be null or empty.");
-            }
-
             var existingCategory = await _categoryRepository.GetByNameAsync(categoryCreateDTO.Name);
 
             if (existingCategory != null)
@@ -101,9 +93,6 @@ namespace BookStoreAPI.Services.CategoryService
 
             if (existingCategory == null)
                 throw new KeyNotFoundException($"Category with id '{id}' not found.");
-
-            if (string.IsNullOrWhiteSpace(categoryUpdateDTO.Name))
-                throw new ArgumentException("Category name cannot be null or empty.");
 
             var checkCategory = await _categoryRepository.GetByNameAsync(categoryUpdateDTO.Name);
             if ((checkCategory != null) && (existingCategory.Id != checkCategory.Id))  // tranh tinh trang Name trung id (truong hop chi thay doi IsDeleted)

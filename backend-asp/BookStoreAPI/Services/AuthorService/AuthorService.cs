@@ -2,7 +2,6 @@
 using BookStoreAPI.Services.AuthorService.DTOs;
 using BookStoreAPI.Services.AuthorService.Interfaces;
 using BookStoreAPI.Services.AuthorService.Repositories;
-using Microsoft.AspNetCore.Mvc.Routing;
 
 namespace BookStoreAPI.Services.AuthorService
 {
@@ -46,9 +45,6 @@ namespace BookStoreAPI.Services.AuthorService
         {
             var authors = await _authorRepository.SearchByKeywordAsync(keyword);
 
-            if (string.IsNullOrWhiteSpace(keyword))
-                authors = await _authorRepository.GetAllAsync();
-
             return authors.Select(a => new AuthorDTO
             {
                 Id = a.Id,
@@ -59,9 +55,6 @@ namespace BookStoreAPI.Services.AuthorService
 
         public async Task<bool> AddAsync (AuthorCreateDTO authorCreateDTO)
         {
-            if (string.IsNullOrWhiteSpace(authorCreateDTO.Name))
-                throw new ArgumentException("Author name cannot be null or empty.");
-
             var author = new Author
             {
                 Name = authorCreateDTO.Name
@@ -78,9 +71,6 @@ namespace BookStoreAPI.Services.AuthorService
 
             if (author == null)
                 throw new KeyNotFoundException($"Author with id {id} not found.");
-
-            if (string.IsNullOrWhiteSpace(authorUpdateDTO.Name))
-                throw new ArgumentException("Author name cannot be null or empty.");
 
             author.Name = authorUpdateDTO.Name;
             author.IsDeleted = authorUpdateDTO.IsDeleted;

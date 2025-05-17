@@ -3,6 +3,66 @@
   "WorkspaceRootPath": "D:\\Github\\BookStore-API\\backend-asp\\BookStoreAPI\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{3EBC0049-77A4-4D18-A3CE-755C6DEEB41B}|BookStoreAPI.csproj|d:\\github\\bookstore-api\\backend-asp\\bookstoreapi\\services\\orderservice\\repositories\\iorderrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3EBC0049-77A4-4D18-A3CE-755C6DEEB41B}|BookStoreAPI.csproj|solutionrelative:services\\orderservice\\repositories\\iorderrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3EBC0049-77A4-4D18-A3CE-755C6DEEB41B}|BookStoreAPI.csproj|d:\\github\\bookstore-api\\backend-asp\\bookstoreapi\\services\\orderservice\\interfaces\\iorderservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3EBC0049-77A4-4D18-A3CE-755C6DEEB41B}|BookStoreAPI.csproj|solutionrelative:services\\orderservice\\interfaces\\iorderservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3EBC0049-77A4-4D18-A3CE-755C6DEEB41B}|BookStoreAPI.csproj|d:\\github\\bookstore-api\\backend-asp\\bookstoreapi\\services\\orderservice\\repositories\\orderrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3EBC0049-77A4-4D18-A3CE-755C6DEEB41B}|BookStoreAPI.csproj|solutionrelative:services\\orderservice\\repositories\\orderrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3EBC0049-77A4-4D18-A3CE-755C6DEEB41B}|BookStoreAPI.csproj|d:\\github\\bookstore-api\\backend-asp\\bookstoreapi\\services\\orderservice\\orderservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3EBC0049-77A4-4D18-A3CE-755C6DEEB41B}|BookStoreAPI.csproj|solutionrelative:services\\orderservice\\orderservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3EBC0049-77A4-4D18-A3CE-755C6DEEB41B}|BookStoreAPI.csproj|d:\\github\\bookstore-api\\backend-asp\\bookstoreapi\\services\\orderservice\\dtos\\orderitemupdatedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3EBC0049-77A4-4D18-A3CE-755C6DEEB41B}|BookStoreAPI.csproj|solutionrelative:services\\orderservice\\dtos\\orderitemupdatedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3EBC0049-77A4-4D18-A3CE-755C6DEEB41B}|BookStoreAPI.csproj|d:\\github\\bookstore-api\\backend-asp\\bookstoreapi\\controllers\\ordercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3EBC0049-77A4-4D18-A3CE-755C6DEEB41B}|BookStoreAPI.csproj|solutionrelative:controllers\\ordercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3EBC0049-77A4-4D18-A3CE-755C6DEEB41B}|BookStoreAPI.csproj|d:\\github\\bookstore-api\\backend-asp\\bookstoreapi\\services\\orderservice\\dtos\\orderupdatedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3EBC0049-77A4-4D18-A3CE-755C6DEEB41B}|BookStoreAPI.csproj|solutionrelative:services\\orderservice\\dtos\\orderupdatedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3EBC0049-77A4-4D18-A3CE-755C6DEEB41B}|BookStoreAPI.csproj|d:\\github\\bookstore-api\\backend-asp\\bookstoreapi\\services\\orderservice\\dtos\\orderdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3EBC0049-77A4-4D18-A3CE-755C6DEEB41B}|BookStoreAPI.csproj|solutionrelative:services\\orderservice\\dtos\\orderdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3EBC0049-77A4-4D18-A3CE-755C6DEEB41B}|BookStoreAPI.csproj|d:\\github\\bookstore-api\\backend-asp\\bookstoreapi\\services\\orderservice\\dtos\\orderitemcreatedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3EBC0049-77A4-4D18-A3CE-755C6DEEB41B}|BookStoreAPI.csproj|solutionrelative:services\\orderservice\\dtos\\orderitemcreatedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3EBC0049-77A4-4D18-A3CE-755C6DEEB41B}|BookStoreAPI.csproj|d:\\github\\bookstore-api\\backend-asp\\bookstoreapi\\services\\orderservice\\dtos\\ordercreatedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3EBC0049-77A4-4D18-A3CE-755C6DEEB41B}|BookStoreAPI.csproj|solutionrelative:services\\orderservice\\dtos\\ordercreatedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3EBC0049-77A4-4D18-A3CE-755C6DEEB41B}|BookStoreAPI.csproj|d:\\github\\bookstore-api\\backend-asp\\bookstoreapi\\controllers\\staffcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3EBC0049-77A4-4D18-A3CE-755C6DEEB41B}|BookStoreAPI.csproj|solutionrelative:controllers\\staffcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3EBC0049-77A4-4D18-A3CE-755C6DEEB41B}|BookStoreAPI.csproj|d:\\github\\bookstore-api\\backend-asp\\bookstoreapi\\services\\staffservice\\dtos\\staffupdatedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3EBC0049-77A4-4D18-A3CE-755C6DEEB41B}|BookStoreAPI.csproj|solutionrelative:services\\staffservice\\dtos\\staffupdatedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3EBC0049-77A4-4D18-A3CE-755C6DEEB41B}|BookStoreAPI.csproj|d:\\github\\bookstore-api\\backend-asp\\bookstoreapi\\services\\authservice\\authservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3EBC0049-77A4-4D18-A3CE-755C6DEEB41B}|BookStoreAPI.csproj|solutionrelative:services\\authservice\\authservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3EBC0049-77A4-4D18-A3CE-755C6DEEB41B}|BookStoreAPI.csproj|d:\\github\\bookstore-api\\backend-asp\\bookstoreapi\\services\\authorservice\\authorservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3EBC0049-77A4-4D18-A3CE-755C6DEEB41B}|BookStoreAPI.csproj|solutionrelative:services\\authorservice\\authorservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3EBC0049-77A4-4D18-A3CE-755C6DEEB41B}|BookStoreAPI.csproj|d:\\github\\bookstore-api\\backend-asp\\bookstoreapi\\services\\staffservice\\staffservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3EBC0049-77A4-4D18-A3CE-755C6DEEB41B}|BookStoreAPI.csproj|solutionrelative:services\\staffservice\\staffservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{3EBC0049-77A4-4D18-A3CE-755C6DEEB41B}|BookStoreAPI.csproj|d:\\github\\bookstore-api\\backend-asp\\bookstoreapi\\services\\promotionservice\\promotionservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{3EBC0049-77A4-4D18-A3CE-755C6DEEB41B}|BookStoreAPI.csproj|solutionrelative:services\\promotionservice\\promotionservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -58,73 +118,8 @@
       "DocumentGroups": [
         {
           "DockedWidth": 52,
-          "SelectedChildIndex": 8,
+          "SelectedChildIndex": 4,
           "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "BookCreateDTO.cs",
-              "DocumentMoniker": "D:\\Github\\BookStore-API\\backend-asp\\BookStoreAPI\\Services\\BookService\\DTOs\\BookCreateDTO.cs",
-              "RelativeDocumentMoniker": "Services\\BookService\\DTOs\\BookCreateDTO.cs",
-              "ToolTip": "D:\\Github\\BookStore-API\\backend-asp\\BookStoreAPI\\Services\\BookService\\DTOs\\BookCreateDTO.cs",
-              "RelativeToolTip": "Services\\BookService\\DTOs\\BookCreateDTO.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-14T08:56:15.505Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "PromotionCreateDTO.cs",
-              "DocumentMoniker": "D:\\Github\\BookStore-API\\backend-asp\\BookStoreAPI\\Services\\PromotionService\\DTOs\\PromotionCreateDTO.cs",
-              "RelativeDocumentMoniker": "Services\\PromotionService\\DTOs\\PromotionCreateDTO.cs",
-              "ToolTip": "D:\\Github\\BookStore-API\\backend-asp\\BookStoreAPI\\Services\\PromotionService\\DTOs\\PromotionCreateDTO.cs",
-              "RelativeToolTip": "Services\\PromotionService\\DTOs\\PromotionCreateDTO.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAA3AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-14T08:53:01.471Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "PromotionController.cs",
-              "DocumentMoniker": "D:\\Github\\BookStore-API\\backend-asp\\BookStoreAPI\\Controllers\\PromotionController.cs",
-              "RelativeDocumentMoniker": "Controllers\\PromotionController.cs",
-              "ToolTip": "D:\\Github\\BookStore-API\\backend-asp\\BookStoreAPI\\Controllers\\PromotionController.cs",
-              "RelativeToolTip": "Controllers\\PromotionController.cs",
-              "ViewState": "AgIAABUAAAAAAAAAAAAowCcAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-14T08:49:16.04Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "PromotionDTO.cs",
-              "DocumentMoniker": "D:\\Github\\BookStore-API\\backend-asp\\BookStoreAPI\\Services\\PromotionService\\DTOs\\PromotionDTO.cs",
-              "RelativeDocumentMoniker": "Services\\PromotionService\\DTOs\\PromotionDTO.cs",
-              "ToolTip": "D:\\Github\\BookStore-API\\backend-asp\\BookStoreAPI\\Services\\PromotionService\\DTOs\\PromotionDTO.cs",
-              "RelativeToolTip": "Services\\PromotionService\\DTOs\\PromotionDTO.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAtAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-14T08:48:56.576Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "PromotionRepository.cs",
-              "DocumentMoniker": "D:\\Github\\BookStore-API\\backend-asp\\BookStoreAPI\\Services\\PromotionService\\Repositories\\PromotionRepository.cs",
-              "RelativeDocumentMoniker": "Services\\PromotionService\\Repositories\\PromotionRepository.cs",
-              "ToolTip": "D:\\Github\\BookStore-API\\backend-asp\\BookStoreAPI\\Services\\PromotionService\\Repositories\\PromotionRepository.cs",
-              "RelativeToolTip": "Services\\PromotionService\\Repositories\\PromotionRepository.cs",
-              "ViewState": "AgIAABIAAAAAAAAAAAAowAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-14T08:48:47.369Z",
-              "EditorCaption": ""
-            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{b1e99781-ab81-11d0-b683-00aa00a3ee26}"
@@ -139,7 +134,248 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "IOrderService.cs",
+              "DocumentMoniker": "D:\\Github\\BookStore-API\\backend-asp\\BookStoreAPI\\Services\\OrderService\\Interfaces\\IOrderService.cs",
+              "RelativeDocumentMoniker": "Services\\OrderService\\Interfaces\\IOrderService.cs",
+              "ToolTip": "D:\\Github\\BookStore-API\\backend-asp\\BookStoreAPI\\Services\\OrderService\\Interfaces\\IOrderService.cs",
+              "RelativeToolTip": "Services\\OrderService\\Interfaces\\IOrderService.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAArwA0AAAAoAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-14T10:07:07.073Z"
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "IOrderRepository.cs",
+              "DocumentMoniker": "D:\\Github\\BookStore-API\\backend-asp\\BookStoreAPI\\Services\\OrderService\\Repositories\\IOrderRepository.cs",
+              "RelativeDocumentMoniker": "Services\\OrderService\\Repositories\\IOrderRepository.cs",
+              "ToolTip": "D:\\Github\\BookStore-API\\backend-asp\\BookStoreAPI\\Services\\OrderService\\Repositories\\IOrderRepository.cs",
+              "RelativeToolTip": "Services\\OrderService\\Repositories\\IOrderRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAArAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-14T10:06:04.743Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "OrderUpdateDTO.cs",
+              "DocumentMoniker": "D:\\Github\\BookStore-API\\backend-asp\\BookStoreAPI\\Services\\OrderService\\DTOs\\OrderUpdateDTO.cs",
+              "RelativeDocumentMoniker": "Services\\OrderService\\DTOs\\OrderUpdateDTO.cs",
+              "ToolTip": "D:\\Github\\BookStore-API\\backend-asp\\BookStoreAPI\\Services\\OrderService\\DTOs\\OrderUpdateDTO.cs",
+              "RelativeToolTip": "Services\\OrderService\\DTOs\\OrderUpdateDTO.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-14T10:02:34.602Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "OrderRepository.cs",
+              "DocumentMoniker": "D:\\Github\\BookStore-API\\backend-asp\\BookStoreAPI\\Services\\OrderService\\Repositories\\OrderRepository.cs",
+              "RelativeDocumentMoniker": "Services\\OrderService\\Repositories\\OrderRepository.cs",
+              "ToolTip": "D:\\Github\\BookStore-API\\backend-asp\\BookStoreAPI\\Services\\OrderService\\Repositories\\OrderRepository.cs",
+              "RelativeToolTip": "Services\\OrderService\\Repositories\\OrderRepository.cs",
+              "ViewState": "AgIAAEEAAAAAAAAAAAAAwFIAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-14T10:00:18.211Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "OrderDTO.cs",
+              "DocumentMoniker": "D:\\Github\\BookStore-API\\backend-asp\\BookStoreAPI\\Services\\OrderService\\DTOs\\OrderDTO.cs",
+              "RelativeDocumentMoniker": "Services\\OrderService\\DTOs\\OrderDTO.cs",
+              "ToolTip": "D:\\Github\\BookStore-API\\backend-asp\\BookStoreAPI\\Services\\OrderService\\DTOs\\OrderDTO.cs",
+              "RelativeToolTip": "Services\\OrderService\\DTOs\\OrderDTO.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-14T09:59:17.657Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "OrderItemUpdateDTO.cs",
+              "DocumentMoniker": "D:\\Github\\BookStore-API\\backend-asp\\BookStoreAPI\\Services\\OrderService\\DTOs\\OrderItemUpdateDTO.cs",
+              "RelativeDocumentMoniker": "Services\\OrderService\\DTOs\\OrderItemUpdateDTO.cs",
+              "ToolTip": "D:\\Github\\BookStore-API\\backend-asp\\BookStoreAPI\\Services\\OrderService\\DTOs\\OrderItemUpdateDTO.cs",
+              "RelativeToolTip": "Services\\OrderService\\DTOs\\OrderItemUpdateDTO.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAXAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-14T09:59:18.201Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "OrderItemCreateDTO.cs",
+              "DocumentMoniker": "D:\\Github\\BookStore-API\\backend-asp\\BookStoreAPI\\Services\\OrderService\\DTOs\\OrderItemCreateDTO.cs",
+              "RelativeDocumentMoniker": "Services\\OrderService\\DTOs\\OrderItemCreateDTO.cs",
+              "ToolTip": "D:\\Github\\BookStore-API\\backend-asp\\BookStoreAPI\\Services\\OrderService\\DTOs\\OrderItemCreateDTO.cs",
+              "RelativeToolTip": "Services\\OrderService\\DTOs\\OrderItemCreateDTO.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-14T09:57:46.439Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "OrderCreateDTO.cs",
+              "DocumentMoniker": "D:\\Github\\BookStore-API\\backend-asp\\BookStoreAPI\\Services\\OrderService\\DTOs\\OrderCreateDTO.cs",
+              "RelativeDocumentMoniker": "Services\\OrderService\\DTOs\\OrderCreateDTO.cs",
+              "ToolTip": "D:\\Github\\BookStore-API\\backend-asp\\BookStoreAPI\\Services\\OrderService\\DTOs\\OrderCreateDTO.cs",
+              "RelativeToolTip": "Services\\OrderService\\DTOs\\OrderCreateDTO.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-14T09:55:56.024Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "OrderService.cs",
+              "DocumentMoniker": "D:\\Github\\BookStore-API\\backend-asp\\BookStoreAPI\\Services\\OrderService\\OrderService.cs",
+              "RelativeDocumentMoniker": "Services\\OrderService\\OrderService.cs",
+              "ToolTip": "D:\\Github\\BookStore-API\\backend-asp\\BookStoreAPI\\Services\\OrderService\\OrderService.cs",
+              "RelativeToolTip": "Services\\OrderService\\OrderService.cs",
+              "ViewState": "AgIAALgAAAAAAAAAAAAmwMoAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-14T09:50:46.174Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "OrderController.cs",
+              "DocumentMoniker": "D:\\Github\\BookStore-API\\backend-asp\\BookStoreAPI\\Controllers\\OrderController.cs",
+              "RelativeDocumentMoniker": "Controllers\\OrderController.cs",
+              "ToolTip": "D:\\Github\\BookStore-API\\backend-asp\\BookStoreAPI\\Controllers\\OrderController.cs",
+              "RelativeToolTip": "Controllers\\OrderController.cs",
+              "ViewState": "AgIAAB0AAAAAAAAAAAAwwEIAAAAkAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-14T09:48:46.87Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "AuthService.cs",
+              "DocumentMoniker": "D:\\Github\\BookStore-API\\backend-asp\\BookStoreAPI\\Services\\AuthService\\AuthService.cs",
+              "RelativeDocumentMoniker": "Services\\AuthService\\AuthService.cs",
+              "ToolTip": "D:\\Github\\BookStore-API\\backend-asp\\BookStoreAPI\\Services\\AuthService\\AuthService.cs",
+              "RelativeToolTip": "Services\\AuthService\\AuthService.cs",
+              "ViewState": "AgIAAB4AAAAAAAAAAAAowDIAAAAuAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-14T09:31:05.727Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "AuthorService.cs",
+              "DocumentMoniker": "D:\\Github\\BookStore-API\\backend-asp\\BookStoreAPI\\Services\\AuthorService\\AuthorService.cs",
+              "RelativeDocumentMoniker": "Services\\AuthorService\\AuthorService.cs",
+              "ToolTip": "D:\\Github\\BookStore-API\\backend-asp\\BookStoreAPI\\Services\\AuthorService\\AuthorService.cs",
+              "RelativeToolTip": "Services\\AuthorService\\AuthorService.cs",
+              "ViewState": "AgIAABAAAAAAAAAAAAAgwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-14T09:30:58.594Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "StaffUpdateDTO.cs",
+              "DocumentMoniker": "D:\\Github\\BookStore-API\\backend-asp\\BookStoreAPI\\Services\\StaffService\\DTOs\\StaffUpdateDTO.cs",
+              "RelativeDocumentMoniker": "Services\\StaffService\\DTOs\\StaffUpdateDTO.cs",
+              "ToolTip": "D:\\Github\\BookStore-API\\backend-asp\\BookStoreAPI\\Services\\StaffService\\DTOs\\StaffUpdateDTO.cs",
+              "RelativeToolTip": "Services\\StaffService\\DTOs\\StaffUpdateDTO.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-14T09:25:27.724Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "StaffService.cs",
+              "DocumentMoniker": "D:\\Github\\BookStore-API\\backend-asp\\BookStoreAPI\\Services\\StaffService\\StaffService.cs",
+              "RelativeDocumentMoniker": "Services\\StaffService\\StaffService.cs",
+              "ToolTip": "D:\\Github\\BookStore-API\\backend-asp\\BookStoreAPI\\Services\\StaffService\\StaffService.cs",
+              "RelativeToolTip": "Services\\StaffService\\StaffService.cs",
+              "ViewState": "AgIAAIEAAAAAAAAAAAAmwJQAAAAyAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-14T09:21:59.943Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "StaffController.cs",
+              "DocumentMoniker": "D:\\Github\\BookStore-API\\backend-asp\\BookStoreAPI\\Controllers\\StaffController.cs",
+              "RelativeDocumentMoniker": "Controllers\\StaffController.cs",
+              "ToolTip": "D:\\Github\\BookStore-API\\backend-asp\\BookStoreAPI\\Controllers\\StaffController.cs",
+              "RelativeToolTip": "Controllers\\StaffController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACUAAABJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-14T09:21:44.319Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "BookCreateDTO.cs",
+              "DocumentMoniker": "D:\\Github\\BookStore-API\\backend-asp\\BookStoreAPI\\Services\\BookService\\DTOs\\BookCreateDTO.cs",
+              "RelativeDocumentMoniker": "Services\\BookService\\DTOs\\BookCreateDTO.cs",
+              "ToolTip": "D:\\Github\\BookStore-API\\backend-asp\\BookStoreAPI\\Services\\BookService\\DTOs\\BookCreateDTO.cs",
+              "RelativeToolTip": "Services\\BookService\\DTOs\\BookCreateDTO.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-14T08:56:15.505Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "PromotionCreateDTO.cs",
+              "DocumentMoniker": "D:\\Github\\BookStore-API\\backend-asp\\BookStoreAPI\\Services\\PromotionService\\DTOs\\PromotionCreateDTO.cs",
+              "RelativeDocumentMoniker": "Services\\PromotionService\\DTOs\\PromotionCreateDTO.cs",
+              "ToolTip": "D:\\Github\\BookStore-API\\backend-asp\\BookStoreAPI\\Services\\PromotionService\\DTOs\\PromotionCreateDTO.cs",
+              "RelativeToolTip": "Services\\PromotionService\\DTOs\\PromotionCreateDTO.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAA3AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-14T08:53:01.471Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "PromotionController.cs",
+              "DocumentMoniker": "D:\\Github\\BookStore-API\\backend-asp\\BookStoreAPI\\Controllers\\PromotionController.cs",
+              "RelativeDocumentMoniker": "Controllers\\PromotionController.cs",
+              "ToolTip": "D:\\Github\\BookStore-API\\backend-asp\\BookStoreAPI\\Controllers\\PromotionController.cs",
+              "RelativeToolTip": "Controllers\\PromotionController.cs",
+              "ViewState": "AgIAABUAAAAAAAAAAAAowCcAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-14T08:49:16.04Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "PromotionDTO.cs",
+              "DocumentMoniker": "D:\\Github\\BookStore-API\\backend-asp\\BookStoreAPI\\Services\\PromotionService\\DTOs\\PromotionDTO.cs",
+              "RelativeDocumentMoniker": "Services\\PromotionService\\DTOs\\PromotionDTO.cs",
+              "ToolTip": "D:\\Github\\BookStore-API\\backend-asp\\BookStoreAPI\\Services\\PromotionService\\DTOs\\PromotionDTO.cs",
+              "RelativeToolTip": "Services\\PromotionService\\DTOs\\PromotionDTO.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAtAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-14T08:48:56.576Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "PromotionRepository.cs",
+              "DocumentMoniker": "D:\\Github\\BookStore-API\\backend-asp\\BookStoreAPI\\Services\\PromotionService\\Repositories\\PromotionRepository.cs",
+              "RelativeDocumentMoniker": "Services\\PromotionService\\Repositories\\PromotionRepository.cs",
+              "ToolTip": "D:\\Github\\BookStore-API\\backend-asp\\BookStoreAPI\\Services\\PromotionService\\Repositories\\PromotionRepository.cs",
+              "RelativeToolTip": "Services\\PromotionService\\Repositories\\PromotionRepository.cs",
+              "ViewState": "AgIAABIAAAAAAAAAAAAowAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-14T08:48:47.369Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
               "Title": "PromotionService.cs",
               "DocumentMoniker": "D:\\Github\\BookStore-API\\backend-asp\\BookStoreAPI\\Services\\PromotionService\\PromotionService.cs",
               "RelativeDocumentMoniker": "Services\\PromotionService\\PromotionService.cs",
@@ -147,12 +383,11 @@
               "RelativeToolTip": "Services\\PromotionService\\PromotionService.cs",
               "ViewState": "AgIAAFsAAAAAAAAAAAAcwGgAAABQAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-14T08:47:52.985Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-14T08:47:52.985Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 23,
               "Title": "CustomerDTO.cs",
               "DocumentMoniker": "D:\\Github\\BookStore-API\\backend-asp\\BookStoreAPI\\Services\\CustomerSevice\\DTOs\\CustomerDTO.cs",
               "RelativeDocumentMoniker": "Services\\CustomerSevice\\DTOs\\CustomerDTO.cs",
@@ -160,12 +395,11 @@
               "RelativeToolTip": "Services\\CustomerSevice\\DTOs\\CustomerDTO.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-14T08:46:23.523Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-14T08:46:23.523Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 24,
               "Title": "CustomerRepository.cs",
               "DocumentMoniker": "D:\\Github\\BookStore-API\\backend-asp\\BookStoreAPI\\Services\\CustomerSevice\\Repositories\\CustomerRepository.cs",
               "RelativeDocumentMoniker": "Services\\CustomerSevice\\Repositories\\CustomerRepository.cs",
@@ -173,12 +407,11 @@
               "RelativeToolTip": "Services\\CustomerSevice\\Repositories\\CustomerRepository.cs",
               "ViewState": "AgIAABIAAAAAAAAAAAAowAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-14T08:46:08.6Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-14T08:46:08.6Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 22,
               "Title": "CustomerService.cs",
               "DocumentMoniker": "D:\\Github\\BookStore-API\\backend-asp\\BookStoreAPI\\Services\\CustomerSevice\\CustomerService.cs",
               "RelativeDocumentMoniker": "Services\\CustomerSevice\\CustomerService.cs",
@@ -186,12 +419,11 @@
               "RelativeToolTip": "Services\\CustomerSevice\\CustomerService.cs",
               "ViewState": "AgIAAD4AAAAAAAAAAAAIwE4AAAAzAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-14T08:46:03.372Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-14T08:46:03.372Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 25,
               "Title": "CustomerUpdateDTO.cs",
               "DocumentMoniker": "D:\\Github\\BookStore-API\\backend-asp\\BookStoreAPI\\Services\\CustomerSevice\\DTOs\\CustomerUpdateDTO.cs",
               "RelativeDocumentMoniker": "Services\\CustomerSevice\\DTOs\\CustomerUpdateDTO.cs",
@@ -199,12 +431,11 @@
               "RelativeToolTip": "Services\\CustomerSevice\\DTOs\\CustomerUpdateDTO.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAxAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-14T08:45:58.728Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-14T08:45:58.728Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 26,
               "Title": "CustomerCreateDTO.cs",
               "DocumentMoniker": "D:\\Github\\BookStore-API\\backend-asp\\BookStoreAPI\\Services\\CustomerSevice\\DTOs\\CustomerCreateDTO.cs",
               "RelativeDocumentMoniker": "Services\\CustomerSevice\\DTOs\\CustomerCreateDTO.cs",
@@ -212,12 +443,11 @@
               "RelativeToolTip": "Services\\CustomerSevice\\DTOs\\CustomerCreateDTO.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-14T08:43:56.26Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-14T08:43:56.26Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 19,
               "Title": "CustomerController.cs",
               "DocumentMoniker": "D:\\Github\\BookStore-API\\backend-asp\\BookStoreAPI\\Controllers\\CustomerController.cs",
               "RelativeDocumentMoniker": "Controllers\\CustomerController.cs",
@@ -225,8 +455,7 @@
               "RelativeToolTip": "Controllers\\CustomerController.cs",
               "ViewState": "AgIAABUAAAAAAAAAAAAowCYAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-14T08:33:59.532Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-14T08:33:59.532Z"
             }
           ]
         }

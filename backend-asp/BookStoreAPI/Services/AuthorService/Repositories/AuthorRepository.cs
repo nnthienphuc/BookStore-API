@@ -26,7 +26,9 @@ namespace BookStoreAPI.Services.AuthorService.Repositories
 
         public async Task<IEnumerable<Author>> SearchByKeywordAsync(string keyword)
         {
-            return await _context.Authors.Where(a => a.Name.Contains(keyword)).ToListAsync();
+            return string.IsNullOrWhiteSpace(keyword)
+                ? await _context.Authors.ToListAsync()
+                : await _context.Authors.Where(a => a.Name.Contains(keyword)).ToListAsync();
         }
 
         public async Task AddAsync (Author author)

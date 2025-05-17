@@ -25,12 +25,14 @@ namespace BookStoreAPI.Services.PublisherService.Repositories
 
         public async Task<Publisher?> GetByNameAsync(string name)
         {
-            return await _context.Publishers.FirstOrDefaultAsync(p => p.Name == name);
+            return await _context.Publishers.FirstOrDefaultAsync(p => p.Name.ToLower() == name.ToLower());
         }
 
         public async Task<IEnumerable<Publisher>> SearchByKeywordAsync (string keyword)
         {
-            return await _context.Publishers.Where(p => p.Name.Contains(keyword)).ToListAsync();
+            return string.IsNullOrWhiteSpace(keyword)
+                ? await _context.Publishers.ToListAsync()
+                : await _context.Publishers.Where(p => p.Name.Contains(keyword)).ToListAsync();
         }
 
         public async Task AddAsync (Publisher publisher)

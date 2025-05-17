@@ -25,12 +25,14 @@ namespace BookStoreAPI.Services.CategoryService.Repositories
 
         public async Task<Category?> GetByNameAsync (string name)
         {
-            return await _context.Categories.FirstOrDefaultAsync(c => c.Name == name);
+            return await _context.Categories.FirstOrDefaultAsync(c => c.Name.ToLower() == name.ToLower());
         }
 
         public async Task<IEnumerable<Category>> SearchByKeywordAsync(string keyword)
         {
-            return await _context.Categories.Where(c => c.Name.Contains(keyword)).ToListAsync();
+            return string.IsNullOrWhiteSpace(keyword)
+                ? await _context.Categories.ToListAsync()
+                : await _context.Categories.Where(c => c.Name.Contains(keyword)).ToListAsync();
         }
 
         public async Task AddAsync (Category category)
