@@ -1,14 +1,15 @@
-﻿using BookStoreAPI.Services.AuthService.DTOs;
-using BookStoreAPI.Services.AuthService.Repositories;
-using BCrypt.Net;
+﻿using BCrypt.Net;
+using BookStoreAPI.Data.Entities;
+using BookStoreAPI.Services.AuthService.DTOs;
 using BookStoreAPI.Services.AuthService.Interfaces;
+using BookStoreAPI.Services.AuthService.Repositories;
 using BookStoreAPI.Services.EmailService;
+using BookStoreAPI.Services.StaffService.DTOs;
+using Microsoft.AspNetCore.Mvc.Routing;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
-using Microsoft.AspNetCore.Mvc.Routing;
-using BookStoreAPI.Data.Entities;
 
 namespace BookStoreAPI.Services.AuthService
 {
@@ -42,6 +43,9 @@ namespace BookStoreAPI.Services.AuthService
 
             if (registerDTO.Password != registerDTO.ConfirmPassword)
                 throw new ArgumentException("Confirm password does not match password.");
+
+            if (!IsOver18(registerDTO.DateOfBirth))
+                throw new ArgumentException("You must be at least 18 years old.");
 
             string hashedPassword = BCrypt.Net.BCrypt.HashPassword(registerDTO.Password);
 
@@ -283,6 +287,21 @@ namespace BookStoreAPI.Services.AuthService
             staff.HashPassword = BCrypt.Net.BCrypt.HashPassword(changePasswordDTO.NewPassword);
 
             return await _authRepository.SaveChangesAsync();
+        }
+
+        private bool IsOver18(DateOnly dateOfBirth)
+        {
+            var today = DateOnly.FromDateTime(DateTime.Today);
+
+            if (dateOfBirth > today)
+                throw new ArgumentException("Date of birth cannot be in the future.");
+
+            int age = today.Year - dateOfBirth.Year;
+
+            if (dateOfBirth > today.AddYears(-age))
+                age--;
+
+            return age >= 18;
         }
 
         // Check strong password
