@@ -1,9 +1,14 @@
-﻿namespace BookStoreAPI.Services.AuthService.DTOs
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace BookStoreAPI.Services.AuthService.DTOs
 {
     public class LoginDTO
     {
-        public String Email { get; set; }
-        public String Password { get; set; }
+        [Required(ErrorMessage = "Email is required.")]
+        [StringLength(50)]
+        [RegularExpression(@"\S+", ErrorMessage = "Email cannot be whitespace")]
+        public required String Email { get; set; }
+        public required String Password { get; set; }
 
     }
 }

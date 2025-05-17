@@ -60,9 +60,6 @@ namespace BookStoreAPI.Services.StaffService
 
         public async Task<StaffDTO?> GetByPhoneAsync(string phone)
         {
-            if (string.IsNullOrWhiteSpace(phone))
-                throw new ArgumentException("The staff phone cannot be null or empty.");
-
             var staff = await _staffRepository.GetByPhoneAsync(phone);
 
             if (staff == null)
@@ -87,9 +84,6 @@ namespace BookStoreAPI.Services.StaffService
 
         public async Task<StaffDTO?> GetByEmailAsync(string email)
         {
-            if (string.IsNullOrWhiteSpace(email))
-                throw new ArgumentException("The staff email cannot be null or empty.");
-
             var staff = await _staffRepository.GetByEmailAsync(email);
 
             if (staff == null)
@@ -114,9 +108,6 @@ namespace BookStoreAPI.Services.StaffService
 
         public async Task<StaffDTO?> GetByCitizenIdentificationAsync(string citizenIdentification)
         {
-            if (string.IsNullOrWhiteSpace(citizenIdentification))
-                throw new ArgumentException("The staff phone cannot be null or empty.");
-
             var staff = await _staffRepository.GetByCitizenIdentificationAsync(citizenIdentification);
 
             if (staff == null)
@@ -143,9 +134,6 @@ namespace BookStoreAPI.Services.StaffService
         {
             var staffs = await _staffRepository.SearchByKeyword(keyword);
 
-            if (string.IsNullOrWhiteSpace(keyword))
-                staffs = await _staffRepository.GetAllAsync();
-
             return staffs.Select(s => new StaffDTO
             {
                 Id = s.Id,
@@ -165,29 +153,11 @@ namespace BookStoreAPI.Services.StaffService
 
         public async Task<bool> UpdateAsync(Guid id, StaffUpdateDTO staffUpdateDTO)
         {
-            if (string.IsNullOrWhiteSpace(staffUpdateDTO.FamilyName))
-                throw new ArgumentException("Staff family name cannot be null or empty.");
-
-            if (string.IsNullOrWhiteSpace(staffUpdateDTO.GivenName))
-                throw new ArgumentException("Staff given name cannot be null or empty.");
-
             if (!IsOver18(staffUpdateDTO.DateOfBirth))
                 throw new ArgumentException("Staff must be at least 18 years old.");
 
-            if (string.IsNullOrWhiteSpace(staffUpdateDTO.Address))
-                throw new ArgumentException("Staff address cannot be null or empty.");
-
-            if (string.IsNullOrWhiteSpace(staffUpdateDTO.Phone))
-                throw new ArgumentException("Staff phone cannot be null or empty.");
-
-            if (string.IsNullOrWhiteSpace(staffUpdateDTO.Email))
-                throw new ArgumentException("Staff email cannot be null or empty.");
-
             if (!IsValidEmail(staffUpdateDTO.Email))
                 throw new ArgumentException("Staff email is not in a valid format.");
-
-            if (string.IsNullOrWhiteSpace(staffUpdateDTO.CitizenIdentification))
-                throw new ArgumentException("Citizen Identification cannot be null or empty.");
 
             var existingStaff = await _staffRepository.GetByIdAsync(id);
 

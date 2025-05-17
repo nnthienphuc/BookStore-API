@@ -31,11 +31,17 @@ namespace BookStoreAPI.Services.AuthService
             var existingByPhone = await _authRepository.GetByPhoneAsync(registerDTO.Phone);
             var existingByCitizenIdentification = await _authRepository.GetByCitizenIdentificationAsync(registerDTO.CitizenIdentification);
 
-            if (existingByEmail != null || existingByPhone != null || existingByCitizenIdentification != null)
-                return false;
+            if (existingByEmail != null)
+                throw new InvalidOperationException("Email is already in use.");
+
+            if (existingByPhone != null)
+                throw new InvalidOperationException("Phone is already in use.");
+
+            if (existingByCitizenIdentification != null)
+                throw new InvalidOperationException("Citizen identification is already in use.");
 
             if (registerDTO.Password != registerDTO.ConfirmPassword)
-                return false;
+                throw new ArgumentException("Confirm password does not match password.");
 
             string hashedPassword = BCrypt.Net.BCrypt.HashPassword(registerDTO.Password);
 
@@ -278,6 +284,20 @@ namespace BookStoreAPI.Services.AuthService
 
             return await _authRepository.SaveChangesAsync();
         }
+
+        // Check strong password
+        //private bool IsStrongPassword(string password)
+        //{
+        //    if (string.IsNullOrWhiteSpace(password) || password.Length < 8)
+        //        return false;
+
+        //    bool hasUpper = password.Any(char.IsUpper);
+        //    bool hasLower = password.Any(char.IsLower);
+        //    bool hasDigit = password.Any(char.IsDigit);
+        //    bool hasSpecial = password.Any(ch => "!@#$%^&*()-_=+[]{}|;:'\",.<>?/`~".Contains(ch));
+
+        //    return hasUpper && hasLower && hasDigit && hasSpecial;
+        //}
 
     }
 }

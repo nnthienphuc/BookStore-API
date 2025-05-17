@@ -103,9 +103,6 @@ namespace BookStoreAPI.Services.OrderService
 
             var orders = await _orderRepository.SearchByKeywordAsync(keyword);
 
-            if (string.IsNullOrWhiteSpace(keyword))
-                orders = await _orderRepository.GetAllAsync();
-
             if (!isAdmin)
                 orders = orders.Where(o => o.StaffId == staffId).ToList();
 
@@ -129,6 +126,10 @@ namespace BookStoreAPI.Services.OrderService
         {
             if (orderCreateDTO.Items == null || !orderCreateDTO.Items.Any())
                 throw new ArgumentException("Order must have at least one item.");
+
+            var customer = await _orderRepository.GetCustomerByIdAsync(orderCreateDTO.CustomerId);
+            if (customer == null || customer.IsDeleted)
+                throw new ArgumentException("Customer is invalid or has been deleted.");
 
             var order = new Order
             {

@@ -1,17 +1,43 @@
-﻿namespace BookStoreAPI.Services.AuthService.DTOs
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace BookStoreAPI.Services.AuthService.DTOs
 {
     public class RegisterDTO
     {
-        public String FamilyName { get; set; }
-        public String GivenName { get; set; }
-        public DateOnly DateOfBirth { get; set; }
-        public String Email { get; set; }
-        public String Phone { get; set; }
-        public String Address { get; set; }
-        public String CitizenIdentification { get; set; }
-        public String Password { get; set; }
-        public String ConfirmPassword { get; set; }
-        public bool Gender { get; set; }    // false = nam, true = nu
-        public bool Role { get; set; }      // false = staff, true = admin
+        [Required(ErrorMessage = "Family name is required.")]
+        [StringLength(70)]
+        [RegularExpression(@"\S+", ErrorMessage = "Family name cannot be whitespace")]
+        public required string FamilyName { get; set; }
+
+        [Required(ErrorMessage = "Given name is required.")]
+        [StringLength(30)]
+        [RegularExpression(@"\S+", ErrorMessage = "Given name cannot be whitespace")]
+        public required string GivenName { get; set; }
+        public required DateOnly DateOfBirth { get; set; }
+
+        [Required(ErrorMessage = "Address is required.")]
+        [StringLength(50)]
+        [RegularExpression(@"\S+", ErrorMessage = "Address cannot be whitespace")]
+        public required string Address { get; set; }
+
+        [Required(ErrorMessage = "Phone is required.")]
+        [StringLength(10)]
+        [RegularExpression(@"\S+", ErrorMessage = "Phone cannot be whitespace")]
+        public required string Phone { get; set; }
+
+        [Required(ErrorMessage = "Email is required.")]
+        [StringLength(50)]
+        [RegularExpression(@"\S+", ErrorMessage = "Email cannot be whitespace")]
+        public required string Email { get; set; }
+
+        [Required(ErrorMessage = "Citizen identification is required.")]
+        [StringLength(12)]
+        [RegularExpression(@"\S+", ErrorMessage = "Citizen identification cannot be whitespace")]
+        public required string CitizenIdentification { get; set; }
+        public required bool Role { get; set; }
+        public required bool Gender { get; set; }
+        public required String Password { get; set; }
+        public required String ConfirmPassword { get; set; }
+
     }
 }

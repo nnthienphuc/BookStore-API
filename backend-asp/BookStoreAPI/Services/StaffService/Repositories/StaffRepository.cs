@@ -30,7 +30,7 @@ namespace BookStoreAPI.Services.StaffService.Repositories
 
         public async Task<Staff?> GetByEmailAsync(string email)
         {
-            return await _context.Staff.FirstOrDefaultAsync(s => s.Email == email);
+            return await _context.Staff.FirstOrDefaultAsync(s => s.Email.ToLower() == email.ToLower());
         }
 
         public async Task<Staff?> GetByCitizenIdentificationAsync(string citizenIdentification)
@@ -40,7 +40,9 @@ namespace BookStoreAPI.Services.StaffService.Repositories
         
         public async Task<IEnumerable<Staff>> SearchByKeyword(string keyword)
         {
-            return await _context.Staff
+            return string.IsNullOrWhiteSpace(keyword)
+                ? await _context.Staff.ToListAsync()
+                : await _context.Staff
                 .Where(p => p.FamilyName.Contains(keyword) || p.GivenName.Contains(keyword) || p.Address.Contains(keyword)
                 || p.Phone.Contains(keyword)|| p.Email.Contains(keyword) || p.CitizenIdentification.Contains(keyword))
                 .ToListAsync();

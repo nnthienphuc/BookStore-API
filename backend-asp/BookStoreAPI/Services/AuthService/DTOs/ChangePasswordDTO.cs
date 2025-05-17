@@ -2,8 +2,8 @@
 {
     public class ChangePasswordDTO
     {
-        public String OldPassword { get; set; }
-        public String NewPassword { get; set; }
-        public String ConfirmNewPassword { get; set; }
+        public required String OldPassword { get; set; }
+        public required String NewPassword { get; set; }
+        public required String ConfirmNewPassword { get; set; }
     }
 }

@@ -58,9 +58,16 @@ namespace BookStoreAPI.Services.OrderService.Repositories
             return await _context.Promotions.FirstOrDefaultAsync(p => p.Id == id && p.IsDeleted == false);
         }
 
+        public async Task<Customer?> GetCustomerByIdAsync(Guid id)
+        {
+            return await _context.Customers.FirstOrDefaultAsync(p => p.Id == id && p.IsDeleted == false);
+        }
+
         public async Task<IEnumerable<Order>> SearchByKeywordAsync(string keyword)
         {
-            return await _context.Orders
+            return string.IsNullOrWhiteSpace(keyword)
+                ? await _context.Orders.ToListAsync()
+                : await _context.Orders
                 .Include(o => o.Staff)
                 .Include(o => o.Customer)
                 .Include(o => o.Promotion)
