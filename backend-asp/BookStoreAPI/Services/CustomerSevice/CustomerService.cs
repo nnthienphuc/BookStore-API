@@ -76,9 +76,6 @@ namespace BookStoreAPI.Services.CustomerSevice
         {
             var customers = await _customerRepository.SearchByKeywordAsync(keyword);
 
-            if (string.IsNullOrWhiteSpace(keyword))
-                customers = await _customerRepository.GetAllAsync();
-
             return customers.Select(c => new CustomerDTO
             {
                 Id = c.Id,
@@ -94,16 +91,8 @@ namespace BookStoreAPI.Services.CustomerSevice
 
         public async Task<bool> AddAsync(CustomerCreateDTO customerCreateDTO)
         {
-            if (string.IsNullOrWhiteSpace(customerCreateDTO.FamilyName))
-                throw new ArgumentException("FamilyName cannot be null or empty.");
-            if (string.IsNullOrWhiteSpace(customerCreateDTO.GivenName))
-                throw new ArgumentException("GivenName cannot be null or empty.");
             if (!IsOver18(customerCreateDTO.DateOfBirth))
                 throw new ArgumentException("Customer have to equal or over 18.");
-            if (string.IsNullOrWhiteSpace(customerCreateDTO.Address))
-                throw new ArgumentException("Address cannot be null or empty.");
-            if (string.IsNullOrWhiteSpace(customerCreateDTO.Phone))
-                throw new ArgumentException("Phone cannot be null or empty.");
 
             var existingCustomer = await _customerRepository.GetByPhoneAsync(customerCreateDTO.Phone);
             if (existingCustomer != null)
@@ -130,17 +119,9 @@ namespace BookStoreAPI.Services.CustomerSevice
             if (existingCustomer == null)
                 throw new KeyNotFoundException($"Customer with id '{id}' not found.");
 
-            if (string.IsNullOrWhiteSpace(customerUpdateDTO.FamilyName))
-                throw new ArgumentException("FamilyName cannot be null or empty.");
-            if (string.IsNullOrWhiteSpace(customerUpdateDTO.GivenName))
-                throw new ArgumentException("GivenName cannot be null or empty.");
             if (!IsOver18(customerUpdateDTO.DateOfBirth))
                 throw new ArgumentException("Customer have to equal or over 18.");
-            if (string.IsNullOrWhiteSpace(customerUpdateDTO.Address))
-                throw new ArgumentException("Address cannot be null or empty.");
-            if (string.IsNullOrWhiteSpace(customerUpdateDTO.Phone))
-                throw new ArgumentException("Phone cannot be null or empty.");
-
+            
             var duplicateCustomer = await _customerRepository.GetByPhoneAsync(customerUpdateDTO.Phone);
             if (duplicateCustomer != null && duplicateCustomer.Id != id)
                 throw new InvalidOperationException("A customer with the same phone already exists.");

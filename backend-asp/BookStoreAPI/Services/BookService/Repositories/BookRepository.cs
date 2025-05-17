@@ -35,7 +35,9 @@ namespace BookStoreAPI.Services.BookService.Repositories
 
         public async Task<IEnumerable<Book>> SearchByKeywordAsync(string keyword)
         {
-            return await _context.Books
+            return string.IsNullOrWhiteSpace(keyword)
+                ? await _context.Books.ToListAsync()
+                : await _context.Books
                 .Where(b => b.Title.Contains(keyword) || b.Category.Name.Contains(keyword) || b.Author.Name.Contains(keyword) || b.Publisher.Name.Contains(keyword))
                 .Include(b => b.Category)
                 .Include(b => b.Author)

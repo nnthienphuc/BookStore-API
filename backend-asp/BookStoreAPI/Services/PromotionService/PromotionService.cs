@@ -78,9 +78,6 @@ namespace BookStoreAPI.Services.PromotionService
         {
             var promotions = await _promotionRepository.SearchByKeywordAsync(keyword);
 
-            if (string.IsNullOrEmpty(keyword))
-                promotions = await _promotionRepository.GetAllAsync();
-
             return promotions.Select(p => new PromotionDTO
             {
                 Id = p.Id,
@@ -96,9 +93,6 @@ namespace BookStoreAPI.Services.PromotionService
 
         public async Task<bool> AddAsync(PromotionCreateDTO promotionCreateDTO)
         {
-            if (string.IsNullOrWhiteSpace(promotionCreateDTO.Name))
-                throw new ArgumentException("Promotion name cannot be null or empty.");
-
             var now = DateTime.Now;
 
             if (promotionCreateDTO.StartDate < now)
@@ -145,9 +139,6 @@ namespace BookStoreAPI.Services.PromotionService
                 throw new InvalidOperationException("A promotion with the same name already exists.");
 
             var now = DateTime.Now;
-
-            if (string.IsNullOrWhiteSpace(promotionUpdateDTO.Name))
-                throw new ArgumentException("Promotion name cannot be null or empty.");
 
             if (promotionUpdateDTO.StartDate < now)
                 throw new ArgumentException("StartDate must be in the future.");

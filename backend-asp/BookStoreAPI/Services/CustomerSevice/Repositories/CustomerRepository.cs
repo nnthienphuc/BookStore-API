@@ -30,7 +30,9 @@ namespace BookStoreAPI.Services.CustomerSevice.Repositories
 
         public async Task<IEnumerable<Customer>> SearchByKeywordAsync(string keyword)
         {
-            return await _context.Customers
+            return string.IsNullOrWhiteSpace(keyword)
+                ? await _context.Customers.ToListAsync()
+                : await _context.Customers
                 .Where(c => c.FamilyName.Contains(keyword) || c.GivenName.Contains(keyword)
                 || c.Phone.Contains(keyword) || c.Address.Contains(keyword))
                 .ToListAsync();

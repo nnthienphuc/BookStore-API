@@ -25,12 +25,14 @@ namespace BookStoreAPI.Services.PromotionService.Repositories
 
         public async Task<Promotion?> GetByNameAsync(string name)
         {
-            return await _context.Promotions.FirstOrDefaultAsync(p => p.Name == name);
+            return await _context.Promotions.FirstOrDefaultAsync(p => p.Name.ToLower() == name.ToLower());
         }
 
         public async Task<IEnumerable<Promotion>> SearchByKeywordAsync(string keyword)
         {
-            return await _context.Promotions.Where(p => p.Name.Contains(keyword)).ToListAsync();
+            return string.IsNullOrWhiteSpace(keyword)
+                ? await _context.Promotions.ToListAsync()
+                :await _context.Promotions.Where(p => p.Name.Contains(keyword)).ToListAsync();
         }
 
         public async Task AddAsync(Promotion promotion)

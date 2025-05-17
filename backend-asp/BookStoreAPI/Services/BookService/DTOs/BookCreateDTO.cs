@@ -1,8 +1,17 @@
-﻿namespace BookStoreAPI.Services.BookService.DTOs
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace BookStoreAPI.Services.BookService.DTOs
 {
     public class BookCreateDTO
     {
+        [Required(ErrorMessage = "ISSBN is required.")]
+        [StringLength(13)]
+        [RegularExpression(@"\S+", ErrorMessage = "Name cannot be whitespace")]
         public required string Isbn { get; set; }
+
+        [Required(ErrorMessage = "Title is required.")]
+        [StringLength(100)]
+        [RegularExpression(@"\S+", ErrorMessage = "Name cannot be whitespace")]
         public required string Title { get; set; }
         public required Guid CategoryId { get; set; }
         public required Guid AuthorId { get; set; }

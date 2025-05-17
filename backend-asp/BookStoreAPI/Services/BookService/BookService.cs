@@ -1,7 +1,10 @@
 ﻿using BookStoreAPI.Data.Entities;
+using BookStoreAPI.Services.AuthorService.Repositories;
 using BookStoreAPI.Services.BookService.DTOs;
 using BookStoreAPI.Services.BookService.Interfaces;
 using BookStoreAPI.Services.BookService.Repositories;
+using BookStoreAPI.Services.CategoryService.Repositories;
+using BookStoreAPI.Services.PublisherService.Repositories;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion.Internal;
 
 namespace BookStoreAPI.Services.BookService
@@ -9,10 +12,16 @@ namespace BookStoreAPI.Services.BookService
     public class BookService : IBookService
     {
         private readonly IBookRepository _bookRepository;
+        private readonly IAuthorRepository _authorRepository;
+        private readonly ICategoryRepository _categoryRepository;
+        private readonly IPublisherRepository _publisherRepository;
 
-        public BookService(IBookRepository bookRepository)
+        public BookService(IBookRepository bookRepository, IAuthorRepository authorRepository, ICategoryRepository categoryRepository, IPublisherRepository publisherRepository)
         {
             _bookRepository = bookRepository;
+            _authorRepository = authorRepository;
+            _categoryRepository = categoryRepository;
+            _publisherRepository = publisherRepository;
         }
 
         public async Task<IEnumerable<BookDetailDTO>> GetAllAsync()
@@ -85,9 +94,6 @@ namespace BookStoreAPI.Services.BookService
         {
             var books = await _bookRepository.SearchByKeywordAsync(keyword);
 
-            if (string.IsNullOrWhiteSpace(keyword))
-                books = await _bookRepository.GetAllAsync();
-
             return books.Select(b => new BookDetailDTO
             {
                 Id = b.Id,
@@ -106,11 +112,7 @@ namespace BookStoreAPI.Services.BookService
 
         public async Task<bool> AddAsync(BookCreateDTO bookCreateDTO)
         {
-            if (string.IsNullOrWhiteSpace(bookCreateDTO.Isbn))
-                throw new ArgumentException("ISBN cannot be null or empty.");
-
-            if (string.IsNullOrWhiteSpace(bookCreateDTO.Title))
-                throw new ArgumentException("Title cannot be null or empty.");
+            await ValidateForeignKeysAsync(bookCreateDTO);
 
             if (bookCreateDTO.YearOfPublication <= 0)
                 throw new ArgumentException("Year of publication must be greater than 0.");
@@ -147,15 +149,21 @@ namespace BookStoreAPI.Services.BookService
 
         public async Task<bool> UpdateAsync(Guid id, BookUpdateDTO bookUpdateDTO)
         {
+            var category = await _categoryRepository.GetByIdAsync(bookUpdateDTO.CategoryId);
+            if (category == null || category.IsDeleted)
+                throw new ArgumentException("Invalid or deleted Category.");
+
+            var author = await _authorRepository.GetByIdAsync(bookUpdateDTO.AuthorId);
+            if (author == null || author.IsDeleted)
+                throw new ArgumentException("Invalid or deleted Author.");
+
+            var publisher = await _publisherRepository.GetByIdAsync(bookUpdateDTO.PublisherId);
+            if (publisher == null || publisher.IsDeleted)
+                throw new ArgumentException("Invalid or deleted Publisher.");
+
             var existingBook = await _bookRepository.GetByIdAsync(id);
             if (existingBook == null)
                 throw new KeyNotFoundException($"Book with id '{id}' not found.");
-
-            if (string.IsNullOrWhiteSpace(bookUpdateDTO.Isbn))
-                throw new ArgumentException("ISBN cannot be null or empty.");
-
-            if (string.IsNullOrWhiteSpace(bookUpdateDTO.Title))
-                throw new ArgumentException("Title cannot be null or empty.");
 
             if (bookUpdateDTO.YearOfPublication <= 0)
                 throw new ArgumentException("Year of publication must be greater than 0.");
@@ -202,6 +210,21 @@ namespace BookStoreAPI.Services.BookService
             _bookRepository.Delete(existingBook);
 
             return await _bookRepository.SaveChangesAsync();
+        }
+
+        private async Task ValidateForeignKeysAsync(BookCreateDTO dto)
+        {
+            var category = await _categoryRepository.GetByIdAsync(dto.CategoryId);
+            if (category == null || category.IsDeleted)
+                throw new ArgumentException("Invalid or deleted Category.");
+
+            var author = await _authorRepository.GetByIdAsync(dto.AuthorId);
+            if (author == null || author.IsDeleted)
+                throw new ArgumentException("Invalid or deleted Author.");
+
+            var publisher = await _publisherRepository.GetByIdAsync(dto.PublisherId);
+            if (publisher == null || publisher.IsDeleted)
+                throw new ArgumentException("Invalid or deleted Publisher.");
         }
     }
 }
