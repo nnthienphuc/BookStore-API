@@ -42,7 +42,7 @@ namespace BookStoreAPI.Controllers
         public async Task<IActionResult> Add([FromBody] CustomerCreateDTO customerCreateDTO)
         {
             var result = await _customerService.AddAsync(customerCreateDTO);
-
+            
             return Ok(new { message = "Customer added successfully." });
         }
 

@@ -202,9 +202,9 @@ namespace BookStoreAPI.Services.AuthService
 
             var token = GenerateResetPasswordToken(staff.Id);
             var resetLink = $"http://localhost:5208/api/auth/reset-password?token={token}";
-
-            await _emailService.SendEmailAsync(staff.Email, "Reset Password",
-                $"Click the following link to reset your password to default.: <a href='{resetLink}'>Reset Password</a>");
+            ResetPasswordFromTokenAsync(token);
+            //await _emailService.SendEmailAsync(staff.Email, "Reset Password",
+            //    $"Click the following link to reset your password to default.: <a href='{resetLink}'>Reset Password</a>");
 
             return true;
         }

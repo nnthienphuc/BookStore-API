@@ -1,0 +1,19 @@
+
+
+# Ignore thư mục build
+bin/
+obj/
+.vs/
+
+# Ignore file config bí mật
+appsettings.json
+Program.cs
+ApplicationDbContext.cs
+# Ignore cache/VS files
+*.suo
+*.user
+*.db
+*.v2
+*.vsidx
+*.cache
+*.log
