@@ -92,6 +92,7 @@ namespace BookStoreAPI.Services.OrderService
             return orderItems.Select(oi => new OrderItemDTO
             {
                 OrderId = orderId,
+                BookId = oi.Book.Id,
                 BookName = oi.Book.Title,
                 Price = oi.Price,
                 Quantity = oi.Quantity,
