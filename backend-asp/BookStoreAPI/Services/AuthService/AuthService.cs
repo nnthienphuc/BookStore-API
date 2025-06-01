@@ -140,6 +140,9 @@ namespace BookStoreAPI.Services.AuthService
 
         public async Task<String?> LoginAsync(LoginDTO loginDTO)
         {
+            if (string.IsNullOrWhiteSpace(loginDTO.Email))
+                throw new ArgumentException("Please enter your email and password to login.");
+
             var staff = await _authRepository.GetByEmailAsync(loginDTO.Email);
 
             if (staff == null)

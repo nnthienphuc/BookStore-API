@@ -3,6 +3,10 @@
   "WorkspaceRootPath": "D:\\Github\\BookStore-API\\backend-asp\\BookStoreAPI\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{3EBC0049-77A4-4D18-A3CE-755C6DEEB41B}|BookStoreAPI.csproj|d:\\github\\bookstore-api\\backend-asp\\bookstoreapi\\services\\authservice\\authservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3EBC0049-77A4-4D18-A3CE-755C6DEEB41B}|BookStoreAPI.csproj|solutionrelative:services\\authservice\\authservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{3EBC0049-77A4-4D18-A3CE-755C6DEEB41B}|BookStoreAPI.csproj|d:\\github\\bookstore-api\\backend-asp\\bookstoreapi\\services\\orderservice\\orderservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{3EBC0049-77A4-4D18-A3CE-755C6DEEB41B}|BookStoreAPI.csproj|solutionrelative:services\\orderservice\\orderservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -21,10 +25,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{3EBC0049-77A4-4D18-A3CE-755C6DEEB41B}|BookStoreAPI.csproj|d:\\github\\bookstore-api\\backend-asp\\bookstoreapi\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{3EBC0049-77A4-4D18-A3CE-755C6DEEB41B}|BookStoreAPI.csproj|solutionrelative:controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3EBC0049-77A4-4D18-A3CE-755C6DEEB41B}|BookStoreAPI.csproj|d:\\github\\bookstore-api\\backend-asp\\bookstoreapi\\services\\authservice\\authservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3EBC0049-77A4-4D18-A3CE-755C6DEEB41B}|BookStoreAPI.csproj|solutionrelative:services\\authservice\\authservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{3EBC0049-77A4-4D18-A3CE-755C6DEEB41B}|BookStoreAPI.csproj|d:\\github\\bookstore-api\\backend-asp\\bookstoreapi\\common\\controllers\\basecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -70,7 +70,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 52,
-          "SelectedChildIndex": 14,
+          "SelectedChildIndex": 6,
           "Children": [
             {
               "$type": "Bookmark",
@@ -90,7 +90,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "OrderCreateDTO.cs",
               "DocumentMoniker": "D:\\Github\\BookStore-API\\backend-asp\\BookStoreAPI\\Services\\OrderService\\DTOs\\OrderCreateDTO.cs",
               "RelativeDocumentMoniker": "Services\\OrderService\\DTOs\\OrderCreateDTO.cs",
@@ -98,12 +98,11 @@
               "RelativeToolTip": "Services\\OrderService\\DTOs\\OrderCreateDTO.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAuAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-01T07:59:22.246Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-01T07:59:22.246Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "AuthController.cs",
               "DocumentMoniker": "D:\\Github\\BookStore-API\\backend-asp\\BookStoreAPI\\Controllers\\AuthController.cs",
               "RelativeDocumentMoniker": "Controllers\\AuthController.cs",
@@ -111,25 +110,24 @@
               "RelativeToolTip": "Controllers\\AuthController.cs",
               "ViewState": "AgIAAAYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-01T07:55:04.173Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-01T07:55:04.173Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 0,
               "Title": "AuthService.cs",
               "DocumentMoniker": "D:\\Github\\BookStore-API\\backend-asp\\BookStoreAPI\\Services\\AuthService\\AuthService.cs",
               "RelativeDocumentMoniker": "Services\\AuthService\\AuthService.cs",
               "ToolTip": "D:\\Github\\BookStore-API\\backend-asp\\BookStoreAPI\\Services\\AuthService\\AuthService.cs",
               "RelativeToolTip": "Services\\AuthService\\AuthService.cs",
-              "ViewState": "AgIAADYAAAAAAAAAAAAowJEAAAB5AAAAAAAAAA==",
+              "ViewState": "AgIAAI4AAAAAAAAAAAAcwJAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-06-01T04:02:30.51Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "OrderRepository.cs",
               "DocumentMoniker": "D:\\Github\\BookStore-API\\backend-asp\\BookStoreAPI\\Services\\OrderService\\Repositories\\OrderRepository.cs",
               "RelativeDocumentMoniker": "Services\\OrderService\\Repositories\\OrderRepository.cs",
@@ -137,8 +135,7 @@
               "RelativeToolTip": "Services\\OrderService\\Repositories\\OrderRepository.cs",
               "ViewState": "AgIAADkAAAAAAAAAAAAiwEsAAABbAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-31T04:00:25.977Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-31T04:00:25.977Z"
             },
             {
               "$type": "Document",
@@ -162,8 +159,7 @@
               "RelativeToolTip": "Common\\Controllers\\BaseController.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-29T09:55:53.303Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-29T09:55:53.303Z"
             },
             {
               "$type": "Document",
@@ -175,8 +171,7 @@
               "RelativeToolTip": "Controllers\\OrderController.cs",
               "ViewState": "AgIAAA0AAAAAAAAAAAAgwAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-29T09:48:02.475Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-29T09:48:02.475Z"
             },
             {
               "$type": "Document",
@@ -216,20 +211,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "OrderService.cs",
               "DocumentMoniker": "D:\\Github\\BookStore-API\\backend-asp\\BookStoreAPI\\Services\\OrderService\\OrderService.cs",
               "RelativeDocumentMoniker": "Services\\OrderService\\OrderService.cs",
               "ToolTip": "D:\\Github\\BookStore-API\\backend-asp\\BookStoreAPI\\Services\\OrderService\\OrderService.cs",
               "RelativeToolTip": "Services\\OrderService\\OrderService.cs",
-              "ViewState": "AgIAABAAAAAAAAAAAAAgwCIAAAAxAAAAAAAAAA==",
+              "ViewState": "AgIAABAAAAAAAAAAAAAgwCIAAAAyAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-05-27T10:27:22.05Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "OrderDTO.cs",
               "DocumentMoniker": "D:\\Github\\BookStore-API\\backend-asp\\BookStoreAPI\\Services\\OrderService\\DTOs\\OrderDTO.cs",
               "RelativeDocumentMoniker": "Services\\OrderService\\DTOs\\OrderDTO.cs",
@@ -237,8 +232,7 @@
               "RelativeToolTip": "Services\\OrderService\\DTOs\\OrderDTO.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAuwAYAAAA5AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-27T10:26:41.758Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-27T10:26:41.758Z"
             },
             {
               "$type": "Document",
