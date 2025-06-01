@@ -51,14 +51,14 @@ namespace BookStoreAPI.Services.OrderService
         {
             var order = await _orderRepository.GetByIdAsync(id);
 
+            if (order == null)
+                throw new KeyNotFoundException($"Order with id '{id}' not found");
+
             var staffId = CurrentUserHelper.GetStaffId(user);
             var isAdmin = CurrentUserHelper.IsAdmin(user);
 
             if (!isAdmin && order.StaffId != staffId)
                 throw new UnauthorizedAccessException("You can only view your own orders.");
-
-            if (order == null)
-                throw new KeyNotFoundException($"Order with id '{id}' not found");
 
             return new OrderDTO
             {
