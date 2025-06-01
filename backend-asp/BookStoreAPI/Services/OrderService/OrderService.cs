@@ -153,7 +153,10 @@ namespace BookStoreAPI.Services.OrderService
                     ?? throw new KeyNotFoundException($"Book with id '{item.BookId}' not found.");
 
                 if (book.Quantity < item.Quantity)
-                    throw new InvalidOperationException($"The quantity of book with id '{item.BookId}' not enough to buy.");
+                    throw new InvalidOperationException($"The quantity of book with with title '{book.Title}' not enough to buy.");
+
+                if (book.IsDeleted)
+                    throw new InvalidOperationException($"The book with title '{book.Title}' is deleted.");
 
                 var orderItem = new OrderItem
                 {
@@ -173,15 +176,26 @@ namespace BookStoreAPI.Services.OrderService
 
             if (order.PromotionId.HasValue)
             {
-                var promotion = await _orderRepository.GetPromotionByIdAsync(order.PromotionId.Value);
-                if (promotion != null && promotion.Quantity > 0
-                    && subTotal >= promotion.Condition
-                    && promotion.StartDate <= DateTime.Now
-                    && DateTime.Now <= promotion.EndDate)
-                {
-                    order.PromotionAmount = subTotal * promotion.DiscountPercent;
-                    promotion.Quantity--;
-                }
+                var promotion = await _orderRepository.GetPromotionByIdAsync(order.PromotionId.Value)
+                    ?? throw new ArgumentException("Promotion not found.");
+
+                if (promotion.IsDeleted)
+                    throw new InvalidOperationException($"{promotion.Name} is deleted.");
+
+                if (DateTime.Now < promotion.StartDate)
+                    throw new InvalidOperationException("Promotion has not started yet.");
+
+                if (DateTime.Now > promotion.EndDate)
+                    throw new InvalidOperationException("Promotion has expired.");
+
+                if (promotion.Quantity <= 0)
+                    throw new InvalidOperationException("Promotion has run out.");
+
+                if (subTotal < promotion.Condition)
+                    throw new InvalidOperationException("Order does not meet promotion condition.");
+
+                order.PromotionAmount = subTotal * promotion.DiscountPercent;
+                promotion.Quantity--;
             }
 
             order.TotalAmount = subTotal - order.PromotionAmount;

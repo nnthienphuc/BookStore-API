@@ -120,7 +120,7 @@
               "RelativeDocumentMoniker": "Services\\AuthService\\AuthService.cs",
               "ToolTip": "D:\\Github\\BookStore-API\\backend-asp\\BookStoreAPI\\Services\\AuthService\\AuthService.cs",
               "RelativeToolTip": "Services\\AuthService\\AuthService.cs",
-              "ViewState": "AgIAAI4AAAAAAAAAAAAcwJAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAKAAAAAAAAAAAAAcwLMAAAAOAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-06-01T04:02:30.51Z",
               "EditorCaption": ""
@@ -217,9 +217,10 @@
               "RelativeDocumentMoniker": "Services\\OrderService\\OrderService.cs",
               "ToolTip": "D:\\Github\\BookStore-API\\backend-asp\\BookStoreAPI\\Services\\OrderService\\OrderService.cs",
               "RelativeToolTip": "Services\\OrderService\\OrderService.cs",
-              "ViewState": "AgIAABAAAAAAAAAAAAAgwCIAAAAyAAAAAAAAAA==",
+              "ViewState": "AgIAALIAAAAAAAAAAADwv/cAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-27T10:27:22.05Z"
+              "WhenOpened": "2025-05-27T10:27:22.05Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
