@@ -49,6 +49,22 @@
   },
   {
     "ContainingType": "BookStoreAPI.Controllers.AuthController",
+    "Method": "Login1",
+    "RelativePath": "api/Auth/login1/{x}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "x",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BookStoreAPI.Controllers.AuthController",
     "Method": "Register",
     "RelativePath": "api/Auth/register",
     "HttpMethod": "POST",
@@ -218,22 +234,6 @@
   },
   {
     "ContainingType": "BookStoreAPI.Controllers.BookController",
-    "Method": "GetById",
-    "RelativePath": "api/Book/{id}",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "id",
-        "Type": "System.Guid",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "BookStoreAPI.Controllers.BookController",
     "Method": "Update",
     "RelativePath": "api/Book/{id}",
     "HttpMethod": "PUT",
@@ -281,6 +281,22 @@
         "Name": "keyword",
         "Type": "System.String",
         "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BookStoreAPI.Controllers.BookController",
+    "Method": "UpdateOrder",
+    "RelativePath": "api/Book/UpdateOrder",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "items",
+        "Type": "System.Collections.Generic.List\u00601[[BookStoreAPI.Services.OrderService.DTOs.OrderItemCreateDTO, BookStoreAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "IsRequired": true
       }
     ],
     "ReturnTypes": []
@@ -698,6 +714,22 @@
         "Name": "keyword",
         "Type": "System.String",
         "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BookStoreAPI.Controllers.PromotionController",
+    "Method": "UpdateOrder",
+    "RelativePath": "api/Promotion/UpdateOrder/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Guid",
+        "IsRequired": true
       }
     ],
     "ReturnTypes": []

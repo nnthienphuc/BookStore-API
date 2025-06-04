@@ -128,7 +128,7 @@ namespace BookStoreAPI.Services.PromotionService
             return await _promotionRepository.SaveChangesAsync();
         }
 
-        public async Task<bool> UpdateAsync(Guid id, PromotionUpdateDTO promotionUpdateDTO)
+        public async Task<bool> UpdateAsync(Guid id, PromotionUpdateDTO promotionUpdateDTO, bool IsValidate)
         {
             var existingPromotion = await _promotionRepository.GetByIdAsync(id);
             if (existingPromotion == null)
@@ -137,26 +137,28 @@ namespace BookStoreAPI.Services.PromotionService
             var duplicatePromotion = await _promotionRepository.GetByNameAsync(promotionUpdateDTO.Name);
             if (duplicatePromotion != null && duplicatePromotion.Id != id)
                 throw new InvalidOperationException("A promotion with the same name already exists.");
+            if (IsValidate) {
+                var now = DateTime.Now;
 
-            var now = DateTime.Now;
+                if (promotionUpdateDTO.StartDate < now)
+                    throw new ArgumentException("StartDate must be in the future.");
 
-            if (promotionUpdateDTO.StartDate < now)
-                throw new ArgumentException("StartDate must be in the future.");
+                if (promotionUpdateDTO.EndDate <= now)
+                    throw new ArgumentException("EndDate must be in the future.");
 
-            if (promotionUpdateDTO.EndDate <= now)
-                throw new ArgumentException("EndDate must be in the future.");
+                if (promotionUpdateDTO.StartDate >= promotionUpdateDTO.EndDate)
+                    throw new ArgumentException("StartDate must be earlier than EndDate.");
 
-            if (promotionUpdateDTO.StartDate >= promotionUpdateDTO.EndDate)
-                throw new ArgumentException("StartDate must be earlier than EndDate.");
+                if (promotionUpdateDTO.Condition < 0)
+                    throw new ArgumentException("Condition must be non-negative.");
 
-            if (promotionUpdateDTO.Condition < 0)
-                throw new ArgumentException("Condition must be non-negative.");
+                if (promotionUpdateDTO.DiscountPercent <= 0 || promotionUpdateDTO.DiscountPercent > 100)
+                    throw new ArgumentException("DiscountPercent must be between 1 and 100.");
 
-            if (promotionUpdateDTO.DiscountPercent <= 0 || promotionUpdateDTO.DiscountPercent > 100)
-                throw new ArgumentException("DiscountPercent must be between 1 and 100.");
+                if (promotionUpdateDTO.Quantity <= 0)
+                    throw new ArgumentException("Quantity must be greater than 0.");
 
-            if (promotionUpdateDTO.Quantity <= 0)
-                throw new ArgumentException("Quantity must be greater than 0.");
+            }
 
             existingPromotion.Name = promotionUpdateDTO.Name;
             existingPromotion.StartDate = promotionUpdateDTO.StartDate;

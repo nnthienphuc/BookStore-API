@@ -29,6 +29,33 @@ namespace BookStoreAPI.Controllers
 
             return Ok(result);
         }
+        [HttpGet("[Action]/{id}")]
+        public async Task<IActionResult> UpdateOrder(Guid id)
+        {
+            try
+            {
+                var promotion = await _promotionService.GetByIdAsync(id);
+                if (promotion.Quantity < 1)
+                {
+                    return BadRequest(new { message = "The book does not have enough quantity." });
+                }
+                PromotionUpdateDTO updatePromotion = new PromotionUpdateDTO
+                {
+                    Name = promotion.Name,
+                    StartDate = promotion.StartDate,
+                    EndDate = promotion.EndDate,
+                    Condition = promotion.Condition,
+                    DiscountPercent = promotion.DiscountPercent,
+                    Quantity = (short)(promotion.Quantity - 1),
+                    IsDeleted = promotion.IsDeleted
+                };
+                await _promotionService.UpdateAsync(promotion.Id, updatePromotion,false);
+                return Ok(new { message = promotion.DiscountPercent.ToString() });
+            }
+            catch (Exception ex) {
+                return BadRequest(new { message = "Error when update." });
+            }
+        }
 
         [HttpGet("search")]
         public async Task<IActionResult> SearchByKeyword([FromQuery] string? keyword)
@@ -49,7 +76,7 @@ namespace BookStoreAPI.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> Update(Guid id, [FromBody] PromotionUpdateDTO promotionUpdateDTO)
         {
-            var result = await _promotionService.UpdateAsync(id, promotionUpdateDTO);
+            var result = await _promotionService.UpdateAsync(id, promotionUpdateDTO, true);
 
             return Ok(new { message = "Promotion updated successfully." });
         }

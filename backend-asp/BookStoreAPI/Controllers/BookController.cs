@@ -1,7 +1,13 @@
 ﻿using BookStoreAPI.Common.Controllers;
+using BookStoreAPI.Data.Entities;
 using BookStoreAPI.Services.BookService.DTOs;
 using BookStoreAPI.Services.BookService.Interfaces;
+using BookStoreAPI.Services.OrderService.DTOs;
+using BookStoreAPI.Services.PromotionService;
+using BookStoreAPI.Services.PromotionService.DTOs;
+using BookStoreAPI.Services.PromotionService.Interfaces;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Identity.Client;
 
 namespace BookStoreAPI.Controllers
 {
@@ -22,12 +28,52 @@ namespace BookStoreAPI.Controllers
             return Ok(result);
         }
 
-        [HttpGet("{id}")]
-        public async Task<IActionResult> GetById(Guid id)
+        [HttpPost("[Action]")]
+        public async Task<IActionResult> UpdateOrder([FromBody] List<OrderItemCreateDTO> items)
         {
-            var result = await _bookService.GetByIdAsync(id);
+            List<BookDTO> books = new();
+            foreach (var item in items) {
+                var book = await _bookService.GetByIdAsync(item.BookId);
+                if (book == null || book.IsDeleted == true)
+                {
+                    return BadRequest(new { message = "The book does not exist." });
+                }
 
-            return Ok(result);
+                if (book.Quantity <= item.Quantity)
+                {
+                    return BadRequest(new { message = "The book does not have enough quantity." });
+                }
+                book.Quantity = book.Quantity- item.Quantity;
+                books.Add(book);
+                item.Price = book.Price;
+            }
+            
+            
+            try
+            {
+                foreach(var book in books)
+                {
+                    BookUpdateDTO updateBook = new BookUpdateDTO
+                    {
+                        Isbn = book.Isbn,
+                        Title = book.Title,
+                        CategoryId = book.CategoryId,
+                        AuthorId = book.AuthorId,
+                        PublisherId = book.PublisherId,
+                        YearOfPublication = book.YearOfPublication,
+                        Price = book.Price,
+                        Image = book.Image,
+                        Quantity = book.Quantity,
+                        IsDeleted = book.IsDeleted
+                    };
+                    await _bookService.UpdateAsync(book.Id, updateBook);
+                }
+                
+                return Ok(items);
+            }
+            catch (Exception ex) {
+                return BadRequest(new { message = "Error when update." });
+            }
         }
 
         [HttpGet("search")]

@@ -22,9 +22,9 @@ namespace BookStoreAPI.Controllers
             var success = await _authService.RegisterAsync(registerDTO);
 
             if (!success)
-                return BadRequest("Registration failed. Please check your information.");
+                return BadRequest(new { message = "Registration failed. Please check your information." });
 
-            return Ok("Registration successful. Please check your email to activate your account.");
+            return Ok(new { message = "Registration successful. Please check your email to activate your account." });
         }
 
         [HttpGet("activate")]
@@ -33,9 +33,9 @@ namespace BookStoreAPI.Controllers
             var success = await _authService.ActivateAccountAsync(token);
 
             if (!success)
-                return BadRequest("Activation failed. Please check your token.");
+                return BadRequest(new { message = "Activation failed. Please check your token." });
 
-            return Ok("Account activated successfully.");
+            return Ok(new { message = "Account activated successfully." });
         }
 
         [HttpPost("login")]
@@ -53,7 +53,7 @@ namespace BookStoreAPI.Controllers
             }
             catch (Exception ex)
             {
-                return BadRequest(ex.Message);
+                return BadRequest(new { message = ex.Message });
             }
         }
 
@@ -112,8 +112,27 @@ namespace BookStoreAPI.Controllers
             }
             catch (Exception ex)
             {
-                return BadRequest(ex.Message);
+                return BadRequest(new { message = ex.Message});
             }
+        }
+
+        
+        [HttpGet("login1/{x}")]
+        public async Task<IActionResult> Login1(int x)
+        {
+            if (x == 1)
+            {
+                return Ok(new { message = "Password changed successfully." });
+            }
+            if (x == 2)
+            {
+                return BadRequest(new { message = "Password changed successfully." });
+            }
+            if (x == 3)
+            {
+                return BadRequest("Password changed successfully." );
+            }
+            return NotFound(new { message = "Invalid request." });
         }
     }
 }

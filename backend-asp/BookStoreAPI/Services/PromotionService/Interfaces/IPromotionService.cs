@@ -9,7 +9,7 @@ namespace BookStoreAPI.Services.PromotionService.Interfaces
         Task<PromotionDTO?> GetByNameAsync(string name);
         Task<IEnumerable<PromotionDTO>> SearchByKeywordAsync(string keyword);
         Task<bool> AddAsync(PromotionCreateDTO promotionCreateDTO);
-        Task<bool> UpdateAsync(Guid id, PromotionUpdateDTO promotionUpdateDTO);
+        Task<bool> UpdateAsync(Guid id, PromotionUpdateDTO promotionUpdateDTO, bool IsValidate);
         Task<bool> DeleteAsync(Guid id);
     }
 }
