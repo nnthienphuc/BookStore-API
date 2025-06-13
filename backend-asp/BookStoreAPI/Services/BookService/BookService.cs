@@ -52,7 +52,7 @@ namespace BookStoreAPI.Services.BookService
             var book = await _bookRepository.GetByIdAsync(id);
 
             if (book == null)
-                throw new KeyNotFoundException($"Book with id '{id}' not found.");
+                throw new KeyNotFoundException($"Không tìm thấy sách có id '{id}'.");
 
             return new BookDTO
             {
@@ -75,7 +75,7 @@ namespace BookStoreAPI.Services.BookService
             var book = await _bookRepository.GetByIsbnAsync(isbn);
 
             if (book == null)
-                throw new KeyNotFoundException($"Book with isbn '{isbn}' not found.");
+                throw new KeyNotFoundException($"Không tìm thấy sách có isbn '{isbn}'.");
 
             return new BookDTO
             {
@@ -118,20 +118,20 @@ namespace BookStoreAPI.Services.BookService
             await ValidateForeignKeysAsync(bookCreateDTO);
 
             if (bookCreateDTO.YearOfPublication <= 0)
-                throw new ArgumentException("Year of publication must be greater than 0.");
+                throw new ArgumentException("Năm xuất bản phải lớn hơn 0.");
 
             if (bookCreateDTO.Price <= 0)
-                throw new ArgumentException("Price must be greater than 0.");
+                throw new ArgumentException("Giá phải lớn hơn 0.");
 
             if (string.IsNullOrWhiteSpace(bookCreateDTO.Image))
-                throw new ArgumentException("Image cannot be null or empty.");
+                throw new ArgumentException("Hình ảnh không được để trống hoặc null.");
 
             if (bookCreateDTO.Quantity < 0)
-                throw new ArgumentException("Quantity must be 0 or greater.");
+                throw new ArgumentException("Số lượng phải lớn hơn hoặc bằng 0.");
 
             var existingBook = await _bookRepository.GetByIsbnAsync(bookCreateDTO.Isbn);
             if (existingBook != null)
-                throw new InvalidOperationException("A book with the same ISBN already exists.");
+                throw new InvalidOperationException("Đã có một cuốn sách có cùng mã ISBN.");
 
             var book = new Book
             {
@@ -154,35 +154,35 @@ namespace BookStoreAPI.Services.BookService
         {
             var category = await _categoryRepository.GetByIdAsync(bookUpdateDTO.CategoryId);
             if (category == null || category.IsDeleted)
-                throw new ArgumentException("Invalid or deleted Category.");
+                throw new ArgumentException("Danh mục không hợp lệ hoặc đã bị xóa.");
 
             var author = await _authorRepository.GetByIdAsync(bookUpdateDTO.AuthorId);
             if (author == null || author.IsDeleted)
-                throw new ArgumentException("Invalid or deleted Author.");
+                throw new ArgumentException("Tác giả không hợp lệ hoặc đã bị xóa.");
 
             var publisher = await _publisherRepository.GetByIdAsync(bookUpdateDTO.PublisherId);
             if (publisher == null || publisher.IsDeleted)
-                throw new ArgumentException("Invalid or deleted Publisher.");
+                throw new ArgumentException("Nhà xuất bản không hợp lệ hoặc đã bị xóa.");
 
             var existingBook = await _bookRepository.GetByIdAsync(id);
             if (existingBook == null)
-                throw new KeyNotFoundException($"Book with id '{id}' not found.");
+                throw new KeyNotFoundException($"Không tìm thấy sách có id '{id}'.");
 
             if (bookUpdateDTO.YearOfPublication <= 0)
-                throw new ArgumentException("Year of publication must be greater than 0.");
+                throw new ArgumentException("Năm xuất bản phải lớn hơn 0.");
 
             if (bookUpdateDTO.Price <= 0)
-                throw new ArgumentException("Price must be greater than 0.");
+                throw new ArgumentException("Giá phải lớn hơn 0.");
 
             if (string.IsNullOrWhiteSpace(bookUpdateDTO.Image))
-                throw new ArgumentException("Image cannot be null or empty.");
+                throw new ArgumentException("Hình ảnh không được để trống hoặc null.");
 
             if (bookUpdateDTO.Quantity < 0)
-                throw new ArgumentException("Quantity must be 0 or greater.");
+                throw new ArgumentException("Số lượng phải lớn hơn hoặc bằng 0.");
 
             var duplicateBook = await _bookRepository.GetByIsbnAsync(bookUpdateDTO.Isbn);
             if (duplicateBook != null && duplicateBook.Id != id)
-                throw new InvalidOperationException("A book with the same ISBN already exists.");
+                throw new InvalidOperationException("Đã có một cuốn sách có cùng mã ISBN.");
 
             existingBook.Isbn = bookUpdateDTO.Isbn;
             existingBook.Title = bookUpdateDTO.Title;
@@ -205,10 +205,10 @@ namespace BookStoreAPI.Services.BookService
             var existingBook = await _bookRepository.GetByIdAsync(id);
 
             if (existingBook == null)
-                throw new KeyNotFoundException($"Book with id '{id}' not found.");
+                throw new KeyNotFoundException($"Không tìm thấy sách có id '{id}'.");
 
             if (existingBook.IsDeleted == true)
-                throw new InvalidOperationException($"Book with id {id} is already deleted.");
+                throw new InvalidOperationException($"Sách có id {id} đã bị xóa.");
 
             _bookRepository.Delete(existingBook);
 
@@ -219,15 +219,15 @@ namespace BookStoreAPI.Services.BookService
         {
             var category = await _categoryRepository.GetByIdAsync(dto.CategoryId);
             if (category == null || category.IsDeleted)
-                throw new ArgumentException("Invalid or deleted Category.");
+                throw new ArgumentException("Danh mục không hợp lệ hoặc đã bị xóa.");
 
             var author = await _authorRepository.GetByIdAsync(dto.AuthorId);
             if (author == null || author.IsDeleted)
-                throw new ArgumentException("Invalid or deleted Author.");
+                throw new ArgumentException("Tác giả không hợp lệ hoặc đã bị xóa.");
 
             var publisher = await _publisherRepository.GetByIdAsync(dto.PublisherId);
             if (publisher == null || publisher.IsDeleted)
-                throw new ArgumentException("Invalid or deleted Publisher.");
+                throw new ArgumentException("Nhà xuất bản không hợp lệ hoặc đã bị xóa.");
         }
     }
 }

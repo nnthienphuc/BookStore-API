@@ -43,7 +43,7 @@ namespace BookStoreAPI.Controllers
         {
             await _authorService.AddAsync(authorCreateDTO);
 
-            return Ok(new { message = "Author added successfully." });
+            return Ok(new { message = "Tác giả đã được thêm thành công." });
         }
 
         [HttpPut("{id}")]
@@ -51,7 +51,7 @@ namespace BookStoreAPI.Controllers
         {
             await _authorService.UpdateAsync(id, authorUpdateDTO);
 
-            return Ok(new { message = "Author updated successfully." });
+            return Ok(new { message = "Tác giả đã được cập nhật thành công." });
         }
 
         [HttpDelete("{id}")]
@@ -59,7 +59,7 @@ namespace BookStoreAPI.Controllers
         {
             await _authorService.DeleteAsync(id);
 
-            return Ok(new { message = "Author soft deleted successfully." });
+            return Ok(new { message = "Tác giả đã được xóa thành công." });
         }
     }
 }

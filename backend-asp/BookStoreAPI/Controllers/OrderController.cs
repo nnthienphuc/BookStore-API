@@ -52,7 +52,7 @@ namespace BookStoreAPI.Controllers
         {
             var result = await _orderService.AddAsync(orderCreateDTO, User);
 
-            return Ok(new { message = "Order created successfully." });
+            return Ok(new { message = "Đã bán hàng thành công." });
         }
 
         [Authorize(Roles = "Admin")]
@@ -61,7 +61,7 @@ namespace BookStoreAPI.Controllers
         {
             var result = await _orderService.UpdateAsync(id, orderUpdateDTO);
 
-            return Ok(new { message = "Order updated successfully." });
+            return Ok(new { message = "Đã cập nhật hóa đơn thành công" });
         }
 
         [Authorize(Roles = "Admin")]
@@ -70,7 +70,7 @@ namespace BookStoreAPI.Controllers
         {
             var result = await _orderService.DeleteAsync(id);
 
-            return Ok(new { message = "Order soft deleted successfully." });
+            return Ok(new { message = "Đã xóa hóa đơn thành công" });
         }
 
         [Authorize(Roles = "Admin")]
@@ -78,7 +78,7 @@ namespace BookStoreAPI.Controllers
         public async Task<IActionResult> DeleteItem(Guid orderId, Guid bookId)
         {
             var result = await _orderService.DeleteItem(orderId, bookId);
-            return Ok(new { message = "Order item soft deleted successfully." });
+            return Ok(new { message = "Đã xóa chi tiết hóa đơn thành công." });
         }
     }
 }

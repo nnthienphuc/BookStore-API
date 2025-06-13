@@ -39,7 +39,7 @@ namespace BookStoreAPI.Services.StaffService
             var staff = await _staffRepository.GetByIdAsync(id);
 
             if (staff == null)
-                throw new KeyNotFoundException($"Staff with id '{id}' not found.");
+                throw new KeyNotFoundException($"Không tìm thấy nhân viên với ID '{id}'.");
 
             return new StaffDTO
             {
@@ -63,7 +63,7 @@ namespace BookStoreAPI.Services.StaffService
             var staff = await _staffRepository.GetByPhoneAsync(phone);
 
             if (staff == null)
-                throw new KeyNotFoundException($"Staff with phone '{phone}' not found.");
+                throw new KeyNotFoundException($"Không tìm thấy nhân viên với số điện thoại '{phone}'.");
 
             return new StaffDTO
             {
@@ -87,7 +87,7 @@ namespace BookStoreAPI.Services.StaffService
             var staff = await _staffRepository.GetByEmailAsync(email);
 
             if (staff == null)
-                throw new KeyNotFoundException($"Staff with email '{email}' not found.");
+                throw new KeyNotFoundException($"Không tìm thấy nhân viên với email '{email}'.");
 
             return new StaffDTO
             {
@@ -111,7 +111,7 @@ namespace BookStoreAPI.Services.StaffService
             var staff = await _staffRepository.GetByCitizenIdentificationAsync(citizenIdentification);
 
             if (staff == null)
-                throw new KeyNotFoundException($"Staff with citizen identification '{citizenIdentification}' not found.");
+                throw new KeyNotFoundException($"Không tìm thấy nhân viên với số CCCD '{citizenIdentification}'.");
 
             return new StaffDTO
             {
@@ -154,27 +154,27 @@ namespace BookStoreAPI.Services.StaffService
         public async Task<bool> UpdateAsync(Guid id, StaffUpdateDTO staffUpdateDTO)
         {
             if (!IsOver18(staffUpdateDTO.DateOfBirth))
-                throw new ArgumentException("Staff must be at least 18 years old.");
+                throw new ArgumentException("Nhân viên phải từ 18 tuổi trở lên.");
 
             if (!IsValidEmail(staffUpdateDTO.Email))
-                throw new ArgumentException("Staff email is not in a valid format.");
+                throw new ArgumentException("Email của nhân viên không đúng định dạng.");
 
             var existingStaff = await _staffRepository.GetByIdAsync(id);
 
             if (existingStaff == null)
-                throw new KeyNotFoundException($"Staff with id '{id}' not found.");
+                throw new KeyNotFoundException($"Không tìm thấy nhân viên với ID '{id}'.");
 
             var duplicatePhone = await _staffRepository.GetByPhoneAsync(staffUpdateDTO.Phone);
             if (duplicatePhone != null && id != duplicatePhone.Id)
-                throw new InvalidOperationException("A staff with the same phone already exists.");
+                throw new InvalidOperationException("Đã tồn tại nhân viên khác với cùng số điện thoại.");
 
             var duplicateEmail = await _staffRepository.GetByEmailAsync(staffUpdateDTO.Email);
             if (duplicateEmail != null && id != duplicateEmail.Id)
-                throw new InvalidOperationException("A staff with the same email already exists.");
+                throw new InvalidOperationException("Đã tồn tại nhân viên khác với cùng email.");
 
             var duplicateCitizenIdentification = await _staffRepository.GetByCitizenIdentificationAsync(staffUpdateDTO.CitizenIdentification);
             if (duplicateCitizenIdentification != null && id != duplicateCitizenIdentification.Id)
-                throw new InvalidOperationException("A staff with the same citizen identification already exists.");
+                throw new InvalidOperationException("Đã tồn tại nhân viên khác với cùng số CCCD.");
 
             existingStaff.FamilyName = staffUpdateDTO.FamilyName;
             existingStaff.GivenName = staffUpdateDTO.GivenName;
@@ -198,10 +198,10 @@ namespace BookStoreAPI.Services.StaffService
             var existingStaff = await _staffRepository.GetByIdAsync(id);
 
             if (existingStaff == null)
-                throw new KeyNotFoundException($"Staff with id '{id}' not found");
+                throw new KeyNotFoundException($"Không tìm thấy nhân viên với ID '{id}'.");
 
             if (existingStaff.IsDeleted == true)
-                throw new InvalidOperationException($"Staff with id {id} is already deleted.");
+                throw new InvalidOperationException($"Nhân viên với ID {id} đã bị xoá trước đó.");
 
             _staffRepository.Delete(existingStaff);
 
@@ -213,7 +213,7 @@ namespace BookStoreAPI.Services.StaffService
             var today = DateOnly.FromDateTime(DateTime.Today);
 
             if (dateOfBirth > today)
-                throw new ArgumentException("Date of birth cannot be in the future.");
+                throw new ArgumentException("Ngày sinh không thể nằm trong tương lai.");
 
             int age = today.Year - dateOfBirth.Year;
 

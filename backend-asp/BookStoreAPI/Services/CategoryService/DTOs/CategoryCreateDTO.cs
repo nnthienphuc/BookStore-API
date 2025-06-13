@@ -4,9 +4,9 @@ namespace BookStoreAPI.Services.CategoryService.DTOs
 {
     public class CategoryCreateDTO
     {
-        [Required(ErrorMessage = "Name is required.")]
+        [Required(ErrorMessage = "Tên là bắt buộc.")]
         [StringLength(100)]
-        [RegularExpression(@".*\S.*", ErrorMessage = "Name cannot be whitespace")]
+        [RegularExpression(@".*\S.*", ErrorMessage = "Tên không được có khoảng trắng.")]
         public required string Name { get; set; }
     }
 }

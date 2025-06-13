@@ -36,7 +36,7 @@ namespace BookStoreAPI.Services.PromotionService
             var promotion = await _promotionRepository.GetByIdAsync(id);
 
             if (promotion == null)
-                throw new KeyNotFoundException($"Promotion with id '{id}' not found.");
+                throw new KeyNotFoundException($"Không tìm thấy khuyến mãi với ID '{id}'.");
 
             return new PromotionDTO
             {
@@ -54,12 +54,12 @@ namespace BookStoreAPI.Services.PromotionService
         public async Task<PromotionDTO?> GetByNameAsync(string name)
         {
             if (string.IsNullOrWhiteSpace(name))
-                throw new ArgumentException("Promotion name cannot be null or empty.");
+                throw new ArgumentException("Tên khuyến mãi không được để trống.");
 
             var promotion = await _promotionRepository.GetByNameAsync(name);
 
             if (promotion == null)
-                throw new KeyNotFoundException($"Promotion with name '{name}' not found.");
+                throw new KeyNotFoundException($"Không tìm thấy khuyến mãi với tên '{name}'.");
 
             return new PromotionDTO
             {
@@ -96,22 +96,22 @@ namespace BookStoreAPI.Services.PromotionService
             var now = DateTime.Now;
 
             if (promotionCreateDTO.StartDate < now)
-                throw new ArgumentException("StartDate must be in the future.");
+                throw new ArgumentException("Ngày bắt đầu phải sau thời điểm hiện tại.");
 
             if (promotionCreateDTO.EndDate <= now)
-                throw new ArgumentException("EndDate must be in the future.");
+                throw new ArgumentException("Ngày kết thúc phải sau thời điểm hiện tại.");
 
             if (promotionCreateDTO.StartDate >= promotionCreateDTO.EndDate)
-                throw new ArgumentException("StartDate must be earlier than EndDate.");
+                throw new ArgumentException("Ngày bắt đầu phải trước ngày kết thúc.");
 
             if (promotionCreateDTO.Condition < 0)
-                throw new ArgumentException("Condition must be non-negative.");
+                throw new ArgumentException("Điều kiện áp dụng phải là số không âm.");
 
             if (promotionCreateDTO.DiscountPercent <= 0 || promotionCreateDTO.DiscountPercent > 100)
-                throw new ArgumentException("DiscountPercent must be between 1 and 100.");
+                throw new ArgumentException("Phần trăm giảm giá phải nằm trong khoảng từ 1 đến 100.");
 
             if (promotionCreateDTO.Quantity <= 0)
-                throw new ArgumentException("Quantity must be greater than 0.");
+                throw new ArgumentException("Số lượng khuyến mãi phải lớn hơn 0.");
 
             var promotion = new Promotion
             {
@@ -132,31 +132,31 @@ namespace BookStoreAPI.Services.PromotionService
         {
             var existingPromotion = await _promotionRepository.GetByIdAsync(id);
             if (existingPromotion == null)
-                throw new KeyNotFoundException($"Promotion with id '{id}' not found.");
+                throw new KeyNotFoundException($"Không tìm thấy khuyến mãi với ID '{id}'.");
 
             var duplicatePromotion = await _promotionRepository.GetByNameAsync(promotionUpdateDTO.Name);
             if (duplicatePromotion != null && duplicatePromotion.Id != id)
-                throw new InvalidOperationException("A promotion with the same name already exists.");
+                throw new InvalidOperationException("Đã tồn tại khuyến mãi khác với cùng tên.");
 
             var now = DateTime.Now;
 
             if (promotionUpdateDTO.StartDate < now)
-                throw new ArgumentException("StartDate must be in the future.");
+                throw new ArgumentException("Ngày bắt đầu phải sau thời điểm hiện tại.");
 
             if (promotionUpdateDTO.EndDate <= now)
-                throw new ArgumentException("EndDate must be in the future.");
+                throw new ArgumentException("Ngày kết thúc phải sau thời điểm hiện tại.");
 
             if (promotionUpdateDTO.StartDate >= promotionUpdateDTO.EndDate)
-                throw new ArgumentException("StartDate must be earlier than EndDate.");
+                throw new ArgumentException("Ngày bắt đầu phải trước ngày kết thúc.");
 
             if (promotionUpdateDTO.Condition < 0)
-                throw new ArgumentException("Condition must be non-negative.");
+                throw new ArgumentException("Điều kiện áp dụng phải là số không âm.");
 
             if (promotionUpdateDTO.DiscountPercent <= 0 || promotionUpdateDTO.DiscountPercent > 100)
-                throw new ArgumentException("DiscountPercent must be between 1 and 100.");
+                throw new ArgumentException("Phần trăm giảm giá phải nằm trong khoảng từ 1 đến 100.");
 
             if (promotionUpdateDTO.Quantity <= 0)
-                throw new ArgumentException("Quantity must be greater than 0.");
+                throw new ArgumentException("Số lượng khuyến mãi phải lớn hơn 0.");
 
             existingPromotion.Name = promotionUpdateDTO.Name;
             existingPromotion.StartDate = promotionUpdateDTO.StartDate;
@@ -175,10 +175,10 @@ namespace BookStoreAPI.Services.PromotionService
         {
             var existingPromotion = await _promotionRepository.GetByIdAsync(id);
             if (existingPromotion == null)
-                throw new KeyNotFoundException($"Promotion with id '{id}' not found.");
+                throw new KeyNotFoundException($"Không tìm thấy khuyến mãi với ID '{id}'.");
 
             if (existingPromotion.IsDeleted == true)
-                throw new InvalidOperationException($"Promotion with id {id} is already deleted.");
+                throw new InvalidOperationException($"Khuyến mãi với ID {id} đã bị xoá trước đó.");
 
             _promotionRepository.Delete(existingPromotion);
 

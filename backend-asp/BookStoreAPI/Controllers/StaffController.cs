@@ -45,7 +45,7 @@ namespace BookStoreAPI.Controllers
         {
             var result = await _staffService.UpdateAsync(id, staffUpdateDTO);
 
-            return Ok(new { message = "Staff updated successfully." });
+            return Ok(new { message = "Đã cập nhật nhân viên thành công." });
         }
 
         [HttpDelete("{id}")]
@@ -53,7 +53,7 @@ namespace BookStoreAPI.Controllers
         {
             var result = await _staffService.DeleteAsync(id);
 
-            return Ok(new { message = "Staff soft deleted successfullt." });
+            return Ok(new { message = "Đã xóa nhân viên thành công." });
         }
     }
 }

@@ -4,14 +4,15 @@ namespace BookStoreAPI.Services.BookService.DTOs
 {
     public class BookUpdateDTO
     {
-        [Required(ErrorMessage = "ISSBN is required.")]
+        [Required(ErrorMessage = "Mã ISBN là bắt buộc.")]
         [StringLength(13)]
-        [RegularExpression(@"\S+", ErrorMessage = "Name cannot be whitespace")]
+        [RegularExpression(@"\S+", ErrorMessage = "ISBN không được để khoảng trắng.")]
         public required string Isbn { get; set; }
 
-        [Required(ErrorMessage = "Title is required.")]
+        [Required(ErrorMessage = "Tiêu đề là bắt buộc.")]
         [StringLength(100)]
-        [RegularExpression(@".*\S.*", ErrorMessage = "Name cannot be whitespace")]
+        [RegularExpression(@".*\S.*", ErrorMessage = "Tên không được để khoảng trắng.")]
+
         public required string Title { get; set; }
         public required Guid CategoryId { get; set; }
         public required Guid AuthorId { get; set; }

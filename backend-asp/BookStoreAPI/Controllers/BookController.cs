@@ -43,7 +43,7 @@ namespace BookStoreAPI.Controllers
         {
             var result = await _bookService.AddAsync(bookCreateDTO);
 
-            return Ok(new { message = "Book added successfully." });
+            return Ok(new { message = "Đã thêm sách thành công." });
         }
 
         [HttpPut("{id}")]
@@ -51,7 +51,7 @@ namespace BookStoreAPI.Controllers
         {
             var result = await _bookService.UpdateAsync(id, bookUpdateDTO);
 
-            return Ok(new { message = "Book updated successfully." });
+            return Ok(new { message = "Đã cập nhật sách thành công." });
         }
 
         [HttpDelete("{id}")]
@@ -59,7 +59,7 @@ namespace BookStoreAPI.Controllers
         {
             var result = await _bookService.DeleteAsync(id);
 
-            return Ok(new { message = "Book soft deleted successfully." });
+            return Ok(new { message = "Đã xóa sách thành công." });
         }
     }
 }

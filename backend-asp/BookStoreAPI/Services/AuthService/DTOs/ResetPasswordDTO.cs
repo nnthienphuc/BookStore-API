@@ -4,9 +4,9 @@ namespace BookStoreAPI.Services.AuthService.DTOs
 {
     public class ResetPasswordDTO
     {
-        [Required(ErrorMessage = "Email is required.")]
+        [Required(ErrorMessage = "Email là bắt buộc.")]
         [StringLength(50)]
-        [RegularExpression(@"\S+", ErrorMessage = "Email cannot be whitespace")]
-        public required String Email { get; set; }
+        [RegularExpression(@"\S+", ErrorMessage = "Email không được để khoảng trắng.")]
+        public required string Email { get; set; }
     }
 }

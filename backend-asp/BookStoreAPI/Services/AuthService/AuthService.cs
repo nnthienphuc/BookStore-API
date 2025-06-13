@@ -33,19 +33,19 @@ namespace BookStoreAPI.Services.AuthService
             var existingByCitizenIdentification = await _authRepository.GetByCitizenIdentificationAsync(registerDTO.CitizenIdentification);
 
             if (existingByEmail != null)
-                throw new InvalidOperationException("Email is already in use.");
+                throw new InvalidOperationException("Email đã được sử dụng.");
 
             if (existingByPhone != null)
-                throw new InvalidOperationException("Phone is already in use.");
+                throw new InvalidOperationException("Số điện thoại đã được sử dụng.");
 
             if (existingByCitizenIdentification != null)
-                throw new InvalidOperationException("Citizen identification is already in use.");
+                throw new InvalidOperationException("CCCD đã được sử dụng.");
 
             if (registerDTO.Password != registerDTO.ConfirmPassword)
-                throw new ArgumentException("Confirm password does not match password.");
+                throw new ArgumentException("Mật khẩu xác nhận không khớp với mật khẩu.");
 
             if (!IsOver18(registerDTO.DateOfBirth))
-                throw new ArgumentException("You must be at least 18 years old.");
+                throw new ArgumentException("Bạn phải đủ 18 tuổi trở lên.");
 
             string hashedPassword = BCrypt.Net.BCrypt.HashPassword(registerDTO.Password);
 
@@ -74,10 +74,10 @@ namespace BookStoreAPI.Services.AuthService
             var token = GenerateActivationToken(staff.Id);
             var activationLink = $"http://localhost:5208/api/auth/activate?token={token}";
 
-            await _emailService.SendEmailAsync(staff.Email, "Activate your account",
-                $"Click on the following link to activate your account.: <a href='{activationLink}'>Verify account</a>");
+            await _emailService.SendEmailAsync(staff.Email, "Kích hoạt tài khoản",
+                $"Nhấn vào liên kết sau để kích hoạt tài khoản: <a href='{activationLink}'>Xác minh tài khoản</a>");
 
-            Console.WriteLine($"Send email confirm to: {staff.Email} successfully.");
+            Console.WriteLine($"Gửi email xác nhận đến: {staff.Email} thành công.");
 
             return true;
         }
@@ -141,23 +141,23 @@ namespace BookStoreAPI.Services.AuthService
         public async Task<String?> LoginAsync(LoginDTO loginDTO)
         {
             if (string.IsNullOrWhiteSpace(loginDTO.Email))
-                throw new ArgumentException("Please enter your email and password to login.");
+                throw new ArgumentException("Vui lòng nhập email và mật khẩu để đăng nhập.");
 
             var staff = await _authRepository.GetByEmailAsync(loginDTO.Email);
 
             if (staff == null)
-                throw new UnauthorizedAccessException("Invalid account, please check your email or create new account.");
+                throw new UnauthorizedAccessException("Tài khoản không hợp lệ, vui lòng kiểm tra email hoặc tạo tài khoản mới.");
 
             if (staff.IsDeleted)
-                throw new UnauthorizedAccessException("Your account has been deleted. Please contact the administrator.");
+                throw new UnauthorizedAccessException("Tài khoản của bạn đã bị xóa. Vui lòng liên hệ quản trị viên.");
 
             if (!staff.IsActived)
-                throw new UnauthorizedAccessException("Your account has not been activated. Please check your email to active.");
+                throw new UnauthorizedAccessException("Tài khoản của bạn chưa được kích hoạt. Vui lòng kiểm tra email để kích hoạt.");
 
             bool isValidPassword = BCrypt.Net.BCrypt.Verify(loginDTO.Password, staff.HashPassword);
 
             if (!isValidPassword)
-                throw new UnauthorizedAccessException("Invalid password. Please try again.");
+                throw new UnauthorizedAccessException("Mật khẩu không đúng. Vui lòng thử lại.");
 
             var token = GenerateJwtToken(staff);
 
@@ -195,19 +195,19 @@ namespace BookStoreAPI.Services.AuthService
             var staff = await _authRepository.GetByEmailAsync(resetPasswordDTO.Email);
 
             if (staff == null)
-                throw new UnauthorizedAccessException("Invalid account, please check your email or create new account.");
+                throw new UnauthorizedAccessException("Tài khoản không hợp lệ, vui lòng kiểm tra email hoặc tạo tài khoản mới.");
 
             if (staff.IsDeleted == true)
-                throw new UnauthorizedAccessException("Your account has been deleted. Please contact the administrator.");
+                throw new UnauthorizedAccessException("Tài khoản của bạn đã bị xóa. Vui lòng liên hệ quản trị viên.");
 
             if (staff.IsActived == false)
-                throw new UnauthorizedAccessException("Your account has not been activated. Please check your email to active.");
+                throw new UnauthorizedAccessException("Tài khoản của bạn chưa được kích hoạt. Vui lòng kiểm tra email để kích hoạt.");
 
             var token = GenerateResetPasswordToken(staff.Id);
             var resetLink = $"http://localhost:5208/api/auth/reset-password?token={token}";
 
-            await _emailService.SendEmailAsync(staff.Email, "Reset Password",
-                $"Click the following link to reset your password to default.: <a href='{resetLink}'>Reset Password</a>");
+            await _emailService.SendEmailAsync(staff.Email, "Đặt lại mật khẩu",
+                $"Nhấn vào liên kết sau để đặt lại mật khẩu về mặc định: <a href='{resetLink}'>Đặt lại mật khẩu</a>");
 
             return true;
         }
@@ -273,19 +273,19 @@ namespace BookStoreAPI.Services.AuthService
             var staff = await _authRepository.GetByIdAsync(staffID);
 
             if (staff == null)
-                throw new UnauthorizedAccessException("Invalid account, please check your email or create new account.");
+                throw new UnauthorizedAccessException("Tài khoản không hợp lệ, vui lòng kiểm tra email hoặc tạo tài khoản mới.");
 
             if (staff.IsDeleted == true)
-                throw new UnauthorizedAccessException("Your account has been deleted. Please contact the administrator.");
+                throw new UnauthorizedAccessException("Tài khoản của bạn đã bị xóa. Vui lòng liên hệ quản trị viên.");
 
             if (staff.IsActived == false)
-                throw new UnauthorizedAccessException("Your account has not been activated. Please check your email to active.");
+                throw new UnauthorizedAccessException("Tài khoản của bạn chưa được kích hoạt. Vui lòng kiểm tra email để kích hoạt.");
 
             if (!BCrypt.Net.BCrypt.Verify(changePasswordDTO.OldPassword, staff.HashPassword))
-                throw new UnauthorizedAccessException("Invalid old password. Please try again.");
+                throw new UnauthorizedAccessException("Mật khẩu cũ không đúng. Vui lòng thử lại.");
 
             if (changePasswordDTO.NewPassword != changePasswordDTO.ConfirmNewPassword)
-                throw new UnauthorizedAccessException("New password and confirm password do not match.");
+                throw new UnauthorizedAccessException("Mật khẩu mới và mật khẩu xác nhận không khớp.");
 
             staff.HashPassword = BCrypt.Net.BCrypt.HashPassword(changePasswordDTO.NewPassword);
 
@@ -297,7 +297,7 @@ namespace BookStoreAPI.Services.AuthService
             var today = DateOnly.FromDateTime(DateTime.Today);
 
             if (dateOfBirth > today)
-                throw new ArgumentException("Date of birth cannot be in the future.");
+                throw new ArgumentException("Ngày sinh không được nằm trong tương lai.");
 
             int age = today.Year - dateOfBirth.Year;
 

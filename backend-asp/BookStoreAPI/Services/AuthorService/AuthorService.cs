@@ -31,7 +31,7 @@ namespace BookStoreAPI.Services.AuthorService
             var author = await _authorRepository.GetByIdAsync(id);
 
             if (author == null)
-                throw new KeyNotFoundException($"Author with id {id} not found.");
+                throw new KeyNotFoundException($"Không tìm thấy tác giả có id {id}.");
 
             return new AuthorDTO
             {
@@ -70,7 +70,7 @@ namespace BookStoreAPI.Services.AuthorService
             var author = await _authorRepository.GetByIdAsync(id);
 
             if (author == null)
-                throw new KeyNotFoundException($"Author with id {id} not found.");
+                throw new KeyNotFoundException($"Không tìm thấy tác giả có id {id}.");
 
             author.Name = authorUpdateDTO.Name;
             author.IsDeleted = authorUpdateDTO.IsDeleted;
@@ -85,10 +85,10 @@ namespace BookStoreAPI.Services.AuthorService
             var author = await _authorRepository.GetByIdAsync(id);
 
             if (author == null)
-                throw new KeyNotFoundException($"Author with id {id} not found.");
+                throw new KeyNotFoundException($"Không tìm thấy tác giả có id {id}.");
 
             if (author.IsDeleted)
-                throw new InvalidOperationException($"Author with id {id} is already deleted.");
+                throw new InvalidOperationException($"Tác giả có id {id} đã bị xóa.");
 
             _authorRepository.Delete(author);
 

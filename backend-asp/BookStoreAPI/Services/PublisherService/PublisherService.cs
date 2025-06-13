@@ -9,7 +9,7 @@ namespace BookStoreAPI.Services.PublisherService
     {
         private readonly IPublisherRepository _publisherRepository;
 
-        public PublisherService (IPublisherRepository publisherRepository)
+        public PublisherService(IPublisherRepository publisherRepository)
         {
             _publisherRepository = publisherRepository;
         }
@@ -31,7 +31,7 @@ namespace BookStoreAPI.Services.PublisherService
             var publisher = await _publisherRepository.GetByIdAsync(id);
 
             if (publisher == null)
-                throw new KeyNotFoundException($"Publisher with id {id} not found");
+                throw new KeyNotFoundException($"Không tìm thấy nhà xuất bản với ID {id}.");
 
             return new PublisherDTO
             {
@@ -46,7 +46,7 @@ namespace BookStoreAPI.Services.PublisherService
             var publisher = await _publisherRepository.GetByNameAsync(name);
 
             if (publisher == null)
-                throw new KeyNotFoundException($"Publisher with name '{name}' not found.");
+                throw new KeyNotFoundException($"Không tìm thấy nhà xuất bản với tên '{name}'.");
 
             return new PublisherDTO
             {
@@ -73,7 +73,7 @@ namespace BookStoreAPI.Services.PublisherService
             var existingPublisher = await _publisherRepository.GetByNameAsync(publisherCreateDTO.Name);
 
             if (existingPublisher != null)
-                throw new InvalidOperationException("A publisher with the same name already exists.");
+                throw new InvalidOperationException("Đã tồn tại nhà xuất bản với tên này.");
 
             var publisher = new Publisher
             {
@@ -90,12 +90,12 @@ namespace BookStoreAPI.Services.PublisherService
             var existingPublisher = await _publisherRepository.GetByIdAsync(id);
 
             if (existingPublisher == null)
-                throw new KeyNotFoundException($"Publisher with id {id} not found.");
+                throw new KeyNotFoundException($"Không tìm thấy nhà xuất bản với ID {id}.");
 
             var duplicatePublisher = await _publisherRepository.GetByNameAsync(publisherUpdateDTO.Name);
 
             if (duplicatePublisher != null && duplicatePublisher.Id != id)
-                throw new InvalidOperationException("A publisher with the same name already exists.");
+                throw new InvalidOperationException("Đã tồn tại nhà xuất bản khác với cùng tên.");
 
             existingPublisher.Name = publisherUpdateDTO.Name;
             existingPublisher.IsDeleted = publisherUpdateDTO.IsDeleted;
@@ -110,10 +110,10 @@ namespace BookStoreAPI.Services.PublisherService
             var existingPublisher = await _publisherRepository.GetByIdAsync(id);
 
             if (existingPublisher == null)
-                throw new KeyNotFoundException($"Publisher with id {id} not found.");
+                throw new KeyNotFoundException($"Không tìm thấy nhà xuất bản với ID {id}.");
 
             if (existingPublisher.IsDeleted == true)
-                throw new InvalidOperationException($"Publisher with id {id} is already deleted.");
+                throw new InvalidOperationException($"Nhà xuất bản với ID {id} đã bị xoá trước đó.");
 
             _publisherRepository.Delete(existingPublisher);
 

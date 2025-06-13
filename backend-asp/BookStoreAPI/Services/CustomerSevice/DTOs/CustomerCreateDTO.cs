@@ -4,26 +4,28 @@ namespace BookStoreAPI.Services.CustomerSevice.DTOs
 {
     public class CustomerCreateDTO
     {
-        [Required(ErrorMessage = "Family name is required.")]
+        [Required(ErrorMessage = "Họ không được để trống.")]
         [StringLength(70)]
-        [RegularExpression(@".*\S.*", ErrorMessage = "Family name cannot be whitespace")]
+        [RegularExpression(@".*\S.*", ErrorMessage = "Họ không được chỉ chứa khoảng trắng.")]
         public required string FamilyName { get; set; }
 
-        [Required(ErrorMessage = "Given name is required.")]
+        [Required(ErrorMessage = "Tên không được để trống.")]
         [StringLength(30)]
-        [RegularExpression(@".*\S.*", ErrorMessage = "Given name cannot be whitespace")]
+        [RegularExpression(@".*\S.*", ErrorMessage = "Tên không được chỉ chứa khoảng trắng.")]
         public required string GivenName { get; set; }
+
         public required DateOnly DateOfBirth { get; set; }
 
-        [Required(ErrorMessage = "Address is required.")]
+        [Required(ErrorMessage = "Địa chỉ không được để trống.")]
         [StringLength(50)]
-        [RegularExpression(@".*\S.*", ErrorMessage = "Address cannot be whitespace")]
+        [RegularExpression(@".*\S.*", ErrorMessage = "Địa chỉ không được chỉ chứa khoảng trắng.")]
         public required string Address { get; set; }
 
-        [Required(ErrorMessage = "Phone is required.")]
+        [Required(ErrorMessage = "Số điện thoại không được để trống.")]
         [StringLength(10)]
-        [RegularExpression(@"\S+", ErrorMessage = "Phone cannot be whitespace")]
+        [RegularExpression(@"\S+", ErrorMessage = "Số điện thoại không được chỉ chứa khoảng trắng.")]
         public required string Phone { get; set; }
+
         public required bool Gender { get; set; }
     }
 }

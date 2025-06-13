@@ -46,19 +46,18 @@ namespace BookStoreAPI.Services.OrderService
             });
         }
 
-
         public async Task<OrderDTO?> GetByIdAsync(Guid id, ClaimsPrincipal user)
         {
             var order = await _orderRepository.GetByIdAsync(id);
 
             if (order == null)
-                throw new KeyNotFoundException($"Order with id '{id}' not found");
+                throw new KeyNotFoundException($"Không tìm thấy đơn hàng với ID '{id}'.");
 
             var staffId = CurrentUserHelper.GetStaffId(user);
             var isAdmin = CurrentUserHelper.IsAdmin(user);
 
             if (!isAdmin && order.StaffId != staffId)
-                throw new UnauthorizedAccessException("You can only view your own orders.");
+                throw new UnauthorizedAccessException("Bạn chỉ có thể xem đơn hàng của chính mình.");
 
             return new OrderDTO
             {
@@ -87,7 +86,7 @@ namespace BookStoreAPI.Services.OrderService
             var isAdmin = CurrentUserHelper.IsAdmin(user);
 
             if (!isAdmin && order.StaffId != staffId)
-                throw new UnauthorizedAccessException("You can only view your own orders.");
+                throw new UnauthorizedAccessException("Bạn chỉ có thể xem đơn hàng của chính mình.");
 
             return orderItems.Select(oi => new OrderItemDTO
             {
@@ -129,11 +128,11 @@ namespace BookStoreAPI.Services.OrderService
         public async Task<bool> AddAsync(OrderCreateDTO orderCreateDTO, ClaimsPrincipal user)
         {
             if (orderCreateDTO.Items == null || !orderCreateDTO.Items.Any())
-                throw new ArgumentException("Order must have at least one item.");
+                throw new ArgumentException("Đơn hàng phải có ít nhất một sản phẩm.");
 
             var customer = await _orderRepository.GetCustomerByIdAsync(orderCreateDTO.CustomerId);
             if (customer == null || customer.IsDeleted)
-                throw new ArgumentException("Customer is invalid or has been deleted.");
+                throw new ArgumentException("Khách hàng không hợp lệ hoặc đã bị xoá.");
 
             var order = new Order
             {
@@ -150,13 +149,13 @@ namespace BookStoreAPI.Services.OrderService
             foreach (var item in orderCreateDTO.Items)
             {
                 var book = await _orderRepository.GetBookByIdAsync(item.BookId)
-                    ?? throw new KeyNotFoundException($"Book with id '{item.BookId}' not found.");
+                    ?? throw new KeyNotFoundException($"Không tìm thấy sách với ID '{item.BookId}'.");
 
                 if (book.Quantity < item.Quantity)
-                    throw new InvalidOperationException($"The quantity of book with with title '{book.Title}' not enough to buy.");
+                    throw new InvalidOperationException($"Số lượng sách '{book.Title}' không đủ để bán.");
 
                 if (book.IsDeleted)
-                    throw new InvalidOperationException($"The book with title '{book.Title}' is deleted.");
+                    throw new InvalidOperationException($"Sách '{book.Title}' đã bị xoá.");
 
                 var orderItem = new OrderItem
                 {
@@ -177,22 +176,22 @@ namespace BookStoreAPI.Services.OrderService
             if (order.PromotionId.HasValue)
             {
                 var promotion = await _orderRepository.GetPromotionByIdAsync(order.PromotionId.Value)
-                    ?? throw new ArgumentException("Promotion not found.");
+                    ?? throw new ArgumentException("Không tìm thấy khuyến mãi.");
 
                 if (promotion.IsDeleted)
-                    throw new InvalidOperationException($"{promotion.Name} is deleted.");
+                    throw new InvalidOperationException($"Khuyến mãi '{promotion.Name}' đã bị xoá.");
 
                 if (DateTime.Now < promotion.StartDate)
-                    throw new InvalidOperationException("Promotion has not started yet.");
+                    throw new InvalidOperationException("Khuyến mãi chưa bắt đầu.");
 
                 if (DateTime.Now > promotion.EndDate)
-                    throw new InvalidOperationException("Promotion has expired.");
+                    throw new InvalidOperationException("Khuyến mãi đã hết hạn.");
 
                 if (promotion.Quantity <= 0)
-                    throw new InvalidOperationException("Promotion has run out.");
+                    throw new InvalidOperationException("Khuyến mãi đã hết lượt sử dụng.");
 
                 if (subTotal < promotion.Condition)
-                    throw new InvalidOperationException("Order does not meet promotion condition.");
+                    throw new InvalidOperationException("Đơn hàng không đủ điều kiện áp dụng khuyến mãi.");
 
                 order.PromotionAmount = subTotal * promotion.DiscountPercent;
                 promotion.Quantity--;
@@ -210,7 +209,7 @@ namespace BookStoreAPI.Services.OrderService
             var order = await _orderRepository.GetByIdAsync(id);
 
             if (order == null)
-                throw new KeyNotFoundException($"Order with id '{id}' not found");
+                throw new KeyNotFoundException($"Không tìm thấy đơn hàng với ID '{id}'.");
 
             order.Status = orderUpdateDTO.Status;
             order.Note = orderUpdateDTO.Note;
@@ -226,7 +225,7 @@ namespace BookStoreAPI.Services.OrderService
             var order = await _orderRepository.GetByIdAsync(id);
 
             if (order == null)
-                throw new KeyNotFoundException($"Order with id '{id}' not found");
+                throw new KeyNotFoundException($"Không tìm thấy đơn hàng với ID '{id}'.");
 
             _orderRepository.Delete(order);
 
@@ -238,7 +237,7 @@ namespace BookStoreAPI.Services.OrderService
             var item = await _orderRepository.GetOrderItemByOrderIdAndBookIdAsync(orderId, bookId);
 
             if (item == null)
-                throw new KeyNotFoundException("Order item not found.");
+                throw new KeyNotFoundException("Không tìm thấy sản phẩm trong đơn hàng.");
 
             _orderRepository.DeleteItem(item);
 

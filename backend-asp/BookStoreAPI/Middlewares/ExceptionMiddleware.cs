@@ -21,7 +21,7 @@ namespace BookStoreAPI.Middlewares
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, $"Unhandled exception: {ex.Message}");
+                _logger.LogError(ex, $"Ngoại lệ chưa được xử lý: {ex.Message}");
                 await HandleExceptionAsync(context, ex);
             }
         }
@@ -50,7 +50,7 @@ namespace BookStoreAPI.Middlewares
 
                 default:
                     statusCode = StatusCodes.Status500InternalServerError;
-                    message = "An unexpected error occurred.";
+                    message = "Đã xảy ra lỗi không mong muốn.";
                     break;
             }
 

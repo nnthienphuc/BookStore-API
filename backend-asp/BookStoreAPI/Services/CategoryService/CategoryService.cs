@@ -31,7 +31,7 @@ namespace BookStoreAPI.Services.CategoryService
             var category = await _categoryRepository.GetByIdAsync(id);
 
             if (category == null)
-                throw new KeyNotFoundException($"Category with id '{id}' not found.");
+                throw new KeyNotFoundException($"Không tìm thấy danh mục có id '{id}'.");
 
             return new CategoryDTO
             {
@@ -46,7 +46,7 @@ namespace BookStoreAPI.Services.CategoryService
             var category = await _categoryRepository.GetByNameAsync(name);
 
             if (category == null)
-                throw new KeyNotFoundException($"Category with name '{name}' not found.");
+                throw new KeyNotFoundException($"Không tìm thấy danh mục có tên '{name}'.");
 
             return new CategoryDTO
             {
@@ -74,7 +74,7 @@ namespace BookStoreAPI.Services.CategoryService
 
             if (existingCategory != null)
             {
-                throw new InvalidOperationException("A category with the same name already exists.");
+                throw new InvalidOperationException("Một danh mục có cùng tên đã tồn tại.");
             }
 
             var category = new Category
@@ -92,11 +92,11 @@ namespace BookStoreAPI.Services.CategoryService
             var existingCategory = await _categoryRepository.GetByIdAsync(id);
 
             if (existingCategory == null)
-                throw new KeyNotFoundException($"Category with id '{id}' not found.");
+                throw new KeyNotFoundException($"Không tìm thấy danh mục có id '{id}'.");
 
             var checkCategory = await _categoryRepository.GetByNameAsync(categoryUpdateDTO.Name);
             if ((checkCategory != null) && (existingCategory.Id != checkCategory.Id))  // tranh tinh trang Name trung id (truong hop chi thay doi IsDeleted)
-                throw new InvalidOperationException("A category with the same name already exists.");
+                throw new InvalidOperationException("Đã tồn tại một danh mục có cùng tên.");
 
             existingCategory.Name = categoryUpdateDTO.Name;
             existingCategory.IsDeleted = categoryUpdateDTO.IsDeleted;
@@ -111,10 +111,10 @@ namespace BookStoreAPI.Services.CategoryService
             var existingCategory = await _categoryRepository.GetByIdAsync(id);
 
             if (existingCategory == null)
-                throw new KeyNotFoundException($"Category with id '{id}' not found.");
+                throw new KeyNotFoundException($"Không tìm thấy danh mục có id '{id}'.");
 
             if (existingCategory.IsDeleted)
-                throw new InvalidOperationException($"Category with id {id} is already deleted.");
+                throw new InvalidOperationException($"Danh mục có id {id} đã bị xóa.");
 
             _categoryRepository.Delete(existingCategory);
 

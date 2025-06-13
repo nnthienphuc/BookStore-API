@@ -43,7 +43,7 @@ namespace BookStoreAPI.Controllers
         {
             var result = await _promotionService.AddAsync(promotionCreateDTO);
 
-            return Ok(new { message = "Promotion created successfully." });
+            return Ok(new { message = "Đã thêm khuyến mãi thành công." });
         }
 
         [HttpPut("{id}")]
@@ -51,7 +51,7 @@ namespace BookStoreAPI.Controllers
         {
             var result = await _promotionService.UpdateAsync(id, promotionUpdateDTO);
 
-            return Ok(new { message = "Promotion updated successfully." });
+            return Ok(new { message = "Đã cập nhật khuyến mãi thành công." });
         }
 
         [HttpDelete("{id}")]
@@ -59,7 +59,7 @@ namespace BookStoreAPI.Controllers
         {
             var result = await _promotionService.DeleteAsync(id);
 
-            return Ok(new { message = "Promotion soft deleted successfully." });
+            return Ok(new { message = "Đã xóa khuyến mãi thành công." });
         }
     }
 }

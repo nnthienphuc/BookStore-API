@@ -22,9 +22,9 @@ namespace BookStoreAPI.Controllers
             var success = await _authService.RegisterAsync(registerDTO);
 
             if (!success)
-                return BadRequest("Registration failed. Please check your information.");
+                return BadRequest("Đăng ký không thành công. Vui lòng kiểm tra thông tin của bạn.");
 
-            return Ok("Registration successful. Please check your email to activate your account.");
+            return Ok("Đăng ký thành công. Vui lòng kiểm tra email để kích hoạt tài khoản của bạn.");
         }
 
         [HttpGet("activate")]
@@ -33,9 +33,9 @@ namespace BookStoreAPI.Controllers
             var success = await _authService.ActivateAccountAsync(token);
 
             if (!success)
-                return BadRequest("Activation failed. Please check your token.");
+                return BadRequest("Kích hoạt không thành công.");
 
-            return Ok("Account activated successfully.");
+            return Ok("Tài khoản đã được kích hoạt thành công.");
         }
 
         [HttpPost("login")]
@@ -63,7 +63,7 @@ namespace BookStoreAPI.Controllers
             try
             {
                 await _authService.ResetPasswordAsync(resetPasswordDTO);
-                return Ok(new { message = "Reset password email sent successfully." });
+                return Ok(new { message = "Email đặt lại mật khẩu đã được gửi thành công." });
             }
             catch (UnauthorizedAccessException ex)
             {
@@ -81,9 +81,9 @@ namespace BookStoreAPI.Controllers
             var success = await _authService.ResetPasswordFromTokenAsync(token);
 
             if (!success)
-                return BadRequest( new { message = "Token is invalid or expried." });
+                return BadRequest( new { message = "Token không hợp lệ hoặc đã hết hạn." });
 
-            return Ok(new { message = "Password reset successfully. Your new password is: '123456'" });
+            return Ok(new { message = "Đã đặt lại mật khẩu thành công. Mật khẩu mới của bạn là: '123456'" });
         }
 
         [HttpPut("change-password")]
@@ -95,16 +95,16 @@ namespace BookStoreAPI.Controllers
                 var staffIdClaim = User.FindFirst("staffId");
 
                 if (staffIdClaim == null)
-                    return Unauthorized(new { message = "Invalid token." });
+                    return Unauthorized(new { message = "Token không hợp lệ." });
 
                 var staffId = Guid.Parse(staffIdClaim.Value);
 
                 var success = await _authService.ChangePasswordAsync(staffId, changePasswordDTO);
 
                 if (!success)
-                    return BadRequest(new { message = "Change password failed. Please check your information." });
+                    return BadRequest(new { message = "Đổi mật khẩu không thành công. Vui lòng kiểm tra thông tin của bạn." });
 
-                return Ok(new { message = "Password changed successfully." });
+                return Ok(new { message = "Đã thay đổi mật khẩu thành công." });
             }
             catch (UnauthorizedAccessException ex)
             {

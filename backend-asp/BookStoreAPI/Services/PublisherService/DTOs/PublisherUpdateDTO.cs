@@ -4,10 +4,11 @@ namespace BookStoreAPI.Services.PublisherService.DTOs
 {
     public class PublisherUpdateDTO
     {
-        [Required(ErrorMessage = "Name is required.")]
+        [Required(ErrorMessage = "Tên nhà xuất bản không được để trống.")]
         [StringLength(100)]
-        [RegularExpression(@".*\S.*", ErrorMessage = "Name cannot be whitespace")]
+        [RegularExpression(@".*\S.*", ErrorMessage = "Tên nhà xuất bản không được chỉ chứa khoảng trắng.")]
         public required string Name { get; set; }
+
         public required bool IsDeleted { get; set; }
     }
 }

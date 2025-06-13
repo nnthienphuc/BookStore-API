@@ -39,21 +39,21 @@ namespace BookStoreAPI.Controllers
         public async Task<IActionResult> Add([FromBody] CategoryCreateDTO categoryCreateDTO)
         {
             await _categoryService.AddAsync(categoryCreateDTO);
-            return Ok(new { message = "Category added successfully" });
+            return Ok(new { message = "Đã thêm danh mục thành công." });
         }
 
         [HttpPut("{id}")]
         public async Task<IActionResult> Update(Guid id, [FromBody] CategoryUpdateDTO categoryUpdateDTO)
         {
             await _categoryService.UpdateAsync(id, categoryUpdateDTO);
-            return Ok(new { message = "Category updated successfully" });
+            return Ok(new { message = "Đã cập nhật danh mục thành công." });
         }
 
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(Guid id)
         {
             await _categoryService.DeleteAsync(id);
-            return Ok(new { message = "Category soft deleted successfully" });
+            return Ok(new { message = "Đã xóa thành công danh mục." });
         }
     }
 }

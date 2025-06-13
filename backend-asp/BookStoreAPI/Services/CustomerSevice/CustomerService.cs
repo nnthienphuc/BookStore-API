@@ -10,7 +10,7 @@ namespace BookStoreAPI.Services.CustomerSevice
     {
         private readonly ICustomerRepository _customerRepository;
 
-        public CustomerService (ICustomerRepository customerRepository)
+        public CustomerService(ICustomerRepository customerRepository)
         {
             _customerRepository = customerRepository;
         }
@@ -37,7 +37,7 @@ namespace BookStoreAPI.Services.CustomerSevice
             var customer = await _customerRepository.GetByIdAsync(id);
 
             if (customer == null)
-                throw new KeyNotFoundException($"Customer with id '{id}' not found.");
+                throw new KeyNotFoundException($"Không tìm thấy khách hàng với ID '{id}'.");
 
             return new CustomerDTO
             {
@@ -57,7 +57,7 @@ namespace BookStoreAPI.Services.CustomerSevice
             var customer = await _customerRepository.GetByPhoneAsync(phone);
 
             if (customer == null)
-                throw new KeyNotFoundException($"Customer with phone '{phone}' not found.");
+                throw new KeyNotFoundException($"Không tìm thấy khách hàng với số điện thoại '{phone}'.");
 
             return new CustomerDTO
             {
@@ -92,11 +92,11 @@ namespace BookStoreAPI.Services.CustomerSevice
         public async Task<bool> AddAsync(CustomerCreateDTO customerCreateDTO)
         {
             if (!IsOver18(customerCreateDTO.DateOfBirth))
-                throw new ArgumentException("Customer have to equal or over 18.");
+                throw new ArgumentException("Khách hàng phải từ 18 tuổi trở lên.");
 
             var existingCustomer = await _customerRepository.GetByPhoneAsync(customerCreateDTO.Phone);
             if (existingCustomer != null)
-                throw new InvalidOperationException("A customer with the same phone already exists.");
+                throw new InvalidOperationException("Đã tồn tại khách hàng với số điện thoại này.");
 
             var customer = new Customer
             {
@@ -117,14 +117,14 @@ namespace BookStoreAPI.Services.CustomerSevice
         {
             var existingCustomer = await _customerRepository.GetByIdAsync(id);
             if (existingCustomer == null)
-                throw new KeyNotFoundException($"Customer with id '{id}' not found.");
+                throw new KeyNotFoundException($"Không tìm thấy khách hàng với ID '{id}'.");
 
             if (!IsOver18(customerUpdateDTO.DateOfBirth))
-                throw new ArgumentException("Customer have to equal or over 18.");
-            
+                throw new ArgumentException("Khách hàng phải từ 18 tuổi trở lên.");
+
             var duplicateCustomer = await _customerRepository.GetByPhoneAsync(customerUpdateDTO.Phone);
             if (duplicateCustomer != null && duplicateCustomer.Id != id)
-                throw new InvalidOperationException("A customer with the same phone already exists.");
+                throw new InvalidOperationException("Đã tồn tại khách hàng khác với cùng số điện thoại.");
 
             existingCustomer.FamilyName = customerUpdateDTO.FamilyName;
             existingCustomer.GivenName = customerUpdateDTO.GivenName;
@@ -144,10 +144,10 @@ namespace BookStoreAPI.Services.CustomerSevice
             var existingCustomer = await _customerRepository.GetByIdAsync(id);
 
             if (existingCustomer == null)
-                throw new KeyNotFoundException($"Customer with id '{id}' not found.");
+                throw new KeyNotFoundException($"Không tìm thấy khách hàng với ID '{id}'.");
 
             if (existingCustomer.IsDeleted == true)
-                throw new InvalidOperationException($"Customer with id {id} is already deleted.");
+                throw new InvalidOperationException($"Khách hàng với ID {id} đã bị xoá trước đó.");
 
             _customerRepository.Delete(existingCustomer);
 
@@ -164,6 +164,5 @@ namespace BookStoreAPI.Services.CustomerSevice
 
             return age >= 18;
         }
-
     }
 }
