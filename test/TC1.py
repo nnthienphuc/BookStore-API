@@ -37,7 +37,7 @@ try:
     wait.until(EC.presence_of_element_located((By.XPATH, "//table")))
     time.sleep(1)
 
-    create_btn = wait.until(EC.element_to_be_clickable((By.XPATH, "//button[span[text()='Create']]")))
+    create_btn = wait.until(EC.element_to_be_clickable((By.XPATH, "//button[span[text()='Tạo mới']]")))
     create_btn.click()
     print("🟢 Đã click Create")
     time.sleep(5)
