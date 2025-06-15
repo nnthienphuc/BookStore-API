@@ -1,4 +1,4 @@
-# Điền đủ thông tin sách
+# Điền thiếu Tiêu đề
 from selenium import webdriver
 from selenium.webdriver.edge.service import Service
 from selenium.webdriver.common.by import By
@@ -52,10 +52,10 @@ try:
     time.sleep(1.5)
 
     # Title
-    title_input = driver.find_element(By.ID, "Title")
-    title_input.send_keys("Doraemon - Truyện Dài - Tập 4 - Nobita Và Lâu Đài Dưới Đáy Biển")
-    print("✅ Đã điền Title.")
-    time.sleep(1.5)
+    # title_input = driver.find_element(By.ID, "Title")
+    # title_input.send_keys("Doraemon - Truyện Dài - Tập 4 - Nobita Và Lâu Đài Dưới Đáy Biển")
+    # print("✅ Đã điền Title.")
+    # time.sleep(1.5)
 
     # Category
     category_input = driver.find_element(By.XPATH, "//input[@name='CategoryComboboxId']")

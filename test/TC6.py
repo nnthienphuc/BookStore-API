@@ -1,4 +1,4 @@
-# Điền đủ thông tin sách
+# Năm xuất bản < 1500
 from selenium import webdriver
 from selenium.webdriver.edge.service import Service
 from selenium.webdriver.common.by import By
@@ -80,7 +80,7 @@ try:
 
     # Year of Publication
     year_input = driver.find_element(By.XPATH, "//input[@name='YearOfPublication']")
-    year_input.send_keys("2023")
+    year_input.send_keys("1499")
     print("✅ Đã điền Year of Publication.")
     time.sleep(1.5)
 

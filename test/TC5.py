@@ -1,4 +1,4 @@
-# Điền đủ thông tin sách
+# Tiêu đề là khoảng trắng
 from selenium import webdriver
 from selenium.webdriver.edge.service import Service
 from selenium.webdriver.common.by import By
@@ -53,7 +53,7 @@ try:
 
     # Title
     title_input = driver.find_element(By.ID, "Title")
-    title_input.send_keys("Doraemon - Truyện Dài - Tập 4 - Nobita Và Lâu Đài Dưới Đáy Biển")
+    title_input.send_keys("       ")    # Tiêu đề là khoảng trắng
     print("✅ Đã điền Title.")
     time.sleep(1.5)
 

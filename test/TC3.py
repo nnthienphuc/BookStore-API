@@ -1,4 +1,4 @@
-# Điền đủ thông tin sách
+# Trùng ISBN "8935212366533"
 from selenium import webdriver
 from selenium.webdriver.edge.service import Service
 from selenium.webdriver.common.by import By
@@ -47,7 +47,7 @@ try:
 
     # ISBN
     isbn_input = wait.until(EC.presence_of_element_located((By.ID, "Isbn")))
-    isbn_input.send_keys("8935244884708")
+    isbn_input.send_keys("8935212366533")
     print("✅ Đã điền ISBN.")
     time.sleep(1.5)
 
