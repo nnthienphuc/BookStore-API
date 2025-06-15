@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Github\\BookStore-ASP\\BookStore-API\\backend-asp\\BookStoreAPI\\BookStoreAPI.csproj": {}
+    "D:\\Github\\BookStore-API\\backend-asp\\BookStoreAPI\\BookStoreAPI.csproj": {}
   },
   "projects": {
-    "D:\\Github\\BookStore-ASP\\BookStore-API\\backend-asp\\BookStoreAPI\\BookStoreAPI.csproj": {
+    "D:\\Github\\BookStore-API\\backend-asp\\BookStoreAPI\\BookStoreAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Github\\BookStore-ASP\\BookStore-API\\backend-asp\\BookStoreAPI\\BookStoreAPI.csproj",
+        "projectUniqueName": "D:\\Github\\BookStore-API\\backend-asp\\BookStoreAPI\\BookStoreAPI.csproj",
         "projectName": "BookStoreAPI",
-        "projectPath": "D:\\Github\\BookStore-ASP\\BookStore-API\\backend-asp\\BookStoreAPI\\BookStoreAPI.csproj",
+        "projectPath": "D:\\Github\\BookStore-API\\backend-asp\\BookStoreAPI\\BookStoreAPI.csproj",
         "packagesPath": "C:\\Users\\nnthienphuc\\.nuget\\packages\\",
-        "outputPath": "D:\\Github\\BookStore-ASP\\BookStore-API\\backend-asp\\BookStoreAPI\\obj\\",
+        "outputPath": "D:\\Github\\BookStore-API\\backend-asp\\BookStoreAPI\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\DevExpress 24.2\\Components\\Offline Packages",
