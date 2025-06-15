@@ -168,11 +168,11 @@ namespace BookStoreAPI.Services.BookService
             if (existingBook == null)
                 throw new KeyNotFoundException($"Không tìm thấy sách có id '{id}'.");
 
-            if (bookUpdateDTO.YearOfPublication <= 0)
-                throw new ArgumentException("Năm xuất bản phải lớn hơn 0.");
+            if (bookUpdateDTO.YearOfPublication <= 1500)
+                throw new ArgumentException("Năm xuất bản phải lớn hơn 1500.");
 
-            if (bookUpdateDTO.Price <= 0)
-                throw new ArgumentException("Giá phải lớn hơn 0.");
+            if (bookUpdateDTO.Price <= 1000)
+                throw new ArgumentException("Giá phải lớn hơn 1000.");
 
             if (string.IsNullOrWhiteSpace(bookUpdateDTO.Image))
                 throw new ArgumentException("Hình ảnh không được để trống hoặc null.");
