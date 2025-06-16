@@ -1,0 +1,165 @@
+﻿
+@inherits LayoutComponentBase
+@inject NavigationManager NavigationManager
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&display=swap" rel="stylesheet">
+
+<style>
+    [b-7ak3fumu6r] .navigation-drawer > .dxbl-drawer-panel {
+        background-image: linear-gradient(180deg,rgb(6, 99, 100), rgb(6, 99, 100));
+    }
+
+    .nav-buttons-container{
+        background-image: url(https://newshop.vn/public/uploads/slider-box/ab9bcfb2bd7b6c479286e2fc9e59e8c1.jpg);
+        height:60px;
+    }
+
+    .nav-buttons-container[b-7ak3fumu6r] {
+    padding: 0 !important;
+    }
+    .header-text-right {
+    color: White; /* Dark gray for a more modern and readable text */
+    font-size: 24px; /* Slightly larger font size for emphasis */
+    font-family: 'Playfair Display', serif; /* Elegant serif font for a stylish look */
+    font-weight: 700; /* Bold for emphasis */
+    letter-spacing: 2px; /* Refined letter spacing */
+    text-transform: uppercase; /* Keeps the uppercase look */
+    line-height: 1.2; /* Ensures readability */
+    white-space: nowrap; /* Prevents the text from wrapping onto the next line */
+    overflow: hidden; /* Ensures no overflow in case of longer text */
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    transition: color 0.3s ease, transform 0.3s ease; /* Smooth hover effect */
+    }
+
+
+    .demos-icon {
+    background-image: url(images/demos.svg);
+    filter: brightness(100%) saturate(100%);
+    }
+
+    .docs-icon {
+    background-image: url(images/doc.svg);
+    filter: brightness(100%) saturate(100%);
+    }
+
+    .icon-menu {
+    background-image: url(images/menu.svg);
+    filter: brightness(100%) saturate(100%);
+    }
+
+    .footer-button {
+    color: white !important; /* Màu chữ */
+    font-family: 'Segoe UI', sans-serif; /* Font chữ */
+    font-size: 16px; /* Cỡ chữ */
+    font-weight: 500; /* Độ đậm */
+    }
+
+    .dxbl-grid-focused-row{
+        background-color: rgb(29, 161, 242) !important; /* focus grid */
+
+    }
+
+    .dxbl-grid-header-row {
+        background-color: rgb(6, 99, 100) !important; /* header grid */
+
+    } 
+    .dxbl-menu-item:hover {
+            background-color: rgb(58, 213, 216) !important; /* hover nav */
+
+    } 
+
+    .dxbl-grid-header{ /* Màu chu heder */
+        color: white !important;
+    }
+
+    .HButton {
+    border-radius: 8px !important;
+    color: white !important;
+    padding: 8px 12px !important;
+    border: none !important;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    }
+    .create {
+        background-color: #4CAF50 !important;
+    }
+    .edit {
+        background-color: #2196F3 !important;
+    }
+    .delete {
+        background-color: #F44336 !important;
+    }
+    .order {
+        background-color: orange !important;
+    }
+    .chooser-column {
+    background-color : gray !important;
+    }
+
+</style>
+
+<div class="page">
+    
+    @if (new Uri(NavigationManager.Uri).LocalPath.Contains("user"))
+    {
+        <div class="p-4" style="max-height: 95vh; overflow-y: auto;">
+            @Body
+        </div>
+    }
+    else if (new Uri(NavigationManager.Uri).LocalPath != "" && new Uri(NavigationManager.Uri).LocalPath != "/")
+    {
+        <Drawer DrawerHeader="drawerHeader" DrawerFooter="drawerFooter">
+            <DrawerBody>
+                <div class="w-100">
+                    <NavMenu></NavMenu>
+                </div>
+            </DrawerBody>
+            <DrawerTarget>
+                <div class="nav-buttons-container" >
+                    <NavLink href="@UrlGenerator.GetUrl(new Uri(NavigationManager.Uri).LocalPath, !ToggledSidebar)">
+                        <DxButton RenderStyle="@ButtonRenderStyle.Secondary" RenderStyleMode="@ButtonRenderStyleMode.Text" CssClass="menu-button" IconCssClass="icon icon-menu"></DxButton>
+                    </NavLink>
+                    @if (new Uri(NavigationManager.Uri).LocalPath != "/")
+                    {
+                        <NavLink href="@UrlGenerator.GetUrl("/", ToggledSidebar)" class="button-link hidden">
+                            <DxButton RenderStyle="@ButtonRenderStyle.Dark" Text="Back to Home" RenderStyleMode="@ButtonRenderStyleMode.Text" CssClass="menu-button-nav" IconCssClass="icon icon-back"></DxButton>
+                        </NavLink>
+                    }
+                </div>
+                <div class="p-4">
+                    
+                    @Body
+                </div>
+            </DrawerTarget>
+        </Drawer>
+    }
+    
+    else
+    {
+        @Body
+    }
+</div>
+
+@code {
+    [SupplyParameterFromQuery(Name = UrlGenerator.ToggleSidebarName)]
+    public bool ToggledSidebar { get; set; }
+
+    private RenderFragment drawerHeader => @<div class="navigation-drawer-header">
+        <!-- <img class="logo" src="images/logo.svg" alt="DevExpress logo" /> -->
+        <span class="header-text-right">BOOK STORE</span>
+        <NavLink href="@UrlGenerator.GetUrl(new Uri(NavigationManager.Uri).LocalPath, !ToggledSidebar)" >
+            <DxButton RenderStyle="@ButtonRenderStyle.Light" RenderStyleMode="@ButtonRenderStyleMode.Text" CssClass="menu-button-nav" IconCssClass="@(ToggledSidebar ? "icon icon-close" : "icon icon-menu")"></DxButton>
+        </NavLink>
+    </div>;
+
+    private RenderFragment drawerFooter => @<div>
+        <NavLink href="https://docs.devexpress.com/Blazor/400725/blazor-components" class="button-link">
+            <DxButton Text="Docs" RenderStyleMode="@ButtonRenderStyleMode.Text" CssClass="footer-button" RenderStyle="@ButtonRenderStyle.Light" IconCssClass="icon docs-icon"></DxButton>
+        </NavLink>
+        <NavLink href="https://demos.devexpress.com/blazor/" class="button-link">
+            <DxButton Text="Demos" RenderStyleMode="@ButtonRenderStyleMode.Text" CssClass="footer-button" RenderStyle="@ButtonRenderStyle.Light" IconCssClass="icon demos-icon"></DxButton>
+        </NavLink>
+    </div>;
+
+ 
+}

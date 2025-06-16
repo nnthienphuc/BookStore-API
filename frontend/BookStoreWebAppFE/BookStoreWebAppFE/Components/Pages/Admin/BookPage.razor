@@ -1,0 +1,801 @@
+﻿@page "/admin/book"
+@using System.Text.Json;
+
+@using BookStoreWebAppFE.Models
+@inject HttpClient Http
+@using DevExpress.Blazor
+@rendermode InteractiveServer
+@using BookStoreWebAppFE.Services
+@inject IAuthenticationService authenticationService
+<div class="d-flex align-items-center custom-toast-background">
+    <DxToastProvider Name="Overview"
+    MaxToastCount="5"
+    AnimationType="ToastAnimationType.Slide"
+    HorizontalAlignment="HorizontalAlignment.Right"
+    VerticalAlignment="VerticalEdge.Top"
+    DisplayTime="TimeSpan.FromSeconds(5)"
+    Width="320px" />
+</div><PageTitle>Sách</PageTitle>
+<h1>Sách</h1>
+
+@if (ListGrid == null)
+{
+    <p><em>Đang tải...</em></p>
+}
+else
+{
+    <DxGrid Data="@ListGrid" style="height:80vh;"
+            PageSize="10"
+            PageSizeSelectorItems="@ListPage"
+            ShowFilterRow="true"
+            PagerVisible="true"
+            CustomizeEditModel="OnCustomizeEditModel"
+            EditModelSaving="OnEditModelSaving"
+            DataItemDeleting="OnDataItemDeleting"
+            KeyFieldName="Isbn"
+            SelectionMode="GridSelectionMode.Multiple"
+            PageSizeSelectorAllRowsItemVisible="true"
+            EditMode="GridEditMode.PopupEditForm"
+            SelectedDataItems="@SelectedDataItems"
+            SelectedDataItemsChanged="OnSelectedDataItemsChanged"
+            FocusedRowEnabled=true
+            PopupEditFormCssClass="my-style"
+            PopupEditFormHeaderText="@title"
+            @ref=MyGrid>
+        <Columns>
+            <DxGridSelectionColumn ShowInColumnChooser="false" Width="50"></DxGridSelectionColumn>
+            <!-- Cột ID, kiểu uniqueidentifier -->
+            <DxGridDataColumn Caption="Mã ID" FieldName="Id" Visible="false" />
+
+            <!-- Cột ISBN, kiểu char -->
+            <DxGridDataColumn Caption="Mã ISBN" FieldName="Isbn" Width="100" />
+
+            <!-- Cột Title, kiểu nvarchar -->
+            <DxGridDataColumn Caption="Tiêu đề" FieldName="Title" Width="200" />
+
+            <!-- Cột Category ID, kiểu uniqueidentifier -->
+            <DxGridDataColumn Caption="Thể loại">
+                <FilterRowCellTemplate>
+                    <DxComboBox Data="@categories"
+                                @bind-Value="filterCategory"
+                                SearchFilterCondition="ListSearchFilterCondition.Contains" SearchMode="ListSearchMode.AutoSearch"
+                                ClearButtonDisplayMode="DataEditorClearButtonDisplayMode.Auto"
+                                TextFieldName="@nameof(selectedCategory.Name)"
+                                SelectedItemChanged="(Category value)=>SelectedCategoryFilter(value)">
+                    </DxComboBox>
+                </FilterRowCellTemplate>
+                <CellDisplayTemplate>
+                    @{
+                        var data = (Book)context.DataItem;
+                        string categoryName = categories?.FirstOrDefault(c => c.id == data.categoryId) is { Name: var name } ? name : string.Empty;
+                    }
+                    <span>@categoryName</span>
+                </CellDisplayTemplate>
+            </DxGridDataColumn>
+
+            <!-- Cột Author ID, kiểu uniqueidentifier -->
+            <DxGridDataColumn Caption="Tác giả">
+                <FilterRowCellTemplate>
+                    <DxComboBox Data="@authors"
+                                @bind-Value="filterAuthor"
+                                SearchFilterCondition="ListSearchFilterCondition.Contains" SearchMode="ListSearchMode.AutoSearch"
+                                ClearButtonDisplayMode="DataEditorClearButtonDisplayMode.Auto"
+                                TextFieldName="@nameof(selectedAuthor.Name)"
+                                SelectedItemChanged="(Author value)=>SelectedAuthorFilter(value)">
+                    </DxComboBox>
+                </FilterRowCellTemplate>
+                <CellDisplayTemplate>
+                    @{
+                        var data = (Book)context.DataItem;
+                        string author = authors?.FirstOrDefault(c => c.id == data.authorId) is { Name: var name } ? name : string.Empty;
+                    }
+                    <span>@author</span>
+                </CellDisplayTemplate>
+            </DxGridDataColumn>
+
+            <!-- Cột Publisher ID, kiểu uniqueidentifier -->
+            <DxGridDataColumn Caption="Nhà xuất bản">
+                <FilterRowCellTemplate>
+                    <DxComboBox Data="@publishers"
+                                @bind-Value="filterPublisher"
+                                SearchFilterCondition="ListSearchFilterCondition.Contains" SearchMode="ListSearchMode.AutoSearch"
+                                ClearButtonDisplayMode="DataEditorClearButtonDisplayMode.Auto"
+                                TextFieldName="@nameof(selectedPublisher.Name)"
+                                SelectedItemChanged="(Publisher value)=>SelectedPublisherFilter(value)">
+                    </DxComboBox>
+                </FilterRowCellTemplate>
+                <CellDisplayTemplate>
+                    @{
+                        var data = (Book)context.DataItem;
+                        string publisher = publishers?.FirstOrDefault(c => c.id == data.publisherId) is { Name: var name } ? name : string.Empty;
+                    }
+                    <span>@publisher</span>
+                </CellDisplayTemplate>
+            </DxGridDataColumn>
+
+            <!-- Cột Year of Publication, kiểu smallint -->
+            <DxGridDataColumn Caption="Năm xuất bản" FieldName="YearOfPublication" Width="80" DisplayFormat="########" />
+
+            <!-- Cột Price, kiểu decimal -->
+            <DxGridDataColumn Caption="Giá" FieldName="Price" Width="80" />
+
+            <!-- Cột Quantity, kiểu int -->
+            <DxGridDataColumn Caption="Số lượng" FieldName="Quantity" Width="80" DisplayFormat="N0" />
+
+            <DxGridDataColumn Caption="Đã xóa" FieldName="isDeleted" Width="80" />
+
+            <DxGridDataColumn Caption="Hình ảnh">
+                <CellDisplayTemplate>
+                    @{
+                        var data = (Book)context.DataItem;
+                    }
+                    <img src="@data.Image" style="width: 70px; height:70px;" alt="Ảnh sách" />
+                </CellDisplayTemplate>
+            </DxGridDataColumn>
+        </Columns>
+
+        <ToolbarTemplate>
+            <DxToolbar>
+                <DxToolbarItem Text="Tạo mới"
+                               IconCssClass="oi oi-plus"
+                               CssClass="me-2 create HButton"
+                               Click="OnCreateNew" />
+
+                <DxToolbarItem Text="Xem / Sửa"
+                               IconCssClass="oi oi-pencil"
+                               CssClass="me-2 edit HButton"
+                               Click="OnEdit" />
+
+                <DxToolbarItem Text="Xóa"
+                               IconCssClass="oi oi-trash"
+                               CssClass="me-2 delete HButton"
+                               Click="OnDelete" />
+
+                <DxToolbarItem Text="Đặt hàng"
+                               IconCssClass="fa-solid fa-cart-shopping"
+                               CssClass="me-2 order HButton"
+                               Click="OnOrder" />
+
+                <DxToolbarItem Text="Chọn cột"
+                               IconCssClass="oi oi-cog"
+                               CssClass="column-chooser-button ms-3 chooser-column HButton"
+                               BeginGroup="true"
+                               Click="OnShowColumnChooser" />
+
+                <DxToolbarItem BeginGroup="true"
+                               Alignment="ToolbarItemAlignment.Right">
+                    <Template Context="itemContext">
+                        <div class="d-flex flex-row align-items-center h-100">
+                            <DxSearchBox CssClass="search py-0" style="width:400px;"
+                                         Text="@searchText"
+                                         InputDelay="1000"
+                                         TextChanged="@Search"
+                                         ClearButtonDisplayMode="DataEditorClearButtonDisplayMode.Auto"
+                                         aria-label="Tìm kiếm sách" />
+                        </div>
+                    </Template>
+                </DxToolbarItem>
+            </DxToolbar>
+        </ToolbarTemplate>
+
+        <EditFormTemplate Context="editFormContext">
+            <DxFormLayout CssClass="my-form-layout">
+
+                @if (!IsOrder)
+                {
+                    <div class="row">
+
+                        <!-- ISBN -->
+                        <div class="col-lg-6 col-sm-12">
+                            <DxFormLayoutItem Caption="Mã ISBN:" CssClass="custom-item">
+                                <DxTextBox @bind-Text="@selectedItem.Isbn" Id="Isbn" CssClass="form-control-solid control" />
+                                <ValidationMessage For="@(() => selectedItem.Isbn)" />
+                            </DxFormLayoutItem>
+                        </div>
+
+                        <!-- Title -->
+                        <div class="col-lg-6 col-sm-12">
+                            <DxFormLayoutItem Caption="Tiêu đề:" CssClass="custom-item">
+                                <DxTextBox @bind-Text="@selectedItem.Title" Id="Title" CssClass="form-control-solid control" />
+                                <ValidationMessage For="@(() => selectedItem.Title)" />
+                            </DxFormLayoutItem>
+                        </div>
+
+                        <!-- Category -->
+                        <div class="col-lg-6 col-sm-12">
+                            <DxFormLayoutItem Caption="Thể loại:" CssClass="custom-item">
+                                <DxComboBox Data="@categories"
+                                            Id="CategoryComboboxId"
+                                            SearchFilterCondition="ListSearchFilterCondition.Contains"
+                                            SearchMode="ListSearchMode.AutoSearch"
+                                            @bind-Value="@selectedItem.categoryId"
+                                            TextFieldName="@nameof(selectedCategory.Name)"
+                                            ValueFieldName="@nameof(selectedCategory.id)" />
+                                <ValidationMessage For="@(() => selectedItem.categoryId)" />
+                            </DxFormLayoutItem>
+                        </div>
+
+                        <!-- Author -->
+                        <div class="col-lg-6 col-sm-12">
+                            <DxFormLayoutItem Caption="Tác giả:" CssClass="custom-item">
+                                <DxComboBox Data="@authors"
+                                            Id="AuthorComboboxId"
+                                            SearchFilterCondition="ListSearchFilterCondition.Contains"
+                                            SearchMode="ListSearchMode.AutoSearch"
+                                            @bind-Value="@selectedItem.authorId"
+                                            TextFieldName="@nameof(selectedAuthor.Name)"
+                                            ValueFieldName="@nameof(selectedAuthor.id)" />
+                                <ValidationMessage For="@(() => selectedItem.authorId)" />
+                            </DxFormLayoutItem>
+                        </div>
+
+                        <!-- Publisher -->
+                        <div class="col-lg-6 col-sm-12">
+                            <DxFormLayoutItem Caption="Nhà xuất bản:" CssClass="custom-item">
+                                <DxComboBox Data="@publishers"
+                                            Id="PublisherComboboxId"
+                                            SearchFilterCondition="ListSearchFilterCondition.Contains"
+                                            SearchMode="ListSearchMode.AutoSearch"
+                                            @bind-Value="@selectedItem.publisherId"
+                                            TextFieldName="@nameof(selectedPublisher.Name)"
+                                            ValueFieldName="@nameof(selectedPublisher.id)" />
+                                <ValidationMessage For="@(() => selectedItem.publisherId)" />
+                            </DxFormLayoutItem>
+                        </div>
+
+                        <!-- Year of Publication -->
+                        <div class="col-lg-6 col-sm-12">
+                            <DxFormLayoutItem Caption="Năm xuất bản:">
+                                <DxSpinEdit @bind-Value="@selectedItem.YearOfPublication"
+                                            Id="YearOfPublication"
+                                            MinValue="0"
+                                            MaxValue="3000"
+                                            style="min-width:100px;" />
+                            </DxFormLayoutItem>
+                        </div>
+
+                        <!-- Quantity -->
+                        <div class="col-lg-6 col-sm-12">
+                            <DxFormLayoutItem Caption="Số lượng:" CssClass="custom-item">
+                                <DxSpinEdit @bind-Value="@selectedItem.Quantity" Id="Quantity" MinValue="0" />
+                            </DxFormLayoutItem>
+                        </div>
+
+                        <!-- Price -->
+                        <div class="col-lg-6 col-sm-12">
+                            <DxFormLayoutItem Caption="Giá:" CssClass="custom-item">
+                                <DxSpinEdit @bind-Value="@selectedItem.Price" Id="Price" DisplayFormat="N0" />
+                            </DxFormLayoutItem>
+                        </div>
+
+                        <!-- Image -->
+                        <div class="col-lg-6 col-sm-12">
+                            <DxFormLayoutItem Caption="URL hình ảnh:" CssClass="custom-item">
+                                <DxTextBox @bind-Text="@selectedItem.Image" Id="Image" CssClass="form-control-solid control" />
+                                <ValidationMessage For="@(() => selectedItem.Image)" />
+                            </DxFormLayoutItem>
+                        </div>
+
+                        <!-- Is Deleted -->
+                        <div class="col-lg-6 col-sm-12">
+                            <DxFormLayoutItem Caption="Đã xóa:" CssClass="custom-item">
+                                <DxCheckBox @bind-Checked="@selectedItem.isDeleted" Id="IsDeletedCheckbox" />
+                            </DxFormLayoutItem>
+                        </div>
+                    </div>
+
+                    <img src="@selectedItem.Image" style="width:200px; height:200px;" alt="Hình ảnh" />
+                }
+                else
+                {
+                    <div class="row">
+                        <div class="col-lg-6 col-sm-12">
+                            <DxFormLayoutItem Caption="Khách hàng:" CssClass="custom-item">
+                                <DxComboBox Data="@customersCreate" Id="CustomerComboboxId"
+                                            SearchFilterCondition="ListSearchFilterCondition.Contains" SearchMode="ListSearchMode.AutoSearch"
+                                            @bind-Value="@orderItem.CustomerId"
+                                            TextFieldName="@nameof(selectedCustomer.FullName)"
+                                            SelectedItemChanged="(Customer? data)=> OnChangeCustomer(data)"
+                                            ValueFieldName="@nameof(selectedCustomer.id)" />
+                            </DxFormLayoutItem>
+                        </div>
+                        <div class="col-lg-6 col-sm-12">
+                            <DxFormLayoutItem Caption="Số điện thoại:" CssClass="custom-item">
+                                <DxTextBox @bind-Text="@selectedCustomer.phone" Enabled="false" />
+                            </DxFormLayoutItem>
+                        </div>
+                        <div class="col-lg-6 col-sm-12">
+                            <DxFormLayoutItem Caption="Ngày sinh:" CssClass="custom-item">
+                                <DxDateEdit @bind-Date="@selectedCustomer.dateOfBirth" Enabled="false" />
+                            </DxFormLayoutItem>
+                        </div>
+
+                        <!-- Promotion -->
+                        <div class="col-lg-6 col-sm-12">
+                            <DxFormLayoutItem Caption="Khuyến mãi:" CssClass="custom-item">
+                                <DxComboBox Data="@promotionsCreate" Id="PromotionComboboxId"
+                                            SearchFilterCondition="ListSearchFilterCondition.Contains" SearchMode="ListSearchMode.AutoSearch"
+                                            @bind-Value="@orderItem.PromotionId"
+                                            TextFieldName="@nameof(selectedPromotion.name)"
+                                            ValueFieldName="@nameof(selectedPromotion.id)"
+                                            SelectedItemChanged="(Promotion? data)=> OnChangePromotion(data)" />
+                            </DxFormLayoutItem>
+                        </div>
+
+                        <div class="col-lg-6 col-sm-12">
+                            <DxFormLayoutItem Caption="Điều kiện:" CssClass="custom-item">
+                                <DxSpinEdit @bind-Value="@selectedPromotion.condition" Mask="###,###,###,###,##0"
+                                            DisplayFormat="{0:n0}" Id="condition"
+                                            Enabled="false" ShowSpinButtons="false" />
+                            </DxFormLayoutItem>
+                        </div>
+
+                        <div class="col-lg-6 col-sm-12">
+                            <DxFormLayoutItem Caption="Phần trăm giảm giá (%):" CssClass="custom-item">
+                                @{
+                                    string abc = $"{(@selectedPromotion.discountPercent * 100).ToString()}%";
+                                }
+                                <DxTextBox @bind-Text="@abc" Enabled="false" Id="discount" />
+                            </DxFormLayoutItem>
+                        </div>
+
+                        <div class="col-lg-6 col-sm-12">
+                            <DxFormLayoutItem Caption="Số lượng còn lại:" CssClass="custom-item">
+                                <DxSpinEdit @bind-Value="@selectedPromotion.quantity"
+                                            Enabled="false" Id="quantity"
+                                            ShowSpinButtons="false" />
+                            </DxFormLayoutItem>
+                        </div>
+
+                        <div class="col-lg-6 col-sm-12" style="margin-left:12px;">
+                            <h4> Chi tiết đơn hàng:</h4>
+                        </div>
+
+                        <div class="col-lg-12 col-sm-12">
+                            <DxFormLayoutItem Caption="Tổng tiền:" CssClass="custom-item">
+                                <DxSpinEdit @bind-Value="@sum" Mask="###,###,###,###,##0"
+                                            Enabled="false" Id="sum"
+                                            ShowSpinButtons="false" />
+                            </DxFormLayoutItem>
+                        </div>
+
+                        @foreach (var item in ListOrderItem)
+                        {
+                            <div class="col-4">
+                                <DxFormLayoutItem Caption="Sách:" CssClass="custom-item">
+                                    <DxComboBox Data="@books"
+                                                SearchFilterCondition="ListSearchFilterCondition.Contains" SearchMode="ListSearchMode.AutoSearch"
+                                                @bind-Value="@item.BookId"
+                                                TextFieldName="@nameof(selectedBook.Title)"
+                                                ValueFieldName="@nameof(selectedBook.id)"
+                                                SelectedItemChanged="(Book data)=> OnChangeBook(item, data)" />
+                                </DxFormLayoutItem>
+                            </div>
+                            <div class="col-4">
+                                <DxFormLayoutItem Caption="Số lượng:" CssClass="custom-item">
+                                    <DxSpinEdit Value="@item.Quantity" Id="quantityBookId"
+                                                ValueChanged="@((int newValue) => OnQuantityChanged(newValue, item))"
+                                                ValueExpression="@(() => item.Quantity)"
+                                                MinValue="1" />
+                                </DxFormLayoutItem>
+                            </div>
+                            <div class="col-4">
+                                <DxFormLayoutItem Caption="Giá:" CssClass="custom-item">
+                                    <DxSpinEdit @bind-Value="@item.Price" Mask="###,###,###,###,##0"
+                                                DisplayFormat="{0:n0}" Id="priceBook"
+                                                MaxValue="999999999999999"
+                                                MinValue="10000"
+                                                Enabled="false" />
+                                </DxFormLayoutItem>
+                            </div>
+                        }
+                        <div class="col-12" style="margin: 12px 20px 0 0;">
+                            <DxButton Click="@AddOrderItem"
+                                      Text="Thêm sản phẩm"
+                                      IconCssClass="fa-solid fa-plus icon-bt"
+                                      CssClass="displayStyle btn-success" />
+                        </div>
+                    </div>
+                }
+            </DxFormLayout>
+        </EditFormTemplate>
+    </DxGrid>
+}
+
+
+@code {
+    string urlGrid = "api/book";
+    string urlOrder = "api/order";
+    string urlCategory = "api/category";
+    string urlAuthor = "api/author";
+    string urlPublisher = "api/publisher";
+    string urlCustomer = "api/customer";
+    string urlPromotion = "api/promotion";
+    String title { get; set; } = "";
+    String searchText { get; set; } = "";
+    bool enableEdit { get; set; } = true;
+    bool IsOrder { get; set; } = false;
+    List<int> ListPage = new List<int> { 10, 20, 30, 50, 100 };
+    [Inject] IToastNotificationService ToastService { get; set; }
+    List<Book>? ListGrid { get; set; } = new();
+    List<Book>? ListBook { get; set; } = new();
+    List<Book>? books { get; set; } = new();
+    IReadOnlyList<Book> SelectedDataItems { get; set; }
+    Book selectedItem { get; set; } = new();
+    Order orderItem { get; set; } = new();
+    List<Category>? categories { get; set; } = new();
+    Category? selectedCategory { get; set; } = new();
+    Category? filterCategory { get; set; }
+    List<Author>? authors { get; set; } = new();
+    Author? selectedAuthor { get; set; } = new();
+    Author? filterAuthor { get; set; }
+    List<Publisher>? publishers { get; set; } = new();
+    Publisher? selectedPublisher { get; set; } = new();
+    Publisher? filterPublisher { get; set; }
+    List<Customer>? customers { get; set; } = new();
+    List<Customer>? customersCreate { get; set; } = new();
+    Customer selectedCustomer { get; set; } = new();
+    List<Promotion>? promotions { get; set; } = new();
+    List<Promotion>? promotionsCreate { get; set; } = new();
+    Promotion selectedPromotion { get; set; } = new();
+    List<OrderItem> ListOrderItem { get; set; } = new();
+    Book selectedBook { get; set; } = new();
+
+    decimal sum { get; set; } = 0;
+    IGrid MyGrid { get; set; }
+    DxPopup myPopup { get; set; }
+    protected override async Task OnInitializedAsync()
+    {
+        loadCustomer();
+        loadPromotion();
+        loadCategory();
+        loadAuthor();
+        loadPublisher();
+        loadData();
+        StateHasChanged();
+    }
+    async void loadData()
+    {
+        var result = await Http.GetFromJsonAsync<List<Book>>(urlGrid);
+        ListBook = result.ToList();
+        ListGrid = ListBook.ToList();
+        books = ListBook.Where(dt => dt.isDeleted == false).ToList();
+        StateHasChanged();
+    }
+    async void loadPromotion()
+    {
+        promotions = await Http.GetFromJsonAsync<List<Promotion>>(urlPromotion);
+        promotionsCreate = promotions.Where(data => data.IsDeleted == false && data.quantity > 0).ToList();
+        StateHasChanged();
+    }
+    async void loadCustomer()
+    {
+        customers = await Http.GetFromJsonAsync<List<Customer>>(urlCustomer);
+        customersCreate = customers.Where(data => data.IsDeleted == false).ToList();
+        StateHasChanged();
+    }
+    async void loadCategory()
+    {
+        var result = await Http.GetFromJsonAsync<List<Category>>(urlCategory);
+        categories = result.Where(data => data.IsDeleted == false).ToList();
+        StateHasChanged();
+    }
+    async void loadAuthor()
+    {
+        var result = await Http.GetFromJsonAsync<List<Author>>(urlAuthor);
+        authors = result.Where(data => data.IsDeleted == false).ToList();
+        StateHasChanged();
+    }
+    async void loadPublisher()
+    {
+        var result = await Http.GetFromJsonAsync<List<Publisher>>(urlPublisher);
+        publishers = result.Where(data => data.IsDeleted == false).ToList();
+        StateHasChanged();
+    }
+
+    void OnCustomizeEditModel(GridCustomizeEditModelEventArgs e)
+    {
+        selectedItem = (Book)e.EditModel;
+
+        if (e.IsNew && !IsOrder)
+        {
+            title = "Create form";
+            enableEdit = true;
+            selectedCategory = new();
+        }
+        else if(!IsOrder)
+        {
+            selectedCategory = categories?.FirstOrDefault(c => c.id == selectedItem.categoryId);    
+            selectedAuthor = authors?.FirstOrDefault(c => c.id == selectedItem.authorId);    
+            selectedPublisher = publishers?.FirstOrDefault(c => c.id == selectedItem.publisherId);    
+            title = "View form";
+            enableEdit = false;
+        }
+        else
+        {
+            title = "Order";
+        }
+        StateHasChanged();
+    }
+    async Task OnEditModelSaving(GridEditModelSavingEventArgs e)
+    {
+        HttpResponseMessage response;
+        if (e.IsNew && !IsOrder)
+        {
+            // Tạo mới
+            selectedItem = (Book)e.EditModel;
+            response = await Http.PostAsJsonAsync(urlGrid, selectedItem);
+
+        }
+        else if (!IsOrder)
+        {
+            // Sửa
+            // e.CopyChangesToDataItem(); Copy từ model vào data item hiển thị
+            selectedItem = (Book)e.EditModel;
+            response = await Http.PutAsJsonAsync($"{urlGrid}/{selectedItem.id}", selectedItem);
+            var errorContent = await response.Content.ReadAsStringAsync();
+        }
+        else
+        {
+            orderItem.Items = ListOrderItem;
+            response = await Http.PostAsJsonAsync(urlOrder, orderItem);
+        }
+        var result = await response.Content.ReadFromJsonAsync<ApiMessageResponse>();
+        if (response.IsSuccessStatusCode)
+        {
+            // ✅ Đọc nội dung trả về từ API
+
+            ToastService.ShowToast(new ToastOptions() // SUCCESS
+                {
+                    ProviderName = "Overview",
+                    ThemeMode = ToastThemeMode.Saturated,
+                    RenderStyle = ToastRenderStyle.Success,
+                    Title = $"{result?.Message}",
+                });
+        }
+        else{
+            e.Cancel = true;
+
+            if (string.IsNullOrEmpty(result?.Message))
+            {
+                string errorContent = await response.Content.ReadAsStringAsync();
+                string allErrors = "";
+
+                using (JsonDocument doc = JsonDocument.Parse(errorContent))
+                {
+                    var errorsElement = doc.RootElement.GetProperty("errors");
+
+                    foreach (var property in errorsElement.EnumerateObject())
+                    {
+                        foreach (var error in property.Value.EnumerateArray())
+                        {
+                            allErrors += error.GetString() + "\n";
+                        }
+                    }
+                }
+                result.Message = allErrors;
+
+            }
+            ToastService.ShowToast(new ToastOptions() //ERROR
+                {
+                    ProviderName = "Overview",
+                    ThemeMode = ToastThemeMode.Saturated,
+                    RenderStyle = ToastRenderStyle.Danger,
+                    Title = $"{result?.Message}"
+                });
+        }
+        loadData();
+        MyGrid.Reload();
+        StateHasChanged();
+
+    }
+
+    async Task OnDataItemDeleting(GridDataItemDeletingEventArgs e)
+    {
+        var item = (Book)e.DataItem;
+        var response = await Http.DeleteAsync($"{urlGrid}/{item.id}");
+        var result = await response.Content.ReadFromJsonAsync<ApiMessageResponse>();
+        if (response.IsSuccessStatusCode)
+        {
+            // ✅ Đọc nội dung trả về từ API
+
+            ToastService.ShowToast(new ToastOptions() // SUCCESS
+                {
+                    ProviderName = "Overview",
+                    ThemeMode = ToastThemeMode.Saturated,
+                    RenderStyle = ToastRenderStyle.Success,
+                    Title = $"{result?.Message}",
+                });
+        }
+        else
+        {
+            ToastService.ShowToast(new ToastOptions() //ERROR
+                {
+                    ProviderName = "Overview",
+                    ThemeMode = ToastThemeMode.Saturated,
+                    RenderStyle = ToastRenderStyle.Danger,
+                    Title = $"{result?.Message}"
+                });
+        }
+        loadData();
+        StateHasChanged();
+
+    }
+
+    async Task OnCreateNew(ToolbarItemClickEventArgs e)
+    {
+
+        IsOrder = false;
+        await MyGrid.StartEditNewRowAsync();
+    }
+
+    async Task OnEdit(ToolbarItemClickEventArgs e)
+    {
+        IsOrder = false;
+        if (MyGrid.GetFocusedDataItem() != null)
+            await MyGrid.StartEditDataItemAsync(MyGrid.GetFocusedDataItem());
+    }
+
+    void OnDelete(ToolbarItemClickEventArgs e)
+    {
+        IsOrder = false;
+
+        if (MyGrid.GetFocusedDataItem() != null)
+            MyGrid.ShowDataItemDeleteConfirmation(MyGrid.GetFocusedDataItem());
+    }
+    async Task OnOrder(ToolbarItemClickEventArgs e)
+    {
+        IsOrder = true;
+        ListOrderItem = new();
+        selectedCustomer = new();
+        selectedPromotion = new();
+
+        if(SelectedDataItems != null)
+        {
+            foreach (var item in SelectedDataItems)
+            {
+                if (item.Quantity > 0 && item.isDeleted == false)
+
+                {
+                    var orderItem = new OrderItem();
+                    orderItem.BookId = item.id;
+                    orderItem.Price = item.Price;
+                    ListOrderItem.Add(orderItem);
+                }
+            }
+        }
+        if (MyGrid.GetFocusedDataItem() != null)
+            await MyGrid.StartEditDataItemAsync(MyGrid.GetFocusedDataItem());
+    }
+    void OnShowColumnChooser()
+    {
+        MyGrid.ShowColumnChooser(".column-chooser-button");
+    }
+    public class ApiMessageResponse
+    {
+        public string Message { get; set; }
+    }
+    async void SelectedCategoryFilter(Category value)
+    {
+        filterCategory = value;
+        if (value != null)
+        {
+            ListGrid = ListBook.Where(x => x.categoryId == value.id).ToList();
+        }
+        else
+        {
+            ListGrid = ListBook.ToList();
+        }
+        if (filterAuthor != null){
+            ListGrid = ListGrid.Where(x => x.authorId == filterAuthor.id).ToList();
+        }
+        if (filterPublisher != null){
+            ListGrid = ListGrid.Where(x => x.publisherId == filterPublisher.id).ToList();
+        }
+        StateHasChanged();
+    }
+    async void SelectedAuthorFilter(Author value)
+    {
+        filterAuthor = value;
+        if (value != null)
+        {
+            ListGrid = ListGrid.Where(x => x.authorId == value.id).ToList();          
+        }
+        else
+        {
+            ListGrid = ListBook.ToList();
+        }
+        if (filterCategory != null)
+        {
+            ListGrid = ListGrid.Where(x => x.categoryId == filterCategory.id).ToList();
+        }
+        if (filterPublisher != null)
+        {
+            ListGrid = ListGrid.Where(x => x.publisherId == filterPublisher.id).ToList();
+        }
+        StateHasChanged();
+    }
+    async void SelectedPublisherFilter(Publisher value)
+    {
+        filterPublisher = value;
+        if (value != null)
+        {
+            ListGrid = ListGrid.Where(x => x.publisherId == value.id).ToList();
+        }
+        else
+        {
+            ListGrid = ListBook.ToList();
+        }
+        if (filterCategory != null)
+        {
+            ListGrid = ListGrid.Where(x => x.categoryId == filterCategory.id).ToList();
+        }
+        if (filterAuthor != null)
+        {
+            ListGrid = ListGrid.Where(x => x.authorId == filterAuthor.id).ToList();
+        }
+        StateHasChanged();
+    }
+    async void Search(string newValue)
+    {
+        searchText = newValue;
+        var result = await Http.GetFromJsonAsync<List<Book>>($"{urlGrid}/search?keyword={newValue}");
+        ListGrid = result.ToList();
+        StateHasChanged();
+
+    }
+    void OnSelectedDataItemsChanged(IReadOnlyList<object> newSelection)
+    {
+        if (newSelection is not null)
+        {
+            SelectedDataItems = newSelection.Cast<Book>().ToList();
+            StateHasChanged(); // Cập nhật giao diện
+        }
+    }
+    
+    void OnChangePromotion(Promotion? data)
+    {
+        selectedPromotion = data;
+        OnChangeSum();
+        StateHasChanged();
+    }
+    void OnChangeCustomer(Customer? data)
+    {
+        selectedCustomer = data;
+        StateHasChanged();
+    }
+    void OnChangeSum()
+    {
+        decimal total = 0;
+        foreach (var data in ListOrderItem)
+        {
+            total += data.Price * data.Quantity;
+        }
+        if (selectedPromotion != null)
+        {
+            if (total >= selectedPromotion.condition && selectedPromotion.quantity > 0)
+            {
+                sum = total * (1 - (decimal)selectedPromotion.discountPercent);
+            }
+            else sum = total;
+        }
+        StateHasChanged();
+    }
+    void OnQuantityChanged(int newValue, OrderItem item)
+    {
+        if (item != null)
+        {
+            item.Quantity = newValue;
+        }
+        OnChangeSum(); // Gọi hàm tính tổng
+    }
+    void AddOrderItem()
+    {
+        ListOrderItem.Add(new OrderItem());
+    }
+    void OnChangeBook(OrderItem item, Book data)
+    {
+        item.Price = data.Price;
+        OnChangeSum();
+    }
+}

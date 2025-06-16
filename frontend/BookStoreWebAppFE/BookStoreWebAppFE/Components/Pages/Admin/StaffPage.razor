@@ -1,0 +1,405 @@
+﻿@page "/admin/staff"
+
+@using System.Text.Json;
+@using BookStoreWebAppFE.Models
+@inject HttpClient Http
+@using DevExpress.Blazor
+@rendermode InteractiveServer
+
+<div class="d-flex align-items-center custom-toast-background">
+    <DxToastProvider Name="Overview"
+    MaxToastCount="5"
+    AnimationType="ToastAnimationType.Slide"
+    HorizontalAlignment="HorizontalAlignment.Right"
+    VerticalAlignment="VerticalEdge.Top"
+    DisplayTime="TimeSpan.FromSeconds(5)"
+    Width="320px" />
+</div>
+<PageTitle>Staff</PageTitle>
+<h1>Staff</h1>
+
+@if (ListGrid == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <DxGrid Data="@ListGrid" style="height:80vh;"
+    PageSize="10"
+    PageSizeSelectorItems="@ListPage"
+    ShowFilterRow="true"
+    PagerVisible="true"
+    CustomizeEditModel="OnCustomizeEditModel"
+    EditModelSaving="OnEditModelSaving"
+    DataItemDeleting="OnDataItemDeleting"
+    KeyFieldName="id"
+    EditMode="GridEditMode.PopupEditForm"
+    FocusedRowEnabled=true
+    PopupEditFormCssClass="my-style"
+    PopupEditFormHeaderText="@title"
+    @ref=MyGrid>
+        <Columns>
+            <DxGridDataColumn Caption="Id" FieldName="id" />
+            <DxGridDataColumn Caption="Full Name" FieldName="FullName" />
+            <DxGridDataColumn Caption="Phone" FieldName="Phone" />
+            <DxGridDataColumn Caption="Email" FieldName="Email" />
+            <DxGridDataColumn Caption="Address" FieldName="Address" />
+            <DxGridDataColumn Caption="Citizen Identification" FieldName="CitizenIdentification" />
+            <DxGridDataColumn Caption="Gender">
+                <CellDisplayTemplate>
+                    @{
+                        var item = (Staff)context.DataItem;
+                        <span>@(item.Gender ? "Female" : "Male")</span>
+                    }
+                </CellDisplayTemplate>
+            </DxGridDataColumn>
+            <DxGridDataColumn Caption="Date Of Birth" FieldName="DateOfBirth" />
+            <DxGridDataColumn Caption="Role">
+                <CellDisplayTemplate>
+                    @{
+                        var item = (Staff)context.DataItem;
+                        <span>@(item.Role ? "Admin" : "Employee")</span>
+                    }
+                </CellDisplayTemplate>
+            </DxGridDataColumn>
+
+            <DxGridDataColumn Caption="Is Actived" FieldName="IsActived" />
+            <DxGridDataColumn Caption="Is Deleted" FieldName="IsDeleted" />
+
+        </Columns>
+        <ToolbarTemplate>
+            <DxToolbar>
+                <DxToolbarItem Text="Create"
+                IconCssClass="oi oi-plus"
+                CssClass="me-2 create HButton"
+                Click="OnCreateNew" Visible= "false"/>
+
+                <DxToolbarItem Text="View"
+                IconCssClass="oi oi-pencil"
+                CssClass="me-2 edit HButton"
+                Click="OnEdit" />
+
+                <DxToolbarItem Text="Delete"
+                IconCssClass="oi oi-trash"
+                CssClass="me-2 delete HButton"
+                Click="OnDelete" />
+
+                <DxToolbarItem Text="Column Chooser"
+                IconCssClass="oi oi-cog"
+                CssClass="column-chooser-button ms-3 chooser-column HButton"
+                BeginGroup="true"
+                Click="OnShowColumnChooser" />
+            </DxToolbar>
+        </ToolbarTemplate>
+        <EditFormTemplate Context="editFormContext">
+            <DxFormLayout CssClass="my-form-layout">
+                <div class="row">
+                    <div class="col-lg-12 col-sm-12">
+                        <DxFormLayoutItem Caption="Family Name:" CssClass="custom-item">
+                            <DxTextBox @bind-Text="@selectedItem.FamilyName"></DxTextBox>
+                            <ValidationMessage For="@(() => selectedItem.FamilyName)" />
+                        </DxFormLayoutItem>
+                    </div>
+
+                    <div class="col-lg-12 col-sm-12">
+                        <DxFormLayoutItem Caption="Given Name:" CssClass="custom-item">
+                            <DxTextBox @bind-Text="@selectedItem.GivenName"></DxTextBox>
+                            <ValidationMessage For="@(() => selectedItem.GivenName)" />
+                        </DxFormLayoutItem>
+                    </div>
+
+                    <div class="col-lg-12 col-sm-12">
+                        <DxFormLayoutItem Caption="Date of Birth:" CssClass="custom-item">
+                            <DxDateEdit @bind-Date="@selectedItem.DateOfBirth"></DxDateEdit>
+                            <ValidationMessage For="@(() => selectedItem.DateOfBirth)" />
+                        </DxFormLayoutItem>
+                    </div>
+
+                    <div class="col-lg-12 col-sm-12">
+                        <DxFormLayoutItem Caption="Address:" CssClass="custom-item">
+                            <DxTextBox @bind-Text="@selectedItem.Address"></DxTextBox>
+                            <ValidationMessage For="@(() => selectedItem.Address)" />
+                        </DxFormLayoutItem>
+                    </div>
+
+                    <div class="col-lg-12 col-sm-12">
+                        <DxFormLayoutItem Caption="Phone:" CssClass="custom-item">
+                            <DxTextBox @bind-Text="@selectedItem.Phone"></DxTextBox>
+                            <ValidationMessage For="@(() => selectedItem.Phone)" />
+                        </DxFormLayoutItem>
+                    </div>
+
+                    <div class="col-lg-12 col-sm-12">
+                        <DxFormLayoutItem Caption="Email:" CssClass="custom-item">
+                            <DxTextBox @bind-Text="@selectedItem.Email"></DxTextBox>
+                            <ValidationMessage For="@(() => selectedItem.Email)" />
+                        </DxFormLayoutItem>
+                    </div>
+
+                    <div class="col-lg-12 col-sm-12">
+                        <DxFormLayoutItem Caption="Citizen ID:" CssClass="custom-item">
+                            <DxTextBox @bind-Text="@selectedItem.CitizenIdentification"></DxTextBox>
+                            <ValidationMessage For="@(() => selectedItem.CitizenIdentification)" />
+                        </DxFormLayoutItem>
+                    </div>
+
+                    <div class="col-lg-6 col-sm-12">
+                        <DxFormLayoutItem Caption="Role:" CssClass="custom-item">
+                            <DxCheckBox @bind-Checked="@selectedItem.Role"></DxCheckBox>
+                        </DxFormLayoutItem>
+                    </div>
+
+                    <div class="col-lg-6 col-sm-12">
+                        <DxFormLayoutItem Caption="Gender:" CssClass="custom-item">
+                            <DxCheckBox @bind-Checked="@selectedItem.Gender"></DxCheckBox>
+                        </DxFormLayoutItem>
+                    </div>
+
+                    <div class="col-lg-6 col-sm-12">
+                        <DxFormLayoutItem Caption="Is Active:" CssClass="custom-item">
+                            <DxCheckBox @bind-Checked="@selectedItem.IsActived"></DxCheckBox>
+                        </DxFormLayoutItem>
+                    </div>
+
+                    <div class="col-lg-6 col-sm-12">
+                        <DxFormLayoutItem Caption="Is Deleted:" CssClass="custom-item">
+                            <DxCheckBox @bind-Checked="@selectedItem.IsDeleted"></DxCheckBox>
+                        </DxFormLayoutItem>
+                    </div>
+
+                </div>
+            </DxFormLayout>
+        </EditFormTemplate>
+    </DxGrid>
+}
+
+@code {
+    string urlGrid = "api/staff";
+    String title { get; set; } = "";
+    bool enableEdit { get; set; } = true;
+    List<int> ListPage = new List<int> { 10, 20, 30, 50, 100 };
+    [Inject] IToastNotificationService ToastService { get; set; }
+    List<GenderOption> genderOptions = new()
+    {
+        new GenderOption { Value = false, Text = "Male" },
+        new GenderOption { Value = true, Text = "Female" }
+    };
+    List<Staff>? ListGrid { get; set; } = new();
+    Staff selectedItem { get; set; } = new();
+    IGrid MyGrid { get; set; }
+    protected override async Task OnInitializedAsync()
+    {
+        loadData();
+        // loadCategory();
+    }
+
+    async void loadData()
+    {
+        try
+        {
+            var response = await Http.GetAsync(urlGrid);
+            if (response.IsSuccessStatusCode)
+            {
+                ListGrid = await response.Content.ReadFromJsonAsync<List<Staff>>();
+            }
+            else if (response.StatusCode == System.Net.HttpStatusCode.Forbidden)
+            {
+                ToastService.ShowToast(new ToastOptions
+                {
+                    ProviderName = "Overview",
+                    ThemeMode = ToastThemeMode.Saturated,
+                    RenderStyle = ToastRenderStyle.Danger,
+                    Title = "You do not have permission to access this page."
+                });
+
+                ListGrid = null; // Dừng hiển thị bảng
+            }
+            else
+            {
+                ToastService.ShowToast(new ToastOptions
+                {
+                    ProviderName = "Overview",
+                    ThemeMode = ToastThemeMode.Saturated,
+                    RenderStyle = ToastRenderStyle.Danger,
+                    Title = $"Lỗi: {response.StatusCode}"
+                });
+
+                ListGrid = null;
+            }
+        }
+        catch (Exception ex)
+        {
+            ToastService.ShowToast(new ToastOptions
+            {
+                ProviderName = "Overview",
+                ThemeMode = ToastThemeMode.Saturated,
+                RenderStyle = ToastRenderStyle.Danger,
+                Title = $"Lỗi hệ thống: {ex.Message}"
+            });
+
+            ListGrid = null;
+        }
+
+        StateHasChanged();
+    }
+
+    // cmt code cua Ngan bi loi
+    // async void loadData()
+    // {
+    //     ListGrid = await Http.GetFromJsonAsync<List<Staff>>(urlGrid);
+    //     StateHasChanged();
+    // }
+
+    // async void loadCategory()
+    // {
+    //     categories = await Http.GetFromJsonAsync<List<Category>>(urlCategory);
+    //     StateHasChanged();
+    // }
+
+    void OnCustomizeEditModel(GridCustomizeEditModelEventArgs e)
+    {
+        selectedItem = (Staff)e.EditModel;
+        if (e.IsNew)
+        {
+            title = "Create form";
+            enableEdit = true;
+        }
+        else
+        {
+            title = "View form";
+            enableEdit = false;
+        }
+        StateHasChanged();
+    }
+    async Task OnEditModelSaving(GridEditModelSavingEventArgs e)
+    {
+        HttpResponseMessage response;
+        if (e.IsNew)
+        {
+            // Tạo mới
+            selectedItem = (Staff)e.EditModel;
+            response = await Http.PostAsJsonAsync(urlGrid, selectedItem);
+
+        }
+        else
+        {
+            // Sửa
+            // e.CopyChangesToDataItem(); Copy từ model vào data item hiển thị
+            selectedItem = (Staff)e.EditModel;
+            response = await Http.PutAsJsonAsync($"{urlGrid}/{selectedItem.id}", selectedItem);
+
+        }
+        var result = await response.Content.ReadFromJsonAsync<ApiMessageResponse>();
+        if (response.IsSuccessStatusCode)
+        {
+            // ✅ Đọc nội dung trả về từ API
+
+            ToastService.ShowToast(new ToastOptions() // SUCCESS
+                {
+                    ProviderName = "Overview",
+                    ThemeMode = ToastThemeMode.Saturated,
+                    RenderStyle = ToastRenderStyle.Success,
+                    Title = $"{result?.Message}",
+                });
+        }
+        else
+        {
+            if (string.IsNullOrEmpty(result?.Message))
+            {
+                string errorContent = await response.Content.ReadAsStringAsync();
+                string allErrors = "";
+
+                using (JsonDocument doc = JsonDocument.Parse(errorContent))
+                {
+                    var errorsElement = doc.RootElement.GetProperty("errors");
+
+                    foreach (var property in errorsElement.EnumerateObject())
+                    {
+                        foreach (var error in property.Value.EnumerateArray())
+                        {
+                            allErrors += error.GetString() + "\n";
+                        }
+                    }
+                }
+                result.Message = allErrors;
+
+            }
+            ToastService.ShowToast(new ToastOptions() //ERROR
+                {
+                    ProviderName = "Overview",
+                    ThemeMode = ToastThemeMode.Saturated,
+                    RenderStyle = ToastRenderStyle.Danger,
+                    Title = $"{result?.Message}"
+                });
+        }
+        
+        loadData();
+        MyGrid.Reload();
+        StateHasChanged();
+    }
+
+    async Task OnDataItemDeleting(GridDataItemDeletingEventArgs e)
+    {
+        var item = (Staff)e.DataItem;
+        var response = await Http.DeleteAsync($"{urlGrid}/{item.id}");
+        var result = await response.Content.ReadFromJsonAsync<ApiMessageResponse>();
+        if (response.IsSuccessStatusCode)
+        {
+            // ✅ Đọc nội dung trả về từ API
+
+            ToastService.ShowToast(new ToastOptions() // SUCCESS
+                {
+                    ProviderName = "Overview",
+                    ThemeMode = ToastThemeMode.Saturated,
+                    RenderStyle = ToastRenderStyle.Success,
+                    Title = $"{result?.Message}",
+                });
+        }
+        else
+        {
+            ToastService.ShowToast(new ToastOptions() //ERROR
+                {
+                    ProviderName = "Overview",
+                    ThemeMode = ToastThemeMode.Saturated,
+                    RenderStyle = ToastRenderStyle.Danger,
+                    Title = $"{result?.Message}"
+                });
+        }
+        loadData();
+        MyGrid.Reload();
+        StateHasChanged();
+
+    }
+   
+    async Task OnCreateNew(ToolbarItemClickEventArgs e)
+    {
+        await MyGrid.StartEditNewRowAsync();
+    }
+
+    async Task OnEdit(ToolbarItemClickEventArgs e)
+    {
+        if (MyGrid.GetFocusedDataItem() != null)
+            await MyGrid.StartEditDataItemAsync(MyGrid.GetFocusedDataItem());
+    }
+
+    void OnDelete(ToolbarItemClickEventArgs e)
+    {
+        if (MyGrid.GetFocusedDataItem() != null)
+            MyGrid.ShowDataItemDeleteConfirmation(MyGrid.GetFocusedDataItem());
+    }
+
+    void OnShowColumnChooser()
+    {
+        MyGrid.ShowColumnChooser(".column-chooser-button");
+    }
+    public class ApiMessageResponse
+    {
+        public string Message { get; set; }
+    }
+    public class GenderOption
+    {
+        public bool Value { get; set; }
+        public string Text { get; set; } = string.Empty;
+    }
+
+}

@@ -1,0 +1,255 @@
+﻿@page "/admin/publisher"
+@using System.Text.Json;
+
+@using BookStoreWebAppFE.Models
+@inject HttpClient Http
+@using DevExpress.Blazor
+@rendermode InteractiveServer
+
+<div class="d-flex align-items-center custom-toast-background">
+    <DxToastProvider Name="Overview"
+                     MaxToastCount="5"
+                     AnimationType="ToastAnimationType.Slide"
+                     HorizontalAlignment="HorizontalAlignment.Right"
+                     VerticalAlignment="VerticalEdge.Top"
+                     DisplayTime="TimeSpan.FromSeconds(5)"
+                     Width="320px" />
+</div>
+<PageTitle>Publisher</PageTitle>
+<h1>Publisher</h1>
+
+@if (ListGrid == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <DxGrid Data="@ListGrid" style="height:80vh;"
+            PageSize="10"
+            PageSizeSelectorItems="@ListPage"
+            ShowFilterRow="true"
+            PagerVisible="true"
+            CustomizeEditModel="OnCustomizeEditModel"
+            EditModelSaving="OnEditModelSaving"
+            DataItemDeleting="OnDataItemDeleting"
+            KeyFieldName="id"
+            EditMode="GridEditMode.PopupEditForm"
+            FocusedRowEnabled=true
+            PopupEditFormCssClass="my-style"
+            PopupEditFormHeaderText="@title"
+            @ref=MyGrid>
+        <Columns>
+            <DxGridDataColumn Caption="Id" FieldName="id" />
+            <DxGridDataColumn Caption="Name" FieldName="Name" />
+            <DxGridDataColumn Caption="Is Delete" FieldName="IsDeleted" Width="80" />
+
+        </Columns>
+        <ToolbarTemplate>
+            <DxToolbar>
+                <DxToolbar>
+                    <DxToolbarItem Text="Create"
+                                   IconCssClass="oi oi-plus"
+                                   CssClass="me-2 create HButton"
+                                   Click="OnCreateNew" />
+
+                    <DxToolbarItem Text="View"
+                                   IconCssClass="oi oi-pencil"
+                                   CssClass="me-2 edit HButton"
+                                   Click="OnEdit" />
+
+                    <DxToolbarItem Text="Delete"
+                                   IconCssClass="oi oi-trash"
+                                   CssClass="me-2 delete HButton"
+                                   Click="OnDelete" />
+
+                    <DxToolbarItem Text="Column Chooser"
+                                   IconCssClass="oi oi-cog"
+                                   CssClass="column-chooser-button ms-3 chooser-column HButton"
+                                   BeginGroup="true"
+                                   Click="OnShowColumnChooser" />
+                </DxToolbar>
+            </DxToolbar>
+        </ToolbarTemplate>
+        <EditFormTemplate Context="editFormContext">
+            <DxFormLayout CssClass="my-form-layout">
+                <div class="row" style="width: 100%;">
+                    <div class="col-lg-12 col-sm-12"> 
+                        <DxFormLayoutItem Caption="Name:" CssClass="custom-item">
+                            <DxTextBox @bind-Text="@selectedItem.Name"></DxTextBox>
+                            <ValidationMessage For="@(() => selectedItem.Name)" />
+                        </DxFormLayoutItem>
+                    </div>
+                    <div class="col-lg-12 col-sm-12">
+                        <DxFormLayoutItem Caption="Is Deleted:" CssClass="custom-item">
+                            <DxCheckBox @bind-Checked="@selectedItem.IsDeleted" />
+                        </DxFormLayoutItem>
+                    </div>
+                </div>
+            </DxFormLayout>
+        </EditFormTemplate>
+    </DxGrid>
+}
+
+@code {
+    string urlGrid = "api/publisher";
+    String title { get; set; } = "";
+    bool enableEdit { get; set; } = true;
+    List<int> ListPage = new List<int> { 10, 20, 30, 50, 100 };
+    [Inject] IToastNotificationService ToastService { get; set; }
+    List<Publisher>? ListGrid { get; set; } = new();
+    Publisher selectedItem { get; set; } = new();
+    IGrid MyGrid { get; set; }
+    protected override async Task OnInitializedAsync()
+    {
+        loadData();
+        // loadCategory();
+    }
+    async void loadData()
+    {
+        ListGrid = await Http.GetFromJsonAsync<List<Publisher>>(urlGrid);
+        StateHasChanged();
+    }
+    // async void loadCategory()
+    // {
+    //     categories = await Http.GetFromJsonAsync<List<Category>>(urlCategory);
+    //     StateHasChanged();
+    // }
+
+    void OnCustomizeEditModel(GridCustomizeEditModelEventArgs e)
+    {
+        selectedItem = (Publisher)e.EditModel;
+        if (e.IsNew)
+        {
+            title = "Create form";
+            enableEdit = true;
+        }
+        else
+        {
+            title = "View form";
+            enableEdit = false;
+        }
+        StateHasChanged();
+    }
+    async Task OnEditModelSaving(GridEditModelSavingEventArgs e)
+    {
+        HttpResponseMessage response;
+        if (e.IsNew)
+        {
+            // Tạo mới
+            selectedItem = (Publisher)e.EditModel;
+            response = await Http.PostAsJsonAsync(urlGrid, selectedItem);
+
+        }
+        else
+        {
+            // Sửa
+            // e.CopyChangesToDataItem(); Copy từ model vào data item hiển thị
+            selectedItem = (Publisher)e.EditModel;
+            response = await Http.PutAsJsonAsync($"{urlGrid}/{selectedItem.id}", selectedItem);
+
+        }
+        var result = await response.Content.ReadFromJsonAsync<ApiMessageResponse>();
+        if (response.IsSuccessStatusCode)
+        {
+            // ✅ Đọc nội dung trả về từ API
+
+            ToastService.ShowToast(new ToastOptions() // SUCCESS
+                {
+                    ProviderName = "Overview",
+                    ThemeMode = ToastThemeMode.Saturated,
+                    RenderStyle = ToastRenderStyle.Success,
+                    Title = $"{result?.Message}",
+                });
+        }
+        else
+        {
+            ToastService.ShowToast(new ToastOptions() //ERROR
+                {
+                    ProviderName = "Overview",
+                    ThemeMode = ToastThemeMode.Saturated,
+                    RenderStyle = ToastRenderStyle.Danger,
+                    Title = $"{result?.Message}"
+                });
+        }
+        
+        loadData();
+        StateHasChanged();
+    }
+
+    async Task OnDataItemDeleting(GridDataItemDeletingEventArgs e)
+    {
+        var item = (Publisher)e.DataItem;
+        var response = await Http.DeleteAsync($"{urlGrid}/{item.id}");
+        var result = await response.Content.ReadFromJsonAsync<ApiMessageResponse>();
+        if (response.IsSuccessStatusCode)
+        {
+            // ✅ Đọc nội dung trả về từ API
+
+            ToastService.ShowToast(new ToastOptions() // SUCCESS
+                {
+                    ProviderName = "Overview",
+                    ThemeMode = ToastThemeMode.Saturated,
+                    RenderStyle = ToastRenderStyle.Success,
+                    Title = $"{result?.Message}",
+                });
+        }
+        else
+        {
+            if (string.IsNullOrEmpty(result?.Message))
+            {
+                string errorContent = await response.Content.ReadAsStringAsync();
+                string allErrors = "";
+
+                using (JsonDocument doc = JsonDocument.Parse(errorContent))
+                {
+                    var errorsElement = doc.RootElement.GetProperty("errors");
+
+                    foreach (var property in errorsElement.EnumerateObject())
+                    {
+                        foreach (var error in property.Value.EnumerateArray())
+                        {
+                            allErrors += error.GetString() + "\n";
+                        }
+                    }
+                }
+                result.Message = allErrors;
+
+            }
+            ToastService.ShowToast(new ToastOptions() //ERROR
+                {
+                    ProviderName = "Overview",
+                    ThemeMode = ToastThemeMode.Saturated,
+                    RenderStyle = ToastRenderStyle.Danger,
+                    Title = $"{result?.Message}"
+                });
+        }
+        loadData();
+        StateHasChanged();
+    }
+
+    async Task OnCreateNew(ToolbarItemClickEventArgs e)
+    {
+        await MyGrid.StartEditNewRowAsync();
+    }
+
+    async Task OnEdit(ToolbarItemClickEventArgs e)
+    {
+        if (MyGrid.GetFocusedDataItem() != null)
+            await MyGrid.StartEditDataItemAsync(MyGrid.GetFocusedDataItem());
+    }
+
+    void OnDelete(ToolbarItemClickEventArgs e)
+    {
+        if (MyGrid.GetFocusedDataItem() != null)
+            MyGrid.ShowDataItemDeleteConfirmation(MyGrid.GetFocusedDataItem());
+    }
+
+    void OnShowColumnChooser()
+    {
+        MyGrid.ShowColumnChooser(".column-chooser-button");
+    }
+    public class ApiMessageResponse
+    {
+        public string Message { get; set; }
+    }
+}
