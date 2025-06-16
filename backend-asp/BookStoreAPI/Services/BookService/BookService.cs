@@ -115,6 +115,12 @@ namespace BookStoreAPI.Services.BookService
 
         public async Task<bool> AddAsync(BookCreateDTO bookCreateDTO)
         {
+            if (string.IsNullOrWhiteSpace(bookCreateDTO.Isbn))
+                throw new ArgumentException("Mã ISBN là bắt buộc.");
+
+            if (string.IsNullOrWhiteSpace(bookCreateDTO.Title))
+                throw new ArgumentException("Tiêu đề là bắt buộc.");
+
             await ValidateForeignKeysAsync(bookCreateDTO);
 
             if (bookCreateDTO.YearOfPublication <= 1500)
