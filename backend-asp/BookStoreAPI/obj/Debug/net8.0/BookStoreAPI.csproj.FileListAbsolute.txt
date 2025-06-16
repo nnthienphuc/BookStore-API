@@ -188,3 +188,4 @@ D:\Github\BookStore-API\backend-asp\BookStoreAPI\obj\Debug\net8.0\refint\BookSto
 D:\Github\BookStore-API\backend-asp\BookStoreAPI\obj\Debug\net8.0\BookStoreAPI.pdb
 D:\Github\BookStore-API\backend-asp\BookStoreAPI\obj\Debug\net8.0\BookStoreAPI.genruntimeconfig.cache
 D:\Github\BookStore-API\backend-asp\BookStoreAPI\obj\Debug\net8.0\ref\BookStoreAPI.dll
+D:\Github\BookStore-API\backend-asp\BookStoreAPI\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
