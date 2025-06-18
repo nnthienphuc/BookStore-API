@@ -7,19 +7,19 @@ from selenium.webdriver.common.keys import Keys
 import time
 
 # Đường dẫn Edge WebDriver
-EDGE_DRIVER_PATH = "C:\\DaiCa\\Project\\BookStore\\Test\\SeleniumTest\\msedgedriver.exe"
+EDGE_DRIVER_PATH = "Phuc - UC02\\edgedriver_win64\\msedgedriver.exe"
 
 # Khởi động WebDriver
 service = Service(EDGE_DRIVER_PATH)
 driver = webdriver.Edge(service=service)
 try:
     # vào trang đăng nhập
-    driver.get("https://localhost:7226/")
+    driver.get("https://localhost:7225/")
     time.sleep(3)
 
     # Điền thông tin đăng nhập
     driver.find_element(By.ID, "email").send_keys("phucnaoto@gmail.com")
-    driver.find_element(By.ID, "password").send_keys("12345678")
+    driver.find_element(By.ID, "password").send_keys("123456")
     time.sleep(3)
 
     # click btn login
