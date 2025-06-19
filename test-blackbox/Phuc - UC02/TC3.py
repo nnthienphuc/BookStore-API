@@ -50,6 +50,7 @@ try:
     isbn_input.send_keys("8935212366533")
     print("✅ Đã điền ISBN.")
     time.sleep(1.5)
+    print("❗️ Lưu ý: Mã ISBN này đã tồn tại trong hệ thống. Vui lòng kiểm tra lại.")
 
     # Title
     title_input = driver.find_element(By.ID, "Title")

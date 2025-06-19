@@ -95,6 +95,7 @@ try:
     price_input.send_keys("500")
     print("✅ Đã điền Price.")
     time.sleep(1.5)
+    print("❗️ Lưu ý: Giá sách này dưới 1000. Vui lòng kiểm tra lại.")
 
     # Image
     image_input = driver.find_element(By.ID, "Image")

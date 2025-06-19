@@ -101,6 +101,7 @@ try:
     # image_input.send_keys("https://cdn1.fahasa.com/media/catalog/product/d/o/doraemon-truyen-dai---nobita-va-lau-dai-duoi-day-bien---tap-4---tb-2023.jpg")
     # print("✅ Đã điền Image.")
     # time.sleep(1.5)
+    print("❗️ Bỏ qua điền Image.")
 
     # Save
     save_button = wait.until(EC.element_to_be_clickable((By.XPATH, "//button[span[text()='Save']]")))

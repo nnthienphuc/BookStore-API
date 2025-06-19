@@ -56,6 +56,7 @@ try:
     # title_input.send_keys("Doraemon - Truyện Dài - Tập 4 - Nobita Và Lâu Đài Dưới Đáy Biển")
     # print("✅ Đã điền Title.")
     # time.sleep(1.5)
+    print("❗️ Bỏ qua điền Title.")
 
     # Category
     category_input = driver.find_element(By.XPATH, "//input[@name='CategoryComboboxId']")

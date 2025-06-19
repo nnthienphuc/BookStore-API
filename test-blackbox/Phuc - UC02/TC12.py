@@ -107,7 +107,8 @@ try:
     # Save
     save_button = wait.until(EC.element_to_be_clickable((By.XPATH, "//button[span[text()='Save']]")))
     save_button.click()
-    print("✅ Đã gửi thông tin sách.")
+    # print("✅ Đã gửi thông tin sách.")
+    print("❗️ Bỏ qua điền thông tin sách vì tất cả field đều rỗng.")
 
     # time.sleep(6)
 

@@ -50,6 +50,7 @@ try:
     # isbn_input.send_keys("8935244884708")
     # print("✅ Đã điền ISBN.")
     # time.sleep(1.5)
+    print("❗️ Bỏ qua điền ISBN.")
 
     # Title
     title_input = driver.find_element(By.ID, "Title")

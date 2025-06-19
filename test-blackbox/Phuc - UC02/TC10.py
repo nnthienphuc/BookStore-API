@@ -70,6 +70,7 @@ try:
     # author_input.send_keys(Keys.ENTER)
     # print("✅ Đã điền Author.")
     # time.sleep(1.5)
+    print("⚠️ Bỏ qua điền tác giả.")
 
     # Publisher
     publisher_input = driver.find_element(By.XPATH, "//input[@name='PublisherComboboxId']")

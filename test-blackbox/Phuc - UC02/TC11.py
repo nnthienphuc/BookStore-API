@@ -77,6 +77,7 @@ try:
     # publisher_input.send_keys(Keys.ENTER)
     # print("✅ Đã điền Publisher.")
     # time.sleep(1.5)
+    print("⚠️ Bỏ qua trường Nhà xuất bản.")
 
     # Year of Publication
     year_input = driver.find_element(By.XPATH, "//input[@name='YearOfPublication']")

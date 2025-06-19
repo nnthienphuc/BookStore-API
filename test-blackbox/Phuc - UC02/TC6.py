@@ -83,6 +83,7 @@ try:
     year_input.send_keys("1499")
     print("✅ Đã điền Year of Publication.")
     time.sleep(1.5)
+    print("❗️ Lưu ý: Năm xuất bản này không hợp lệ (<1500). Vui lòng kiểm tra lại.")
 
     # Quantity
     quantity_input = driver.find_element(By.ID, "Quantity")

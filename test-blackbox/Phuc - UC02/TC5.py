@@ -56,6 +56,7 @@ try:
     title_input.send_keys("       ")    # Tiêu đề là khoảng trắng
     print("✅ Đã điền Title.")
     time.sleep(1.5)
+    print("❗️ Lưu ý: Tiêu đề này là khoảng trắng. Vui lòng kiểm tra lại.")
 
     # Category
     category_input = driver.find_element(By.XPATH, "//input[@name='CategoryComboboxId']")

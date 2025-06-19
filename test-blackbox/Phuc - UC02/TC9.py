@@ -63,6 +63,7 @@ try:
     # category_input.send_keys(Keys.ENTER)
     # print("✅ Đã điền Category.")
     # time.sleep(1.5)
+    print("❌ Không điền Category vì Category rỗng.")
 
     # Author
     author_input = driver.find_element(By.XPATH, "//input[@name='AuthorComboboxId']")
