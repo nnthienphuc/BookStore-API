@@ -7,7 +7,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import time
 
-EDGE_DRIVER_PATH = "edgedriver_win64\\msedgedriver.exe"
+EDGE_DRIVER_PATH = "Phuc - UC02\\edgedriver_win64\\msedgedriver.exe"
 service = Service(EDGE_DRIVER_PATH)
 driver = webdriver.Edge(service=service)
 
