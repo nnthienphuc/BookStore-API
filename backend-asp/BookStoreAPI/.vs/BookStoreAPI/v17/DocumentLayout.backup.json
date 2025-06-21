@@ -1,7 +1,14 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "D:\\Github\\BookStore-API\\backend-asp\\BookStoreAPI\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{3CE2120F-8C4F-4352-9A13-D60810F18059}|..\\BookStoreAPI.UnitTests\\BookStoreAPI.UnitTests.csproj|d:\\github\\bookstore-api\\backend-asp\\bookstoreapi.unittests\\services\\bookservicetests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3CE2120F-8C4F-4352-9A13-D60810F18059}|..\\BookStoreAPI.UnitTests\\BookStoreAPI.UnitTests.csproj|d:\\github\\bookstore-api\\backend-asp\\bookstoreapi.unittests\\bookstoreapi.unittests.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -9,7 +16,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 52,
-          "SelectedChildIndex": -1,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Bookmark",
@@ -26,6 +33,31 @@
             {
               "$type": "Bookmark",
               "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "BookServiceTests.cs",
+              "DocumentMoniker": "D:\\Github\\BookStore-API\\backend-asp\\BookStoreAPI.UnitTests\\Services\\BookServiceTests.cs",
+              "RelativeDocumentMoniker": "..\\BookStoreAPI.UnitTests\\Services\\BookServiceTests.cs",
+              "ToolTip": "D:\\Github\\BookStore-API\\backend-asp\\BookStoreAPI.UnitTests\\Services\\BookServiceTests.cs",
+              "RelativeToolTip": "..\\BookStoreAPI.UnitTests\\Services\\BookServiceTests.cs",
+              "ViewState": "AgIAAH0AAAAAAAAAAAAmwIUAAABWAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-20T02:26:23.648Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "BookStoreAPI.UnitTests.csproj",
+              "DocumentMoniker": "D:\\Github\\BookStore-API\\backend-asp\\BookStoreAPI.UnitTests\\BookStoreAPI.UnitTests.csproj",
+              "RelativeDocumentMoniker": "..\\BookStoreAPI.UnitTests\\BookStoreAPI.UnitTests.csproj",
+              "ToolTip": "D:\\Github\\BookStore-API\\backend-asp\\BookStoreAPI.UnitTests\\BookStoreAPI.UnitTests.csproj",
+              "RelativeToolTip": "..\\BookStoreAPI.UnitTests\\BookStoreAPI.UnitTests.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2025-06-20T02:26:21.554Z"
             }
           ]
         }
